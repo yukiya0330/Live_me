@@ -34,8 +34,8 @@
 ・`自分に合うアーティストを知りたい時`<br>
 
 ## 設計書
-**ER図**
-![LiveMeワイヤーフレーム-Page-1](https://user-images.githubusercontent.com/97089962/180808806-d6f940a4-9fd7-4c6b-9b59-a8345d92153d.jpg)
+**ER図**<br>
+<img src="https://user-images.githubusercontent.com/97089962/180808806-d6f940a4-9fd7-4c6b-9b59-a8345d92153d.jpg" width="500x500">
 
 ## 開発環境
 - OS：Linux(CentOS)
