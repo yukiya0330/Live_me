@@ -37,7 +37,7 @@
 **ER図**<br>
 <img src="https://user-images.githubusercontent.com/97089962/180912733-6f50b8c8-fffb-4d88-b680-b1d546ad3c4f.jpg" width="500x500"><br>
 **テーブル定義書**<br>
-[Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/mission1/files/9186151/Live-me_.pdf)
+[Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/mission1/files/9186198/Live-me_.1.pdf)
 
 ## 開発環境
 - OS：Linux(CentOS)
