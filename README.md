@@ -35,7 +35,9 @@
 
 ## 設計書
 **ER図**<br>
-<img src="https://user-images.githubusercontent.com/97089962/180814660-6a74a6c3-ff13-4129-aa90-fd7abbcf8922.jpg" width="500x500">
+<img src="https://user-images.githubusercontent.com/97089962/180814660-6a74a6c3-ff13-4129-aa90-fd7abbcf8922.jpg" width="500x500"><br>
+**テーブル定義書**<br>
+[Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/mission1/files/9186151/Live-me_.pdf)
 
 ## 開発環境
 - OS：Linux(CentOS)
