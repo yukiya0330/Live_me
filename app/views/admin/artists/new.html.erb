@@ -26,11 +26,18 @@
             </tr>
             <tr>
               <td>公開ステータス</td>
-              <td></td>
+              <td>
+                <%= f.collection_radio_buttons :status, Artist.statuses_i18n, :first , :last do |b| %>
+                  <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td></td>
               <td></td>
+            </tr>
+            <tr>
+              <td><%= f.submit "登録", class: "btn btn-success" %></td>
             </tr>
           </tbody>
         </table>
