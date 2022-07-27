@@ -2,7 +2,28 @@
   <div class="row">
     <div class="col-12 mt-3">
       <h3>会員一覧</h3>
-      
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 15%"></th>
+            <th style="width: 20%">名前</th>
+            <th style="width: 20%">ニックネーム</th>
+            <th style="width: 30%">メールアドレス</th>
+            <th style="width: 15%">会員ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td style="width: 15%" class="align-middle"><%= image_tag customer.get_profile_image(50,50) %></td>
+              <td style="width: 20%" class="align-middle"><%= link_to customer.name, admin_customer_path(customer) %></td>
+              <td style="width: 20%" class="align-middle"><%= customer.nickname %></td>
+              <td style="width: 30%" class="align-middle"><%= customer.email %></td>
+              <td style="width: 15%" class="align-middle"><%= customer.is_deleted %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
