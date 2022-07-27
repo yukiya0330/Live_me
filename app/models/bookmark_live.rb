@@ -1,0 +1,2 @@
+class BookmarkLive < ApplicationRecord
+end
