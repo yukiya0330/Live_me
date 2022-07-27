@@ -2,6 +2,8 @@ class LiveHouse < ApplicationRecord
   has_many :live_schedules, dependent: :destroy
   
   has_one_attached :live_house_image
+  
+  enum status: { release: 0, not_release: 1, close: 2 }
     
   def get_live_house_image(width, height)
     unless live_house_image.attached?
