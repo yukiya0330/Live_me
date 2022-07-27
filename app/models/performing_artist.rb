@@ -1,0 +1,2 @@
+class PerformingArtist < ApplicationRecord
+end

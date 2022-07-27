@@ -1,0 +1,2 @@
+class LiveSchedule < ApplicationRecord
+end
