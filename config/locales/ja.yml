@@ -1,0 +1,17 @@
+  ja:
+    enums:
+      artist:
+        status:
+          wait: "処理待ち"
+          release: "公開中"
+          not_release: "非公開"
+      live:
+        status:
+          wait: "処理待ち"
+          release: "公開"
+          not_release: "終了"
+      live_house:
+        status:
+          release: "公開"
+          not_release: "非公開"
+          close: "閉店"
