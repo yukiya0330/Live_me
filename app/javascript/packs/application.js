@@ -16,3 +16,10 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$('.js-searchable').select2({
+  width: 200,
+  allowClear: true
+});
+
+$('.js-searchable').val(null).trigger("change");

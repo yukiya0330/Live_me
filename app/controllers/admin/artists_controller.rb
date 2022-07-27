@@ -23,4 +23,18 @@ class Admin::ArtistsController < ApplicationController
       render :new
     end  
   end
+  
+  def update
+    @artist = Artist.find(params[:id])
+    if @artist.update(artist_params)
+      redirect_to admin_artist_path(@artist)
+    else
+      render :edit
+    end  
+  end
+  
+  private
+  def artist_params
+    params.require(:artist).permit(:artist_image, :name, :introduction, :official_url, :status)
+  end
 end
