@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'artist_genres/new'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -18,6 +15,7 @@ Rails.application.routes.draw do
     resources :artists do
       resource :artist_genres, only: [:new, :create, :destroy, :edit]
     end
+    resources :live_houses
   end
   
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

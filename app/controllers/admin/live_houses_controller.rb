@@ -35,6 +35,6 @@ class Admin::LiveHousesController < ApplicationController
   
   private
   def live_house_params
-    params.require(:live_house).permit(:name, :introduction, :postal_code, :address, :latitude, :longitude, :official_url, :status)
+    params.require(:live_house).permit(:name, :introduction, :postal_code, :address, :official_url, :status)
   end
 end

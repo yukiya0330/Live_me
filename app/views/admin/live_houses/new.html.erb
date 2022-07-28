@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3>ライブハウス新規登録</h3>
+    </div>
+  </div>
+  <%= form_with model: @live_house, url: admin_live_houses_path, method: :post do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.file_field :live_house_image %>
+      </div>
+      <div class="col-6">
+        <table cellpadding="10">
+          <tbody>
+            <tr>
+              <td>ライブハウス名</td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td>紹介文</td>
+              <td><%= f.text_area :introduction %></td>
+            </tr>
+            <tr>
+              <td>郵便番号</td>
+              <td><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr>
+              <td>住所</td>
+              <td><%= f.text_field :address %></td>
+            </tr>
+            <tr>
+              <td>オフィシャルサイト</td>
+              <td><%= f.text_field :official_url %></td>
+            </tr>
+            <tr>
+              <td>公開ステータス</td>
+              <td>
+                <%= f.collection_radio_buttons :status, LiveHouse.statuses_i18n, :first , :last do |b| %>
+                  <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td><%= f.submit "登録", class: "btn btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>
