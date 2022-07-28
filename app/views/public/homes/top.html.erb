@@ -1,2 +1,69 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3>今日のライブ</h3>
+      <div class="col-12 table-scroll">
+        <table class="table text-center">
+          <tbody>
+            <% @lives.each do |live| %>
+              <tr>
+                <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 20%"><%= live.name %></td>
+                <td style="width: 30%"><%#= %></td>
+                <td style="width: 30%"><%#= %></td>
+                <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <h4>とりあえずライブに行きたい人へ</h4>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-10">
+      <h4>新着ライブ</h4>
+      <table class="table text-center">
+        <tbody>
+          <% @lives.first(3).each do |live| %>
+            <tr>
+              <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
+              <td style="width: 20%"><%= live.name %></td>
+              <td style="width: 30%"><%#= %></td>
+              <td style="width: 30%"><%#= %></td>
+              <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="text-right">
+      <%= link_to "全てのライブをみる", "#" %>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-10">
+      <h4>新着ライブレポート</h4>
+      <table class="table text-center">
+        <tbody>
+          <% @reports.first(3).each do |report| %>
+            <tr>
+              <td style="width: 10%"><%#= image_tag report.get_report_image(50,50) %></td>
+              <td style="width: 20%"><%#= report.name %></td>
+              <td style="width: 30%"><%#= %></td>
+              <td style="width: 30%"><%#= %></td>
+              <td style="width: 10%"><%#= live.open_time.strftime( "%H:%M" ) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="text-right">
+        <%= link_to "全てのレポートをみる", "#" %>
+      </div>
+    </div>
+  </div>
+</div>
