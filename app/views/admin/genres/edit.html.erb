@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <h3>ジャンル編集</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 ml-5">
+      <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch do |f| %>
+        <table>
+          <tbody>
+            <tr>
+              <td>ジャンル名</td>
+              <td><%= f.text_field :name %></td>
+              <td><%= f.submit "登録", class: "btn btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

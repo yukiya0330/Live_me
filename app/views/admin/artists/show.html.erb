@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row mt-3">
+    <h3><%= @artist.name %>の詳細</h3>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(500,500) %></div>
+    <div class="col-6">
+      <table cellpadding="10">
+        <tbody>
+          <tr>
+            <td>アーティスト名</td>
+            <td><%= @artist.name %></td>
+          </tr>
+          <tr>
+            <td>紹介文</td>
+            <td><%= @artist.introduction %></td>
+          </tr>
+          <tr>
+            <td>オフィシャルサイト</td>
+            <td><%= @artist.official_url %></td>
+          </tr>
+          <tr>
+            <td>公開ステータス</td>
+            <td><%= @artist.status_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ml-5">
+        <%= link_to "編集する", edit_admin_artist_path(@artist), class: "btn btn-success" %>
+      </div>
+      <div class="mt-1">
+        <%= link_to "ジャンルを付ける", new_admin_artist_artist_genres_path(@artist), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
