@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_28_084320) do
+ActiveRecord::Schema.define(version: 2022_07_28_104022) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2022_07_28_084320) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.date "live_date", null: false
-    t.integer "open_time"
-    t.integer "start_time"
+    t.time "open_time"
+    t.time "start_time"
     t.integer "advance_price"
     t.integer "today_price"
     t.integer "status", default: 0, null: false

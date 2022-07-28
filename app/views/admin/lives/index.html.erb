@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3 class="float-left">ライブ一覧</h3>
+      <%= link_to "＋", new_admin_life_path, class: "float-right" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 15%"></th>
+            <th style="width: 40%">ライブ名</th>
+            <th style="width: 15%">日程</th>
+            <th style="width: 15%">時間</th>
+            <th style="width: 15%">公開ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @lives.each do |live| %>
+            <tr>
+              <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
+              <td style="width: 40%" class="align-middle"><%= link_to live.name, admin_life_path(live) %></td>
+              <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
+              <td style="width: 15%" class="align-middle"><%= live.start_time %></td>
+              <td style="width: 15%" class="align-middle"><%= live.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
