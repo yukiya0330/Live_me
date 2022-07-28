@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3 class="float-left">ライブハウス一覧</h3>
+      <%= link_to "＋", new_admin_live_house_path, class: "float-right" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 15%"></th>
+            <th style="width: 65%">ライブハウス</th>
+            <th style="width: 20%">公開ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @live_houses.each do |live_house| %>
+            <tr>
+              <td style="width: 15%" class="align-middle"><%= image_tag live_house.get_live_house_image(50,50) %></td>
+              <td style="width: 65%" class="align-middle"><%= link_to live_house.name, admin_live_house_path(live_house) %></td>
+              <td style="width: 20%" class="align-middle"><%= live_house.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

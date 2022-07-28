@@ -16,3 +16,16 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(function() {
+  $(document).on('turbolinks:load', () => {
+    $('#live_house_postal_code').jpostal({
+      postcode : [
+        '#live_house_postal_code'
+      ],
+      address: {
+        "#live_house_address": "%3%4%5%6%7", // # 都道府県が入力される
+      }
+    });
+  });
+});
