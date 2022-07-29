@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3>レポート投稿</h3>
+    </div>
+  </div>
+  <%= form_with model: @report, url: new_report_path, method: :post do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.file_field :report_image %>
+      </div>
+      <div class="col-6">
+        <table cellpadding="10">
+          <tbody>
+            <tr>
+              <td>レポート</td>
+              <td><%= f.text_area :comment %></td>
+            </tr>
+            <tr>
+              <td><%= f.submit "登録", class: "btn btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>
