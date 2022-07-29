@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'reports/index'
-    get 'reports/show'
-    get 'reports/new'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -27,9 +22,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
+    get 'custmers/request' => 'customers#request'
+    get 'custmers/completion' => 'custmers/completion'
     resources :customers, only: [:show, :edit, :update]
-    resources :artists, only: [:show, :index]
-    resources :lives, only: [:index, :show, :create]
+    resources :artists, only: [:show, :index, :new, :create]
+    resources :lives, only: [:index, :show, :new,:create]
     resources :live_houses, only: [:index, :show]
     resources :reports
   end
