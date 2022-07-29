@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'lives/index'
-    get 'lives/show'
-    get 'lives/new'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -30,6 +25,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     resources :artists, only: [:show, :index]
     resources :lives, only: [:index, :show, :create]
+    resources :live_houses, only: [:index, :show]
   end
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

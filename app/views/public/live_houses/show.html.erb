@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row mt-3">
+    <h3><%= @live_house.name %>の詳細</h3>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6 text-center"><%= image_tag @live_house.get_live_house_image(500,500) %></div>
+    <div class="col-6">
+      <table cellpadding="10">
+        <tbody>
+          <tr>
+            <td>ライブハウス名</td>
+            <td><%= @live_house.name %></td>
+          </tr>
+          <tr>
+            <td>紹介文</td>
+            <td><%= @live_house.introduction %></td>
+          </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td><%= @live_house.postal_code %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= @live_house.address %></td>
+          </tr>
+          <tr>
+            <td>オフィシャルサイト</td>
+            <td><%= @live_house.official_url %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
