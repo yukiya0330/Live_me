@@ -3,7 +3,7 @@
     <%= @artist.name %>のジャンルは・・・？
   </div>
   <div class="row mt-3">
-    <%= form_with model: ArtistGenre.new, url: admin_artist_artist_genres_path, method: :post, local: true do |f| %>
+    <%= form_with model: ArtistGenre.new, url: admin_artist_artist_genres_path, method: :post do |f| %>
       <%#= f.select :genre_id, Genre.all.map{|t| [t.name, t.id]}, { include_hidden: false }, { class: 'sample_select2', multiple: true } %>
       <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
       <%= f.hidden_field :artist_id, value: @artist.id %>

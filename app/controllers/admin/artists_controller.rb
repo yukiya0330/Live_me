@@ -5,8 +5,7 @@ class Admin::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find(params[:id])
-    # @artist_genre = ArtistGenre.where(artist_id: @artist.id)
-    # @genres = @artist_genre.genre
+    @artist_genres = @artist.artist_genres
   end
 
   def edit

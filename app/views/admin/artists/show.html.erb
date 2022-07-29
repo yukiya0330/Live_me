@@ -26,9 +26,9 @@
           <tr>
             <td>ジャンル</td>
             <td>
-              <%# @genres.each do |genre| %>
-                <%#= genre.name %>
-              <%# end %>
+              <% @artist_genres.each do |artist_genre| %>
+                <%= link_to artist_genre.genre.name, admin_artist_artist_genres_path(artist_genre), method: :delete, class: "btn btn-warning", data: { confirm: "【確認】アカウントを削除してもよろしいですか？" } %>
+              <% end %>
             </td>
           </tr>
         </tbody>

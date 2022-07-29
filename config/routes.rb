@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     resources :live_houses
     resources :lives
+    resources :comments, only: [:index, :show, :destroy]
   end
   
   scope module: :public do
