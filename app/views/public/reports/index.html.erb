@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3 class="float-left">ライブレポート一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 15%"></th>
+            <th style="width: 20%"></th>
+            <th style="width: 20%">行ったライブ</th>
+            <th style="width: 35%">コメント</th>
+            <th style="width: 20%">投稿日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reports.each do |report| %>
+            <tr>
+              <td style="width: 15%" class="align-middle"><%= image_tag report.customer.get_profile_image(50,50) %></td>
+              <td style="width: 20%" class="align-middle"><%= report.customer.nickname %></td>
+              <td style="width: 20%" class="align-middle"><%#= link_to report.live.name, live_path(live) %></td>
+              <td style="width: 35%" class="align-middle"><%= report.comment %></td>
+              <td style="width: 20%" class="align-middle"><%= report.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

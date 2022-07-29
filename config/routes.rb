@@ -22,6 +22,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
+    get 'custmers/request' => 'customers#request'
+    get 'custmers/completion' => 'custmers/completion'
+    resources :customers, only: [:show, :edit, :update]
+    resources :artists, only: [:show, :index, :new, :create]
+    resources :lives, only: [:index, :show, :new,:create]
+    resources :live_houses, only: [:index, :show]
+    resources :reports
   end
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
