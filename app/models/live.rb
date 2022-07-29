@@ -16,7 +16,7 @@ class Live < ApplicationRecord
     live_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  # def favorited_by?(customer)
-  #   bookmark_lives.where(customer_id: customer.id).exists?
-  # end
+  def favorited_by?(customer)
+    bookmark_lives.where(customer_id: customer.id).exists?
+  end
 end

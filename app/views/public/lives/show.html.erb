@@ -3,15 +3,15 @@
     <h3><%= @live.name %>の詳細</h3>
     <%= link_to "レポートを作成する", new_report_path, class: "btn btn-primary"%>
     <div>
-      <%# if @live.favorited_by?(current_customer) %>
-        <%#= link_to live_bookmark_lives_path(@live), method: :delete do %>
-          <!--<i class="fas fa-solid fa-bookmark"></i>-->
-        <%# end %>
-      <%# else %>
-        <%#= link_to live_bookmark_lives_path(@live), method: :post do %>
-          <!--<i class="fas fa-solid fa-bookmark-slash"></i>-->
-        <%# end %>
-      <%# end %>
+      <% if @live.favorited_by?(current_customer) %>
+        <%= link_to live_bookmark_lives_path(@live), method: :delete do %>
+          <i class="fas fa-solid fa-bookmark"></i>
+        <% end %>
+      <% else %>
+        <%= link_to live_bookmark_lives_path(@live), method: :post do %>
+          <i class="fas fa-solid fa-bookmark-slash"></i>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="row mt-5">

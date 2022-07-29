@@ -1,15 +1,15 @@
 class Admin::PerformingArtistsController < ApplicationController
   def new
-    @live = Live.find(params[:life_id])
+    @live = Live.find(params[:live_id])
   end
   
   def create
     @performing_artist = PerformingArtist.new(performing_artist_params)
     if @performing_artist.save
       @live = @performing_artist.live
-      redirect_to admin_life_path(@live.id)
+      redirect_to admin_live_path(@live.id)
     else
-      @live = Live.find(params[:life_id])
+      @live = Live.find(params[:live_id])
       render :new
     end  
   end

@@ -39,7 +39,7 @@
             <td>出演アーティスト</td>
             <td>
               <% @performing_artists.each do |performing_artist| %>
-                <%= link_to performing_artist.artist.name, admin_life_performing_artists_path(performing_artist), method: :delete, class: "btn btn-warning", data: { confirm: "【確認】アカウントを削除してもよろしいですか？" } %>
+                <%= link_to performing_artist.artist.name, admin_live_performing_artists_path(performing_artist), method: :delete, class: "btn btn-warning", data: { confirm: "【確認】アカウントを削除してもよろしいですか？" } %>
               <% end %>
             </td>
           </tr>
@@ -50,9 +50,9 @@
         </tbody>
       </table>
       <div class="ml-5">
-        <%= link_to "編集する", edit_admin_life_path(@live), class: "btn btn-success" %>
+        <%= link_to "編集する", edit_admin_live_path(@live), class: "btn btn-success" %>
       </div>
-      <%= link_to "アーティストを追加する", new_admin_life_performing_artists_path(@live), class: "btn btn-info" %>
+      <%= link_to "アーティストを追加する", new_admin_live_performing_artists_path(@live), class: "btn btn-info" %>
     </div>
   </div>
 </div>
