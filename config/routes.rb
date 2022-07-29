@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'performing_artists/new'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -31,7 +28,9 @@ Rails.application.routes.draw do
     get 'custmers/request' => 'customers#request'
     get 'custmers/completion' => 'custmers/completion'
     resources :customers, only: [:show, :edit, :update]
-    resources :artists, only: [:show, :index, :new, :create]
+    resources :artists, only: [:show, :index, :new, :create] do
+      resource :favorite_artists, only: [:create, :destroy]
+    end  
     resources :lives, only: [:index, :show, :new,:create]
     resources :live_houses, only: [:index, :show]
     resources :reports

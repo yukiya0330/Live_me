@@ -17,4 +17,8 @@ class Artist < ApplicationRecord
     end
     artist_image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  def favorited_by?(customer)
+    favorite_artists.where(customer_id: customer.id).exists?
+  end
 end
