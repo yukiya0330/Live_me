@@ -31,7 +31,9 @@ Rails.application.routes.draw do
     resources :artists, only: [:show, :index, :new, :create] do
       resource :favorite_artists, only: [:create, :destroy]
     end  
-    resources :lives, only: [:index, :show, :new,:create]
+    resources :lives, only: [:index, :show, :new,:create] do
+      resource :bookmark_lives, only: [:create, :destroy]
+    end
     resources :live_houses, only: [:index, :show]
     resources :reports
   end
