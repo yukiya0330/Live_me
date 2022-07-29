@@ -5,6 +5,7 @@ class Admin::LivesController < ApplicationController
 
   def show
     @live = Live.find(params[:id])
+    @performing_artists = @live.performing_artists
   end
 
   def new
