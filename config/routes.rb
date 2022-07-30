@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
-    get 'custmers/request' => 'customers#request'
-    get 'custmers/completion' => 'custmers/completion'
+    get 'customers/request' => 'customers#request'
+    get 'customers/completion' => 'customers/completion'
     resources :customers, only: [:show, :edit, :update]
     resources :artists, only: [:show, :index, :new, :create] do
       resource :favorite_artists, only: [:create, :destroy]

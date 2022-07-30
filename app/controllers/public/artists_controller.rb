@@ -15,7 +15,7 @@ class Public::ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
-      redirect_to custmers_completion_path
+      redirect_to customers_completion_path
     else
       render :new
     end  

@@ -14,7 +14,7 @@ class Public::LivesController < ApplicationController
   def create
     @live = Live.new(live_params)
     if @live.save
-      redirect_to custmers_completion_path
+      redirect_to customers_completion_path
     else
       render :new
     end  
