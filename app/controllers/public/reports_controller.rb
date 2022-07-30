@@ -11,6 +11,10 @@ class Public::ReportsController < ApplicationController
     @report = Report.new
   end
   
+  def edit
+    @report = Report.find(params[:id])
+  end
+  
   def create
     @report = Report.new(report_params)
     @report.customer_id = current_customer.id
@@ -18,7 +22,15 @@ class Public::ReportsController < ApplicationController
       redirect_to customer_path(current_customer)
     else
       render :new
-      logger.debug @report.errors.inspect
+    end  
+  end
+  
+  def update
+    @report = Report.find(params[:id])
+    if @report.update(report_params)
+      redirect_to customer_path(current_customer)
+    else
+      render :edit
     end  
   end
   
