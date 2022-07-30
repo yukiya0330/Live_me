@@ -9,7 +9,7 @@
         <% end %>
       <% else %>
         <%= link_to live_bookmark_lives_path(@live), method: :post do %>
-          <i class="fas fa-solid fa-bookmark-slash"></i>
+          <i class="fas fa-solid fa-bookmark" style="color: red;"></i>
         <% end %>
       <% end %>
     </div>
@@ -49,7 +49,11 @@
           </tr>
           <tr>
             <td>出演アーティスト</td>
-            <td><%#=  %></td>
+            <td>
+              <% @live.performing_artists.each do |performing_artist| %>
+                <%= performing_artist.artist.name %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,6 +1,6 @@
 class Report < ApplicationRecord
   belongs_to :customer
-  belongs_to :performing_artist
+  belongs_to :live
   
   has_one_attached :report_image
     
