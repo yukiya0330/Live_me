@@ -12,6 +12,14 @@
             <td><%= @live.name %></td>
           </tr>
           <tr>
+            <td>ライブハウス</td>
+            <td>
+              <% @live.live_schedules.each do |live_schedule| %>
+                <%= live_schedule.live_house.name %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
             <td>日程</td>
             <td><%= @live.live_date %></td>
           </tr>
@@ -53,6 +61,7 @@
         <%= link_to "編集する", edit_admin_live_path(@live), class: "btn btn-success" %>
       </div>
       <%= link_to "アーティストを追加する", new_admin_live_performing_artists_path(@live), class: "btn btn-info" %>
+      <%= link_to "ライブハウスを追加する", new_admin_live_live_schedules_path(@live), class: "btn btn-info" %>
     </div>
   </div>
 </div>

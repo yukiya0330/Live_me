@@ -4,7 +4,7 @@ class Live < ApplicationRecord
   has_many :live_schedules, dependent: :destroy
   has_many :artists, through: :performing_artists
   has_many :reports
-  
+
   has_one_attached :live_image
   
   enum status: { wait: 0, release: 1, not_release: 2 }

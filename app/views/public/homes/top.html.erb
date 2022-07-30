@@ -33,15 +33,19 @@
             <tr>
               <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 20%"><%= live.name %></td>
-              <td style="width: 30%"><%#= %></td>
-              <td style="width: 30%"><%#= %></td>
+              <td style="width: 30%">
+                <% live.performing_artists.each do |performing_artist| %>
+                  <%= performing_artist.artist.name %>
+                <% end %>
+              </td>
+              <td style="width: 30%"><%#= live.live_schedules.live_house.name %></td>
               <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
       <div class="text-right">
-      <%= link_to "全てのライブをみる", "#" %>
+      <%= link_to "全てのライブをみる", lives_path %>
       </div>
     </div>
   </div>
@@ -52,17 +56,16 @@
         <tbody>
           <% @reports.first(3).each do |report| %>
             <tr>
-              <td style="width: 10%"><%#= image_tag report.get_report_image(50,50) %></td>
-              <td style="width: 20%"><%#= report.name %></td>
-              <td style="width: 30%"><%#= %></td>
-              <td style="width: 30%"><%#= %></td>
-              <td style="width: 10%"><%#= live.open_time.strftime( "%H:%M" ) %></td>
+              <td style="width: 15%"><%= image_tag report.customer.get_profile_image(50,50) %></td>
+              <td style="width: 20%"><%= report.customer.nickname %></td>
+              <td style="width: 50%"><%= report.live.name %></td>
+              <td style="width: 15%"><%= report.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
       <div class="text-right">
-        <%= link_to "全てのレポートをみる", "#" %>
+        <%= link_to "全てのレポートをみる", reports_path %>
       </div>
     </div>
   </div>

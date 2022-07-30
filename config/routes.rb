@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :live_houses
     resources :lives do
       resource :performing_artists, only: [:new, :create, :destroy]
+      resource :live_schedules, only: [:new, :create, :destroy]
     end  
     resources :comments, only: [:index, :show, :destroy]
   end
