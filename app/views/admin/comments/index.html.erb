@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3 class="float-left">コメント一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 15%"></th>
+            <th style="width: 25%">アーティスト名</th>
+            <th style="width: 40%">コメント</th>
+            <th style="width: 20%">投稿日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td style="width: 15%" class="align-middle"><%= image_tag comment.artist.get_artist_image(50,50) %></td>
+              <td style="width: 25%" class="align-middle"><%= link_to artist.name, admin_artist_path(artist) %></td>
+              <td style="width: 40%" class="align-middle"><%= comment.comment %></td>
+              <td style="width: 20%" class="align-middle"><%= comment.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

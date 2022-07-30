@@ -3,6 +3,8 @@ class Artist < ApplicationRecord
   has_many :favorite_artists, dependent: :destroy
   has_many :artist_genres, dependent: :destroy
   has_many :performing_artists, dependent: :destroy
+  has_many :genres, through: :artist_genres
+  has_many :lives, through: :performing_artists
   
   has_one_attached :artist_image
   
@@ -14,5 +16,9 @@ class Artist < ApplicationRecord
       artist_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     artist_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  def favorited_by?(customer)
+    favorite_artists.where(customer_id: customer.id).exists?
   end
 end

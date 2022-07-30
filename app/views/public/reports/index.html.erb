@@ -21,9 +21,9 @@
             <tr>
               <td style="width: 15%" class="align-middle"><%= image_tag report.customer.get_profile_image(50,50) %></td>
               <td style="width: 20%" class="align-middle"><%= report.customer.nickname %></td>
-              <td style="width: 20%" class="align-middle"><%#= link_to report.live.name, live_path(live) %></td>
+              <td style="width: 20%" class="align-middle"><%= link_to report.live.name, report_path(report) %></td>
               <td style="width: 35%" class="align-middle"><%= report.comment %></td>
-              <td style="width: 20%" class="align-middle"><%= report.created_at %></td>
+              <td style="width: 20%" class="align-middle"><%= report.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
           <% end %>
         </tbody>

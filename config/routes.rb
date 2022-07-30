@@ -16,7 +16,11 @@ Rails.application.routes.draw do
       resource :artist_genres, only: [:new, :create, :destroy, :edit]
     end
     resources :live_houses
-    resources :lives
+    resources :lives do
+      resource :performing_artists, only: [:new, :create, :destroy]
+      resource :live_schedules, only: [:new, :create, :destroy]
+    end  
+    resources :comments, only: [:index, :show, :destroy]
   end
   
   scope module: :public do
@@ -25,8 +29,12 @@ Rails.application.routes.draw do
     get 'custmers/request' => 'customers#request'
     get 'custmers/completion' => 'custmers/completion'
     resources :customers, only: [:show, :edit, :update]
-    resources :artists, only: [:show, :index, :new, :create]
-    resources :lives, only: [:index, :show, :new,:create]
+    resources :artists, only: [:show, :index, :new, :create] do
+      resource :favorite_artists, only: [:create, :destroy]
+    end  
+    resources :lives, only: [:index, :show, :new,:create] do
+      resource :bookmark_lives, only: [:create, :destroy]
+    end
     resources :live_houses, only: [:index, :show]
     resources :reports
   end

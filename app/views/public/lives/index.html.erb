@@ -20,10 +20,26 @@
           <% @lives.each do |live| %>
             <tr>
               <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
-              <td style="width: 20%" class="align-middle"><%= link_to live.name, life_path(live) %></td>
-              <td style="width: 35%" class="align-middle"><%#= live.live_date %></td>
+              <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+              <td style="width: 35%" class="align-middle">
+                <% live.performing_artists.each do |performing_artist| %>
+                  <%= performing_artist.artist.name %>
+                <% end %>
+              </td>
               <td style="width: %" class="align-middle"><%= live.live_date %></td>
-              <td style="width: 15%" class="align-middle"><%= link_to "📕", "#", class: "btn btn-success" %></td>
+              <td style="width: 15%" class="align-middle">
+                <div>
+                  <% if live.favorited_by?(current_customer) %>
+                    <%= link_to live_bookmark_lives_path(live), method: :delete do %>
+                      <i class="fas fa-solid fa-bookmark"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to live_bookmark_lives_path(live), method: :post do %>
+                      <i class="fas fa-solid fa-bookmark" style="color: red;"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </td>
             </tr>
           <% end %>
         </tbody>

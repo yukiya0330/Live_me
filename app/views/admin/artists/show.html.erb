@@ -23,6 +23,14 @@
             <td>公開ステータス</td>
             <td><%= @artist.status_i18n %></td>
           </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td>
+              <% @artist_genres.each do |artist_genre| %>
+                <%= link_to artist_genre.genre.name, admin_artist_artist_genres_path(artist_genre), method: :delete, class: "btn btn-warning", data: { confirm: "【確認】アカウントを削除してもよろしいですか？" } %>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
       <div class="ml-5">

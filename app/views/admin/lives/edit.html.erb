@@ -4,7 +4,7 @@
       <h3><%= @live.name %>の編集</h3>
     </div>
   </div>
-  <%= form_with model: @live, url: admin_life_path(@live), method: :patch do |f| %>
+  <%= form_with model: @live, url: admin_live_path(@live), method: :patch do |f| %>
     <div class="row">
       <div class="col-6">
         <%= f.file_field :live_image %>

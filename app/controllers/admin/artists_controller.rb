@@ -5,6 +5,7 @@ class Admin::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find(params[:id])
+    @artist_genres = @artist.artist_genres
   end
 
   def edit

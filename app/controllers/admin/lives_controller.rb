@@ -5,6 +5,7 @@ class Admin::LivesController < ApplicationController
 
   def show
     @live = Live.find(params[:id])
+    @performing_artists = @live.performing_artists
   end
 
   def new
@@ -18,7 +19,7 @@ class Admin::LivesController < ApplicationController
   def create
     @live = Live.new(live_params)
     if @live.save
-      redirect_to admin_life_path(@live)
+      redirect_to admin_live_path(@live)
     else
       render :new
     end  
@@ -27,7 +28,7 @@ class Admin::LivesController < ApplicationController
   def update
     @live = Live.find(params[:id])
     if @live.update(live_params)
-      redirect_to admin_life_path(@live)
+      redirect_to admin_live_path(@live)
     else
       render :edit
     end  
