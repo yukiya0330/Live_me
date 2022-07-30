@@ -40,6 +40,9 @@ Rails.application.routes.draw do
     end
     resources :live_houses, only: [:index, :show]
     resources :reports
+    resources :genres, only: [:index] do
+      resource :favorite_genres, only: [:create, :destroy]
+    end  
   end
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
