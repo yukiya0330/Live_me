@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'genres/index'
+  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -37,6 +40,9 @@ Rails.application.routes.draw do
     end
     resources :live_houses, only: [:index, :show]
     resources :reports
+    resources :genres, only: [:index] do
+      resource :favorite_genres, only: [:create, :destroy]
+    end  
   end
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

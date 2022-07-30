@@ -7,21 +7,70 @@
       <%= link_to "会員情報を編集", edit_customer_path(current_customer), class: "btn btn-success" %>
     </div>
     <div class="col-9">
-      <div class="row">
-        <h4>お気に入りのアーティストの最新ライブ</h4>
-      </div>
       <div class="row mt-3">
-        <h4>まだ見ぬアーティストを発掘！</h4>
-      </div>
+        <div class="col-12">
+          <h4>まだ見ぬアーティストを発掘！</h4>
+        </div>
+      </div>  
       <div class="row mt-3">
-        <h4>ブックマークしたライブ</h4>
+        <div class="col-12">
+          <h4>ブックマークしたライブ</h4>
+          <table class="w-100">
+            <tbody>
+              <% current_customer.bookmark_lives.each do |bookmark_live| %>
+                <tr>
+                  <td style="width: 20%"><%= image_tag bookmark_live.live.get_live_image(50,50) %></td>
+                  <td style="width: 40%"><%= bookmark_live.live.name %></td>
+                  <td style="width: 20%"><%= bookmark_live.live.open_time.strftime( "%H:%M" ) %></td>
+                  <td style="width: 20%">
+                    <%= link_to live_bookmark_lives_path(bookmark_live.live), method: :delete, data: {confirm: "削除しますか？"}  do %>
+                      <i class="fas fa-solid fa-bookmark"></i>
+                    <% end %>  
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="row mt-3">
         <div class="col-7">
           <h4>お気に入りのアーティスト</h4>
+          <table>
+            <tbody>
+              <% current_customer.favorite_artists.each do |favorite_artist| %>
+              <tr>
+                <td style="width: 20%"><%= image_tag favorite_artist.artist.get_artist_image(50,50) %></td>
+                <td style="width: 60%"><%= link_to favorite_artist.artist.name, artist_path(favorite_artist.artist) %></td>
+                <td style="width: 20%">
+                  <% if favorite_artist.artist.favorited_by?(current_customer) %>
+                    <%= link_to artist_favorite_artists_path(favorite_artist.artist), method: :delete do %>
+                      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to artist_favorite_artists_path(favorite_artist.artist), method: :post do %>
+                      <i class="fas fa-heart" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
         <div class="col-5">
           <h4>お気に入りのジャンル</h4>
+          <table>
+            <tbody>
+              <% current_customer.favorite_genres.each do |favorite_genre| %>
+              <tr>
+                <td style="width: 100%">
+                  <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "削除しますか？"} %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

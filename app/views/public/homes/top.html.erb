@@ -1,22 +1,28 @@
 <div class="container">
   <div class="row mt-3">
-    <div class="col-12">
+    <div class="col-10">
       <h3>今日のライブ</h3>
-      <div class="col-12 table-scroll">
-        <table class="table text-center">
+      <table class="table text-center">
           <tbody>
             <% @lives.each do |live| %>
               <tr>
                 <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
                 <td style="width: 20%"><%= live.name %></td>
-                <td style="width: 30%"><%#= %></td>
-                <td style="width: 30%"><%#= %></td>
+                <td style="width: 30%">
+                  <% live.performing_artists.each do |performing_artist| %>
+                    <%= performing_artist.artist.name %>
+                  <% end %>
+                </td>
+                <td style="width: 30%">
+                  <% live.live_schedules.each do |live_schedule| %>
+                    <%= live_schedule.live_house.name %>
+                  <% end %>
+                </td>
                 <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
-      </div>
     </div>
   </div>
   <div class="row mt-3">
@@ -38,7 +44,11 @@
                   <%= performing_artist.artist.name %>
                 <% end %>
               </td>
-              <td style="width: 30%"><%#= live.live_schedules.live_house.name %></td>
+              <td style="width: 30%">
+                <% live.live_schedules.each do |live_schedule| %>
+                  <%= live_schedule.live_house.name %>
+                <% end %>
+              </td>
               <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
             </tr>
           <% end %>
@@ -56,9 +66,9 @@
         <tbody>
           <% @reports.first(3).each do |report| %>
             <tr>
-              <td style="width: 15%"><%= image_tag report.customer.get_profile_image(50,50) %></td>
+              <td style="width: 10%"><%= image_tag report.customer.get_profile_image(50,50) %></td>
               <td style="width: 20%"><%= report.customer.nickname %></td>
-              <td style="width: 50%"><%= report.live.name %></td>
+              <td style="width: 55%"><%= report.live.name %></td>
               <td style="width: 15%"><%= report.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
           <% end %>

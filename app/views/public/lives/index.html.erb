@@ -29,15 +29,17 @@
               <td style="width: %" class="align-middle"><%= live.live_date %></td>
               <td style="width: 15%" class="align-middle">
                 <div>
-                  <% if live.favorited_by?(current_customer) %>
-                    <%= link_to live_bookmark_lives_path(live), method: :delete do %>
-                      <i class="fas fa-solid fa-bookmark"></i>
+                  <% if customer_signed_in? %>
+                    <% if live.favorited_by?(current_customer) %>
+                      <%= link_to live_bookmark_lives_path(live), method: :delete do %>
+                        <i class="fas fa-solid fa-bookmark"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to live_bookmark_lives_path(live), method: :post do %>
+                        <i class="fas fa-solid fa-bookmark" style="color: red;"></i>
+                      <% end %>
                     <% end %>
-                  <% else %>
-                    <%= link_to live_bookmark_lives_path(live), method: :post do %>
-                      <i class="fas fa-solid fa-bookmark" style="color: red;"></i>
-                    <% end %>
-                  <% end %>
+                  <% end %>  
                 </div>
               </td>
             </tr>
