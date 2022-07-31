@@ -15,7 +15,8 @@
             <tr>
               <td>行ったライブ</td>
               <td>
-                <%= f.collection_select :live_id, Live.all, :id, :name, include_blank: "選択して下さい" %>
+                <%= f.hidden_field :live_id, value: params[:live_id] %>
+                <%= @live.name %>
               </td>
             </tr>
             <tr>

@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-9 mx-auto d-flex justify-content-between">
+    <div class="col-11 mx-auto d-flex justify-content-between">
       <h2><%= @live.name %></h2>
       <div>
         <!--ログインしている場合のみ表示-->
         <% if customer_signed_in? %>
-          <%= link_to "レポートを作成する", new_report_path, class: "btn btn-primary"%>
+          <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "btn btn-primary"%>
           <% if @live.favorited_by?(current_customer) %>
             ブックマーク外す
             <%= link_to live_bookmark_lives_path(@live), method: :delete do %>

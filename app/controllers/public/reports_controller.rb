@@ -9,6 +9,7 @@ class Public::ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    @live = Live.find(params[:live_id])
   end
   
   def edit
