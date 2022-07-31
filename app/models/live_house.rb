@@ -1,5 +1,6 @@
 class LiveHouse < ApplicationRecord
   has_many :live_schedules, dependent: :destroy
+  has_many :lives, through: :live_schedules
   
   has_one_attached :house_image
   

@@ -3,6 +3,7 @@ class Live < ApplicationRecord
   has_many :performing_artists, dependent: :destroy
   has_many :live_schedules, dependent: :destroy
   has_many :artists, through: :performing_artists
+  has_many :live_houses, through: :live_schedules
   has_many :reports
 
   has_one_attached :live_image

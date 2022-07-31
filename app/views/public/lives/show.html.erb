@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-10 mx-auto d-flex justify-content-between">
+    <div class="col-9 mx-auto d-flex justify-content-between">
       <h2><%= @live.name %></h2>
       <div>
         <!--ログインしている場合のみ表示-->
@@ -26,6 +26,14 @@
     <div class="col-6">
       <table cellpadding="10">
         <tbody>
+          <tr>
+            <td>PLASE</td>
+            <td>
+              <% @live.live_schedules.each do |live_schedule| %>
+                <%= live_schedule.live_house.name %>
+              <% end %>
+            </td>
+          </tr>
           <tr>
             <td>DATE</td>
             <td><%= @live.live_date %></td>
