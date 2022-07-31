@@ -34,7 +34,15 @@
           </tr>
           <tr>
             <td>ジャンル</td>
-            <td><%#= @artist.status_i18n %></td>
+            <td>
+              <% @artist.artist_genres.each do |artist_genre| %>
+                <% if artist_genre.genre.favorited_by?(current_customer) %>
+                  <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
+                <% else %>
+                  <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
