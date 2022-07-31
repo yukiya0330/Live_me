@@ -2,6 +2,23 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import "select2/dist/css/select2.min.css";
 
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+header {
+  width: 100%;
+}
+footer {
+  position: sticky;
+  top: 100vh;
+  width: 100%;
+}
+
 .table-scroll{
   tbody {
     display: block;
