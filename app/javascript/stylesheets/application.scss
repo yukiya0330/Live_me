@@ -19,14 +19,6 @@ footer {
   width: 100%;
 }
 
-.table-scroll{
-  tbody {
-    display: block;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 200px;
-  }
-  td{
-    width: 100%;
-  }
+.nav-item{
+  margin: 0 5px;
 }
