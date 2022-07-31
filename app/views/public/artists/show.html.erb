@@ -1,21 +1,23 @@
 <div class="container">
-  <div class="row mt-3">
-    <h3><%= @artist.name %>の詳細</h3>
-    <div>
-      <% if customer_signed_in? %>
-        <% if @artist.favorited_by?(current_customer) %>
-          <%= link_to artist_favorite_artists_path(@artist), method: :delete do %>
-            <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+  <div class="row mt-5">
+    <div class="col-10 mx-auto d-flex justify-content-between">
+      <h2><%= @artist.name %></h2>
+      <div>
+        <% if customer_signed_in? %>
+          <% if @artist.favorited_by?(current_customer) %>
+            <%= link_to artist_favorite_artists_path(@artist), method: :delete do %>
+              <i class="fas fa-heart fa-lg" aria-hidden="true" style="color: red;"></i>
+            <% end %>
+          <% else %>
+            <%= link_to artist_favorite_artists_path(@artist), method: :post do %>
+              <i class="fas fa-heart fa-lg" aria-hidden="true"></i>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to artist_favorite_artists_path(@artist), method: :post do %>
-            <i class="fas fa-heart" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
-      <% end %>  
+        <% end %>  
+      </div>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-1">
     <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(500,500) %></div>
     <div class="col-6">
       <table cellpadding="10">
@@ -49,36 +51,46 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-12">
+    <div class="col-10 mx-auto">
       <h4>このバンドの良い所!!</h4>
+    </div>  
+    <div class="col-10 mx-auto">
       <% if customer_signed_in? %>
-        <%#= form_with model: @comment, url: "#", method: :post do |f| %>
-          <%#= f.text_area :comment %>
-          <%#= f.submit "投稿" %>
-        <%# end %>
+        <%= form_with model: @comment, url: artist_comments_path(@artist), method: :post do |f| %>
+          <%= f.text_area :comment, class: "col-12" %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <div class="text-right">
+            <%= f.submit "投稿" %>
+          </div>
+        <% end %>
       <% else %>
         会員登録を行うとコメントできます!!
       <% end %>
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-12">
+    <div class="col-10 mx-auto">
       <h4>コメント一覧</h4>
-      <teble>
+    </div>  
+    <div class="col-10 mx-auto">
+      <table class="w-100">
         <tbody>
           <% @comments.each do |comment| %>
           <tr>
-            <td style="width: 15%" class="align-middle"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
+            <td style="width: 10%" class="align-middle"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
+            <td style="width: 15%" class="align-middle"><%= comment.customer.nickname %>さん</td>
             <td style="width: 70%" class="align-middle"><%= comment.comment %></td>
-            <td style="width: 15%" class="align-middle">
+            <td style="width: 5%" class="align-middle">
               <% if customer_signed_in? %>
-                <%= link_to "削除", "#", class: "btn btn-danger" %>
+                <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
+                  <i class="fa fa-solid fa-trash text-danger"></i>
+                <% end %>
               <% end %>
             </td>
           </tr>
           <% end %>
         </tbody>
-      </teble>
+      </table>
     </div>
   </div>
 </div>

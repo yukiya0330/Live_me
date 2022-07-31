@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'genres/index'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -11,7 +8,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
-    namespace :admin do
+  namespace :admin do
     get '/' => 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, except: [:show]
@@ -34,7 +31,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     resources :artists, only: [:show, :index, :new, :create] do
       resource :favorite_artists, only: [:create, :destroy]
-    end  
+      resource :comments, only: [:create]
+      resources :comments, only: [:destroy]
+    end
     resources :lives, only: [:index, :show, :new,:create] do
       resource :bookmark_lives, only: [:create, :destroy]
     end
