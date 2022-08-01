@@ -17,7 +17,8 @@ class Admin::ArtistGenresController < ApplicationController
   end
   
   def destroy
-    @artist_genre = ArtistGenre.find_by(params[:id])
+    @genre = Genre.find(params[:genre_id])
+    @artist_genre = ArtistGenre.find_by(genre_id: @genre.id)
     @artist_genre.destroy
     redirect_to request.referer
   end
