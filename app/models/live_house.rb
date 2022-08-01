@@ -5,6 +5,9 @@ class LiveHouse < ApplicationRecord
   has_one_attached :house_image
   
   enum status: { release: 0, not_release: 1, close: 2 }
+  
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
     
   def get_house_image(width, height)
     unless house_image.attached?
