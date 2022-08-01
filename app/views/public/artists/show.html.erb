@@ -32,7 +32,7 @@
           </tr>
           <tr>
             <td>オフィシャルサイト</td>
-            <td><%= @artist.official_url %></td>
+            <td><%= link_to @artist.official_url, @artist.official_url %></td>
           </tr>
           <tr>
             <td>ジャンル</td>
@@ -81,7 +81,7 @@
             <td style="width: 15%" class="align-middle"><%= comment.customer.nickname %>さん</td>
             <td style="width: 70%" class="align-middle"><%= comment.comment %></td>
             <td style="width: 5%" class="align-middle">
-              <% if customer_signed_in? %>
+              <% if current_customer.id == comment.customer.id %>
                 <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
                   <i class="fa fa-solid fa-trash text-danger"></i>
                 <% end %>

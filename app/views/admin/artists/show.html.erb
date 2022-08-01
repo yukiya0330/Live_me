@@ -24,10 +24,20 @@
             <td><%= @artist.status_i18n %></td>
           </tr>
           <tr>
+            <td>ジャンル選択</td>
+            <td>
+              <%= form_with model: @artist.artist_genres, url: admin_genre_artist_genres_path(@artist.artist_genres), method: :post do |f| %>
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+                <%= f.hidden_field :artist_id, value: @artist.id %>
+                <%= f.submit "登録" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
             <td>ジャンル</td>
             <td>
               <% @artist_genres.each do |artist_genre| %>
-                <%= link_to artist_genre.genre.name, admin_artist_artist_genres_path(artist_genre), method: :delete, class: "btn btn-warning", data: { confirm: "【確認】アカウントを削除してもよろしいですか？" } %>
+                <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "btn btn-warning", data: { confirm: "ジャンルを削除しますか？" } %>
               <% end %>
             </td>
           </tr>
@@ -35,9 +45,6 @@
       </table>
       <div class="ml-5">
         <%= link_to "編集する", edit_admin_artist_path(@artist), class: "btn btn-success" %>
-      </div>
-      <div class="mt-1">
-        <%= link_to "ジャンルを付ける", new_admin_artist_artist_genres_path(@artist), class: "btn btn-primary" %>
       </div>
     </div>
   </div>

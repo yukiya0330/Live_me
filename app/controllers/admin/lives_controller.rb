@@ -34,6 +34,12 @@ class Admin::LivesController < ApplicationController
     end  
   end
   
+  def destroy
+    @live = Live.find(params[:id])
+    @live.destroy
+    redirect_to admin_lives_path
+  end
+  
   private
   def live_params
     params.require(:live).permit(:live_image, :name, :introduction, :live_date, :open_time, :start_time, :advance_price, :today_price, :status)

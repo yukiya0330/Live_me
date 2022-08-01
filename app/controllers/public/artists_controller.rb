@@ -1,6 +1,6 @@
 class Public::ArtistsController < ApplicationController
   def index
-    @artists = Artist.all
+    @artists = Artist.where(status: 1)
   end
 
   def show
