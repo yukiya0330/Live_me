@@ -44,6 +44,12 @@
             <td><%= @live.today_price %></td>
           </tr>
           <tr>
+            <td>アーティスト追加</td>
+            <td>
+              
+            </td>
+          </tr>
+          <tr>
             <td>出演アーティスト</td>
             <td>
               <% @performing_artists.each do |performing_artist| %>
@@ -57,11 +63,14 @@
           </tr>
         </tbody>
       </table>
-      <div class="ml-5">
+      <div>
         <%= link_to "編集する", edit_admin_live_path(@live), class: "btn btn-success" %>
+        <%= link_to "削除する", admin_live_path(@live), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
       </div>
-      <%= link_to "アーティストを追加する", new_admin_live_performing_artists_path(@live), class: "btn btn-info" %>
-      <%= link_to "ライブハウスを追加する", new_admin_live_live_schedules_path(@live), class: "btn btn-info" %>
+      <div class="mt-1">
+        <%= link_to "アーティストを追加する", new_admin_live_performing_artists_path(@live), class: "btn btn-info" %>
+        <%= link_to "ライブハウスを追加する", new_admin_live_live_schedules_path(@live), class: "btn btn-info" %>
+      </div>
     </div>
   </div>
 </div>

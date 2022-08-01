@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :genres, except: [:show]
-    resources :artists do
-      resource :artist_genres, only: [:new, :create, :destroy, :edit]
+    resources :genres, except: [:show] do
+      resource :artist_genres, only: [:new, :create, :edit]
+      resources :artist_genres, only: [:destroy]
     end
+    resources :artists
     resources :live_houses
     resources :lives do
       resource :performing_artists, only: [:new, :create, :destroy]
