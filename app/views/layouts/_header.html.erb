@@ -2,7 +2,9 @@
   <!--Customer側-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <%= link_to "LiveMe", root_path, class: "navbar-brand" %>
+      <div class="navbar-brand col-1">
+        <%= link_to image_tag("/logo.png", alt: "ロゴ", class: "logo"), root_path %>
+      </div>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="ml-auto">
           <ul class="navbar-nav">
@@ -39,7 +41,9 @@
   <!--Admin側-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <%= link_to "LiveMe", admin_path, class: "navbar-brand" %>
+      <div class="navbar-brand col-1">
+        <%= link_to image_tag("/logo.png", alt: "ロゴ", class: "logo"), admin_path %>
+      </div>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="ml-auto">
           <ul class="navbar-nav">
@@ -72,7 +76,9 @@
 <% else %>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <%= link_to "LiveMe", root_path, class: "navbar-brand" %>
+      <div class="navbar-brand col-1">
+        <%= link_to image_tag("/logo.png", alt: "ロゴ", class: "logo"), root_path %>
+      </div>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="ml-auto">
           <ul class="navbar-nav">
