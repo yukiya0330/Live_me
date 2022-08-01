@@ -15,7 +15,7 @@ class Admin::PerformingArtistsController < ApplicationController
   end
   
   def destroy
-    @performing_artist = PerformingArtist.find_by(params[:id])
+    @performing_artist = PerformingArtist.find(params[:id])
     @performing_artist.destroy
     redirect_to request.referer
   end
