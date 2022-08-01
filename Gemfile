@@ -66,3 +66,4 @@ gem 'rails-i18n'
 gem 'enum_help'
 gem 'select2-rails'
 gem "net-smtp"
+gem 'dotenv-rails'
