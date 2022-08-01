@@ -21,7 +21,9 @@
           </tr>
         </tbody>
       </table>
-      <%= link_to "編集する", edit_report_path(@report), class: "btn btn-success" %>
+      <% if current_customer.id == @report.customer.id %>
+        <%= link_to "編集する", edit_report_path(@report), class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>
