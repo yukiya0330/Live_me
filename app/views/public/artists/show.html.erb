@@ -38,10 +38,14 @@
             <td>ジャンル</td>
             <td>
               <% @artist.artist_genres.each do |artist_genre| %>
-                <% if artist_genre.genre.favorited_by?(current_customer) %>
-                  <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
+                <% if customer_signed_in? %>
+                  <% if artist_genre.genre.favorited_by?(current_customer) %>
+                    <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
+                  <% else %>
+                    <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
+                  <% end %>
                 <% else %>
-                  <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
+                    <%= link_to artist_genre.genre.name, "#", class: "btn btn-warning" %>
                 <% end %>
               <% end %>
             </td>
@@ -81,7 +85,7 @@
             <td style="width: 15%" class="align-middle"><%= comment.customer.nickname %>さん</td>
             <td style="width: 70%" class="align-middle"><%= comment.comment %></td>
             <td style="width: 5%" class="align-middle">
-              <% if current_customer.id == comment.customer.id %>
+              <% if current_customer == comment.customer %>
                 <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
                   <i class="fa fa-solid fa-trash text-danger"></i>
                 <% end %>

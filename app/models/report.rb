@@ -3,7 +3,13 @@ class Report < ApplicationRecord
   belongs_to :live
   
   has_one_attached :report_image
-    
+  
+  with_options presence: true do
+    validates :customer_id
+    validates :live_id
+    validates :comment
+  end
+  
   def get_report_image(width, height)
     unless report_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

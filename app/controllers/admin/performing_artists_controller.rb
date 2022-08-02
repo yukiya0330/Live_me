@@ -7,10 +7,9 @@ class Admin::PerformingArtistsController < ApplicationController
     @performing_artist = PerformingArtist.new(performing_artist_params)
     if @performing_artist.save
       @live = @performing_artist.live
-      redirect_to admin_live_path(@live.id)
+      redirect_to request.referer
     else
-      @live = Live.find(params[:live_id])
-      render :new
+      redirect_to request.referer
     end  
   end
   

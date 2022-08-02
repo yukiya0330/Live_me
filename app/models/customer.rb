@@ -12,6 +12,12 @@ class Customer < ApplicationRecord
   has_many :lives, through: :reports
   
   has_one_attached :profile_image
+  
+  with_options presence: true do
+    validates :name
+    validates :nickname
+  end
+  validates :is_deleted, inclusion: { in: [true, false] }
     
   def get_profile_image(width, height)
     unless profile_image.attached?

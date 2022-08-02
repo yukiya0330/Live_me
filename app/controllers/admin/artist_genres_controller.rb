@@ -9,10 +9,9 @@ class Admin::ArtistGenresController < ApplicationController
     @artist_genre = ArtistGenre.new(artist_genre_params)
     if @artist_genre.save
       @artist = @artist_genre.artist
-      redirect_to admin_artist_path(@artist.id)
+      redirect_to request.referer
     else
-      @artist = Artist.find(params[:artist_id])
-      render :new
+      redirect_to request.referer
     end  
   end
   

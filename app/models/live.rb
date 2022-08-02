@@ -9,7 +9,14 @@ class Live < ApplicationRecord
   has_one_attached :live_image
   
   enum status: { wait: 0, release: 1, not_release: 2 }
-    
+  
+  with_options presence: true do
+    validates :name
+    validates :introduction
+    validates :live_date
+  end
+  validates :status, inclusion: { in: Live.statuses.keys }
+  
   def get_live_image(width, height)
     unless live_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

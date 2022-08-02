@@ -6,6 +6,14 @@ class LiveHouse < ApplicationRecord
   
   enum status: { release: 0, not_release: 1, close: 2 }
   
+  with_options presence: true do
+    validates :name, uniqueness: true
+    validates :introduction
+    validates :postal_code, length: { is: 7 }
+    validates :address
+  end 
+  validates :status, inclusion: { in: LiveHouse.statuses.keys }
+  
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
     
