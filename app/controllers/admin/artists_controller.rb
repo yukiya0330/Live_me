@@ -34,6 +34,12 @@ class Admin::ArtistsController < ApplicationController
     end  
   end
   
+  def destroy
+    @artist = Artist.find(params[:id])
+    @artist.destroy
+    redirect_to admin_artists_path
+  end
+  
   private
   def artist_params
     params.require(:artist).permit(:artist_image, :name, :introduction, :official_url, :status)
