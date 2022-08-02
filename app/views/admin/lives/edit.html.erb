@@ -7,6 +7,7 @@
   <%= form_with model: @live, url: admin_live_path(@live), method: :patch do |f| %>
     <div class="row">
       <div class="col-6">
+        <%= image_tag @live.get_live_image(500, 500) %>
         <%= f.file_field :live_image %>
       </div>
       <div class="col-6">

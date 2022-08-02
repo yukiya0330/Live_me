@@ -19,10 +19,11 @@ Rails.application.routes.draw do
       resource :performing_artists, only: [:new, :create]
       resources :performing_artists, only: [:destroy]
     end  
-    resources :live_houses
-    resources :lives do
-      resource :live_schedules, only: [:new, :create, :destroy]
+    resources :live_houses do
+      resource :live_schedules, only: [:new, :create]
+      resources :live_schedules, only: [:destroy]
     end  
+    resources :lives
     resources :comments, only: [:index, :show, :destroy]
   end
   

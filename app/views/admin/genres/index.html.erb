@@ -16,10 +16,10 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 mt-2">
       <div>
         <% @genres.each do |genre| %>
-          <%= link_to genre.name, edit_admin_genre_path(genre), class: "btn btn-light" %>
+          <%= link_to genre.name, edit_admin_genre_path(genre), class: "btn btn-warning" %>
         <% end %>
       </div>
     </div>

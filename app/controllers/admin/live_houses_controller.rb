@@ -33,6 +33,12 @@ class Admin::LiveHousesController < ApplicationController
     end  
   end
   
+  def destroy
+    @live_house = LiveHouse.find(params[:id])
+    @live_house.destroy
+    redirect_to admin_lives_house_path
+  end
+  
   private
   def live_house_params
     params.require(:live_house).permit(:name, :introduction, :postal_code, :address, :official_url, :status, :house_image, :latitude, :longitude)
