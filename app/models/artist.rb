@@ -7,8 +7,16 @@ class Artist < ApplicationRecord
   has_many :lives, through: :performing_artists
   
   has_one_attached :artist_image
-  
+
   enum status: { wait: 0, release: 1, not_release: 2 }
+  
+  with_options presence: true do
+    validates :name, uniqueness: true
+    validates :introduction
+  end
+  validates :status, inclusion: { in: Artist.statuses.keys }
+  
+  
   
   def get_artist_image(width, height)
     unless artist_image.attached?
