@@ -7,15 +7,14 @@ class Admin::LiveSchedulesController < ApplicationController
     @live_schedule = LiveSchedule.new(live_schedule_params)
     if @live_schedule.save
       @live = @live_schedule.live
-      redirect_to admin_live_path(@live.id)
+      redirect_to request.referer
     else
-      @live = Live.find(params[:live_id])
-      render :new
+      redirect_to request.referer
     end  
   end
   
   def destroy
-    @live_schedule = LiveSchedule.find_by(params[:id])
+    @live_schedule = LiveSchedule.find(params[:id])
     @live_schedule.destroy
     redirect_to request.referer
   end
