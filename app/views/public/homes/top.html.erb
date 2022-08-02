@@ -1,33 +1,38 @@
 <div class="container">
   <div class="row mt-3">
     <div class="col-10">
-      <h3>今日のライブ</h3>
-      <table class="table text-center">
-          <tbody>
-            <% @lives.each do |live| %>
-              <tr>
-                <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 20%"><%= live.name %></td>
-                <td style="width: 30%">
-                  <% live.performing_artists.each do |performing_artist| %>
-                    <%= performing_artist.artist.name %>
-                  <% end %>
-                </td>
-                <td style="width: 30%">
-                  <% live.live_schedules.each do |live_schedule| %>
-                    <%= live_schedule.live_house.name %>
-                  <% end %>
-                </td>
-                <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <h3>今日のライブ(<%= @today_lives.count %>件)</h3>
+      <% if @today_lives.present? %>
+        <table class="table text-center">
+            <tbody>
+              <% @today_lives.each do |live| %>
+                <tr>
+                  <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
+                  <td style="width: 20%"><%= live.name %></td>
+                  <td style="width: 30%">
+                    <% live.performing_artists.each do |performing_artist| %>
+                      <%= performing_artist.artist.name %>
+                    <% end %>
+                  </td>
+                  <td style="width: 30%">
+                    <% live.live_schedules.each do |live_schedule| %>
+                      <%= live_schedule.live_house.name %>
+                    <% end %>
+                  </td>
+                  <td style="width: 10%"><%= live.open_time.strftime( "%H:%M" ) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <div class="my-5 text-center">今日のライブはありません</div>
+        <% end %>
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-12">
+    <div class="col-10">
       <h4>とりあえずライブに行きたい人へ</h4>
+      <div class="my-5 text-center">ここに挿入</div>
     </div>
   </div>
   <div class="row mt-3">
@@ -35,7 +40,7 @@
       <h4>新着ライブ</h4>
       <table class="table text-center">
         <tbody>
-          <% @lives.first(3).each do |live| %>
+          <% @new_lives.first(3).each do |live| %>
             <tr>
               <td style="width: 10%"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 20%"><%= live.name %></td>
@@ -64,11 +69,11 @@
       <h4>新着ライブレポート</h4>
       <table class="table text-center">
         <tbody>
-          <% @reports.first(3).each do |report| %>
+          <% @new_reports.first(3).each do |report| %>
             <tr>
               <td style="width: 10%"><%= image_tag report.customer.get_profile_image(50,50) %></td>
               <td style="width: 20%"><%= report.customer.nickname %></td>
-              <td style="width: 55%"><%= report.live.name %></td>
+              <td style="width: 55%"><%= link_to report.live.name, report_path(report) %></td>
               <td style="width: 15%"><%= report.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
           <% end %>

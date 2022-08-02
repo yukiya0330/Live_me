@@ -1,7 +1,8 @@
 class Public::HomesController < ApplicationController
   def top
-    @lives = Live.all
-    @reports = Report.all
+    @today_lives = Live.where(live_date: Date.current)
+    @new_lives = Live.all.order(created_at: "DESC")
+    @new_reports = Report.all.order(created_at: "DESC")
   end
 
   def about
