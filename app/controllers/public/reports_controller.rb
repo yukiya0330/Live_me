@@ -22,6 +22,7 @@ class Public::ReportsController < ApplicationController
     if @report.save
       redirect_to customer_path(current_customer)
     else
+      @live = @report.live
       render :new
     end  
   end
