@@ -20,7 +20,7 @@
             <tr>
               <td style="width: 15%" class="align-middle"><%= image_tag live_house.get_house_image(50,50) %></td>
               <td style="width: 65%" class="align-middle"><%= link_to live_house.name, admin_live_house_path(live_house) %></td>
-              <td style="width: 20%" class="align-middle"><%= live_house.status %></td>
+              <td style="width: 20%" class="align-middle"><%= live_house.status_i18n %></td>
             </tr>
           <% end %>
         </tbody>

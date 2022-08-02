@@ -1,65 +1,65 @@
-<div class="container">
+<div class="container live-page">
   <div class="row mt-5">
     <div class="col-11 mx-auto d-flex justify-content-between">
-      <h2><%= @live.name %></h2>
-      <div>
-        <!--ログインしている場合のみ表示-->
-        <% if customer_signed_in? %>
-          <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "btn btn-primary"%>
+      <h1 class="my-auto "><strong><%= @live.name %></strong></h1>
+      <!--ログインしている場合のみ表示-->
+      <% if customer_signed_in? %>
+        <div class="my-auto">
+          <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "btn btn-primary" %>
+        </div>
+        <div>
           <% if @live.favorited_by?(current_customer) %>
-            ブックマーク外す
             <%= link_to live_bookmark_lives_path(@live), method: :delete do %>
-              <i class="fas fa-solid fa-bookmark"></i>
+              <i class="fas fa-solid fa-bookmark text-success"></i>
             <% end %>
           <% else %>
-            ブックマークの登録
             <%= link_to live_bookmark_lives_path(@live), method: :post do %>
-              <i class="fas fa-solid fa-bookmark" style="color: red;"></i>
+              <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>  
   </div>
   <div class="row">
-    <div class="col-6 text-center"><%= image_tag @live.get_live_image(500,500) %></div>
+    <div class="col-6 text-center my-auto"><%= image_tag @live.get_live_image(500,500) %></div>
     <div class="col-6">
       <table cellpadding="10">
         <tbody>
           <tr>
-            <td>PLASE</td>
+            <td><div class="mini-title">PLASE</div></td>
             <td>
               <% @live.live_schedules.each do |live_schedule| %>
-                <%= live_schedule.live_house.name %>
+                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "btn btn-outline-secondary" %>
               <% end %>
             </td>
           </tr>
           <tr>
-            <td>DATE</td>
+            <td><div class="mini-title">DATE</div></td>
             <td><%= @live.live_date %></td>
           </tr>
           <tr>
-            <td>INFO</td>
+            <td><div class="mini-title">INFO</div></td>
             <td><%= @live.introduction %></td>
           </tr>
           <tr>
-            <td>OPEN</td>
+            <td><div class="mini-title">OPEN</div></td>
             <td><%= @live.open_time.strftime( "%H:%M" ) %></td>
           </tr>
           <tr>
-            <td>START</td>
+            <td><div class="mini-title">START</div></td>
             <td><%= @live.start_time.strftime( "%H:%M" ) %></td>
           </tr>
           <tr>
-            <td>ADV.</td> 
-            <td>¥<%= @live.advance_price %></td>
+            <td><div class="mini-title">ADV.</div></td> 
+            <td>¥ <%= @live.advance_price %></td>
           </tr>
           <tr>
-            <td>DOOR.</td> 
-            <td>¥<%= @live.today_price %></td>
+            <td><div class="mini-title">DOOR.</div></td> 
+            <td>¥ <%= @live.today_price %></td>
           </tr>
           <tr>
-            <td>ACT</td>
+            <td><div class="mini-title">ACT</div></td>
             <td>
               <% @live.performing_artists.each do |performing_artist| %>
                 <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "btn btn-warning" %>
