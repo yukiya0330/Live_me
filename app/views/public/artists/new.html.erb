@@ -13,22 +13,22 @@
         <table cellpadding="10">
           <tbody>
             <tr>
-              <td>アーティスト名</td>
-              <td><%= f.text_field :name %></td>
+              <td><div class="mini-title">ARTIST</div></td>
+              <td><%= f.text_field :name, size: "41" %></td>
             </tr>
             <tr>
-              <td>紹介文</td>
-              <td><%= f.text_area :introduction %></td>
+              <td class="d-flex align-items-start"><div class="mini-title">INTRODUCTION</div></td>
+              <td><%= f.text_area :introduction, cols: "40", rows: "10" %></td>
             </tr>
             <tr>
-              <td>オフィシャルサイト</td>
-              <td><%= f.text_field :official_url %></td>
-            </tr>
-            <tr>
-              <td><%= f.submit "登録", class: "btn btn-success" %></td>
+              <td><div class="mini-title">OFFICIAL SITE</div></td>
+              <td><%= f.text_field :official_url, size: "41" %></td>
             </tr>
           </tbody>
         </table>
+        <div class="text-center">
+          <%= f.submit "投降", class: "btn btn-success" %>
+        </div>  
       </div>
     </div>
   <% end %>

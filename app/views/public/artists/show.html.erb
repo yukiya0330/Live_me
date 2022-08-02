@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container artist-page">
   <div class="row mt-5">
-    <div class="col-10 mx-auto d-flex justify-content-between">
+    <div class="col-11 mx-auto d-flex justify-content-between">
       <h2><%= @artist.name %></h2>
       <div>
         <% if customer_signed_in? %>
           <% if @artist.favorited_by?(current_customer) %>
             <%= link_to artist_favorite_artists_path(@artist), method: :delete do %>
-              <i class="fas fa-heart fa-lg" aria-hidden="true" style="color: red;"></i>
+              <i class="fas fa-heart " aria-hidden="true" style="color: red;"></i>
             <% end %>
           <% else %>
             <%= link_to artist_favorite_artists_path(@artist), method: :post do %>
-              <i class="fas fa-heart fa-lg" aria-hidden="true"></i>
+              <i class="fas fa-heart" aria-hidden="true" style="color: gray;"></i>
             <% end %>
           <% end %>
         <% end %>  
@@ -18,24 +18,24 @@
     </div>
   </div>
   <div class="row mt-1">
-    <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(500,500) %></div>
+    <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(400,400) %></div>
     <div class="col-6">
       <table cellpadding="10">
         <tbody>
           <tr>
-            <td>アーティスト名</td>
+            <td><div class="mini-title">ARTIST</div></td>
             <td><%= @artist.name %></td>
           </tr>
           <tr>
-            <td>紹介文</td>
+            <td><div class="mini-title">INTRODUCTION</div></td>
             <td><%= @artist.introduction %></td>
           </tr>
           <tr>
-            <td>オフィシャルサイト</td>
+            <td><div class="mini-title">OFFICIAL SITE</div></td>
             <td><%= link_to @artist.official_url, @artist.official_url %></td>
           </tr>
           <tr>
-            <td>ジャンル</td>
+            <td><div class="mini-title">GENRE</div></td>
             <td>
               <% @artist.artist_genres.each do |artist_genre| %>
                 <% if customer_signed_in? %>
@@ -79,7 +79,7 @@
     <div class="col-10 mx-auto">
       <table class="w-100">
         <tbody>
-          <% @comments.each do |comment| %>
+          <% @artist.comments.each do |comment| %>
           <tr>
             <td style="width: 10%" class="align-middle"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
             <td style="width: 15%" class="align-middle"><%= comment.customer.nickname %>さん</td>
@@ -87,7 +87,7 @@
             <td style="width: 5%" class="align-middle">
               <% if current_customer == comment.customer %>
                 <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
-                  <i class="fa fa-solid fa-trash text-danger"></i>
+                  <i class="fa fa-solid fa-trash text-secondary"></i>
                 <% end %>
               <% end %>
             </td>

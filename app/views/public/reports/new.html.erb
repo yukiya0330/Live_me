@@ -1,8 +1,6 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-12">
-      <h3>レポート投稿</h3>
-    </div>
+  <div class="row mt-5">
+    <h1><%= @live.name %></h1>
   </div>
   <%= form_with model: @report, url: reports_path, method: :post do |f| %>
     <div class="row">
@@ -13,21 +11,14 @@
         <table cellpadding="10">
           <tbody>
             <tr>
-              <td>行ったライブ</td>
-              <td>
-                <%= f.hidden_field :live_id, value: params[:live_id] %>
-                <%= @live.name %>
-              </td>
-            </tr>
-            <tr>
-              <td>レポート</td>
-              <td><%= f.text_area :comment %></td>
-            </tr>
-            <tr>
-              <td><%= f.submit "登録", class: "btn btn-success" %></td>
+              <td class="d-flex align-items-start"><div class="mini-title">REPORT</div></td>
+              <td><%= f.text_area :comment, cols: "40", rows: "10" %></td>
             </tr>
           </tbody>
         </table>
+        <div class="text-center">
+          <%= f.submit "投降", class: "btn btn-success" %>
+        </div>  
       </div>
     </div>
   <% end %>

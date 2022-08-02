@@ -6,6 +6,7 @@ html {
   height: 100%;
 }
 body {
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
   margin: 0;
   padding: 0;
   height: 100%;
@@ -24,11 +25,40 @@ footer {
 }
 
 img.logo {
-  width: 150%;
-  height: 120%;
+  width: 120%;
+  height: auto;
 }
 
 #map {
   height: 300px;
   width: 400px;
+}
+
+.artist-page{
+  .fa-heart{
+    font-size: 50px;
+  }
+  .fa-trash{
+    font-size: 20px;
+  }
+}
+
+.live-page{
+  .fa-bookmark{
+    font-size: 50px;
+  }
+}
+.fa-bookmark{
+  font-size: 30px;
+}
+.fa-heart{
+  font-size: 30px;
+}
+.mini-title{
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  background: #666;
+  color: #fff;
+  letter-spacing: .05em;
+  font-weight: 900;
 }
