@@ -1,7 +1,7 @@
 <div class="container live-page">
   <div class="row mt-5">
     <div class="col-11 mx-auto d-flex justify-content-between">
-      <h1 class="my-auto "><strong><%= @live.name %></strong></h1>
+      <h2 class="my-auto main-title"><%= @live.name %></h2>
       <!--ログインしている場合のみ表示-->
       <% if customer_signed_in? %>
         <div class="my-auto">
@@ -21,7 +21,7 @@
       <% end %>
     </div>  
   </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-6 text-center my-auto"><%= image_tag @live.get_live_image(500,500) %></div>
     <div class="col-6">
       <table cellpadding="10">
