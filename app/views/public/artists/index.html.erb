@@ -1,29 +1,29 @@
 <div class="container">
-  <div class="row mt-5">
+  <div class="row mt-3">
     <div class="col-12">
-      <h3 class="float-left">アーティスト一覧</h3>
+      <h3 class="sub-title">アーティスト一覧</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <table class="table text-center">
+      <table class="table shadow p-3 mb-5 bg-body rounded text-center">
         <thead class="bg-light">
           <tr>
             <th style="width: 15%"></th>
-            <th style="width: 30%">アーティスト</th>
+            <th style="width: 35%" class="text-left">アーティスト</th>
             <th style="width: 20%">総お気に入り数</th>
             <th style="width: 20%">総コメント数</th>
-            <th style="width: 15%"></th>
+            <th style="width: 10%"></th>
           </tr>
         </thead>
         <tbody>
           <% @artists.each do |artist| %>
             <tr>
               <td style="width: 15%" class="align-middle"><%= image_tag artist.get_artist_image(50,50) %></td>
-              <td style="width: 30%" class="align-middle"><%= link_to artist.name, artist_path(artist) %></td>
+              <td style="width: 35%" class="align-middle text-left"><%= link_to artist.name, artist_path(artist) %></td>
               <td style="width: 20%" class="align-middle"><%= artist.favorite_artists.count %></td>
               <td style="width: 20%" class="align-middle"><%= artist.comments.count %></td>
-              <td style="width: 1%" class="align-middle">
+              <td style="width: 10%" class="align-middle">
                 <% if customer_signed_in? %>
                   <% if artist.favorited_by?(current_customer) %>
                     <%= link_to artist_favorite_artists_path(artist), method: :delete do %>

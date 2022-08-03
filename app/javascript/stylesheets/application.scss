@@ -31,7 +31,7 @@ img.logo {
 
 #map {
   height: 300px;
-  width: 400px;
+  width: 100%;
 }
 
 .artist-page{
@@ -91,12 +91,15 @@ img.logo {
 }
 
 .sub-title{
+  display: inline-block;
   padding: 1rem 2rem;
   border-left: 5px solid #000;
   background: #f4f4f4;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 }
 
 .main-title {
+  display: inline-block;
   padding: 1rem 3rem;
   -webkit-transform: skew(-15deg);
   transform: skew(-15deg);

@@ -1,33 +1,33 @@
 <div class="container">
   <div class="row mt-3">
     <div class="col-12">
-      <h3 class="float-left">ライブ一覧</h3>
+      <h3 class="sub-title">ライブ一覧</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <table class="table text-center">
-        <thead>
+      <table class="table shadow p-3 mb-5 bg-body rounded">
+        <thead class="bg-light">
           <tr>
             <th style="width: 15%"></th>
             <th style="width: 20%">ライブ名</th>
-            <th style="width: 35%">出演アーティスト</th>
+            <th style="width: 45%">出演アーティスト</th>
             <th style="width: 15%">日程</th>
-            <th style="width: 15%"></th>
+            <th style="width: 5%"></th>
           </tr>
         </thead>
         <tbody>
           <% @lives.each do |live| %>
             <tr>
-              <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
+              <td style="width: 15%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
-              <td style="width: 35%" class="align-middle">
-                <% live.performing_artists.each do |performing_artist| %>
+              <td style="width: 45%" class="align-middle">
+                <% live.performing_artists.first(4).each do |performing_artist| %>
                   <%= performing_artist.artist.name %>
                 <% end %>
               </td>
-              <td style="width: %" class="align-middle"><%= live.live_date %></td>
-              <td style="width: 15%" class="align-middle">
+              <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
+              <td style="width: 5%" class="align-middle">
                 <div>
                   <% if customer_signed_in? %>
                     <% if live.favorited_by?(current_customer) %>

@@ -1,7 +1,7 @@
 <div class="container live-page">
   <div class="row mt-5">
     <div class="col-11 mx-auto d-flex justify-content-between">
-      <h2 class="my-auto main-title"><%= @live.name %></h2>
+      <h2 class="main-title"><%= @live.name %></h2>
       <!--ログインしている場合のみ表示-->
       <% if customer_signed_in? %>
         <div class="my-auto">
