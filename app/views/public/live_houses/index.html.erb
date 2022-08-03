@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row mt-3">
     <div class="col-12">
-      <h3 class="float-left">ライブハウス一覧</h3>
+      <h3 class="sub-title">ライブハウス一覧</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <table class="table text-center">
-        <thead>
+      <table class="table shadow p-3 mb-5 bg-body rounded">
+        <thead class="bg-light">
           <tr>
             <th style="width: 15%"></th>
             <th style="width: 85%">ライブハウス</th>
@@ -16,7 +16,7 @@
         <tbody>
           <% @live_houses.each do |live_house| %>
             <tr>
-              <td style="width: 15%" class="align-middle"><%= image_tag live_house.get_house_image(50,50) %></td>
+              <td style="width: 15%" class="align-middle text-center"><%= image_tag live_house.get_house_image(50,50) %></td>
               <td style="width: 85%" class="align-middle"><%= link_to live_house.name, live_house_path(live_house) %></td>
             </tr>
           <% end %>

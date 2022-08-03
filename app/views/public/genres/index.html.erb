@@ -11,7 +11,7 @@
   <% end %>
   <div class="row my-5">
     <div class="col-12">
-      <h4>ジャンル一覧</h4>
+      <h4 class="sub-title">ジャンル一覧</h4>
       <% @genres.each do |genre| %>
         <% if customer_signed_in? %>
           <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "btn btn-warning", data: {confirm: "追加しますか？"} %>

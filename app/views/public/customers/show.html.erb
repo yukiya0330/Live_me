@@ -10,13 +10,13 @@
     <div class="col-9">
       <div class="row mt-3">
         <div class="col-12">
-          <h4 class="col-8 sub-title">まだ見ぬアーティストを発掘！</h4>
+          <h4 class="sub-title">まだ見ぬアーティストを発掘！</h4>
           <div class="my-5 text-center">ここに挿入</div>
         </div>
       </div>  
       <div class="row mt-3 bookmark-list">
         <div class="col-12">
-          <h4 class="col-7 sub-title">ブックマークしたライブ</h4>
+          <h4 class="sub-title">ブックマークしたライブ</h4>
           <% if current_customer.bookmark_lives.present? %>
             <table>
               <tbody>
@@ -41,7 +41,7 @@
       </div>
       <div class="row mt-3 favorite-list">
         <div class="col-7">
-          <h4 class="col-10 sub-title">お気に入りのアーティスト</h4>
+          <h4 class="sub-title">お気に入りのアーティスト</h4>
           <% if current_customer.favorite_artists.present? %>
             <table style="width: 100%">
               <tbody>
@@ -69,7 +69,7 @@
           <% end %>
         </div>
         <div class="col-5 favorite-list">
-          <h4 class="col-12 sub-title">お気に入りのジャンル</h4>
+          <h4 class="sub-title">お気に入りのジャンル</h4>
           <% if current_customer.favorite_genres.present? %>
             <table>
               <tbody>

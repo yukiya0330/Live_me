@@ -37,15 +37,15 @@
           <tr>
             <td><div class="mini-title">GENRE</div></td>
             <td>
-              <% @artist.artist_genres.each do |artist_genre| %>
+              <% @artist.genres.each do |genre| %>
                 <% if customer_signed_in? %>
-                  <% if artist_genre.genre.favorited_by?(current_customer) %>
-                    <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
+                  <% if genre.favorited_by?(current_customer) %>
+                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
                   <% else %>
-                    <%= link_to artist_genre.genre.name, genre_favorite_genres_path(artist_genre.genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
+                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
                   <% end %>
                 <% else %>
-                    <%= link_to artist_genre.genre.name, "#", class: "btn btn-warning" %>
+                    <%= link_to genre.name, "#", class: "btn btn-warning" %>
                 <% end %>
               <% end %>
             </td>
@@ -56,7 +56,7 @@
   </div>
   <div class="row mt-3">
     <div class="col-10 mx-auto">
-      <h4 class="col-5 sub-title">このバンドの良い所!!</h4>
+      <h4 class="sub-title">このバンドの良い所!!</h4>
     </div>  
     <div class="col-10 mx-auto">
       <% if customer_signed_in? %>
@@ -74,7 +74,7 @@
   </div>
   <div class="row mt-3 comment-list">
     <div class="col-10 mx-auto">
-      <h4 class="col-5 sub-title">コメント一覧</h4>
+      <h4 class="sub-title">コメント一覧</h4>
     </div>
     <div class="col-10 mx-auto">
       <% if @artist.comments.present? %>
@@ -82,8 +82,8 @@
           <tbody>
             <% @artist.comments.each do |comment| %>
               <tr class="d-flex align-items-center">
-                <td style="width: 10%"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
-                <td style="width: 15%"><%= comment.customer.nickname %>さん</td>
+                <td style="width: 10%" class="text-center"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
+                <td style="width: 15%"><%= comment.customer.nickname %></td>
                 <td style="width: 70%"><%= comment.comment %></td>
                 <td style="width: 5%">
                   <% if current_customer == comment.customer %>
@@ -103,27 +103,27 @@
   </div>
   <div class="row my-3 live-list">
     <div class="col-10 mx-auto">
-      <h4 class="col-5 sub-title">ライブ予定</h4>
+      <h4 class="sub-title">ライブ予定</h4>
     </div>
     <div class="col-10 mx-auto">
-      <% if @artist.performing_artists.present? %>
+      <% if @artist.lives.where("live_date > ?", Date.today).present? %>
         <table>
           <tbody>
-            <% @artist.performing_artists.each do |performing_artist| %>
+            <% @artist.lives.where("live_date > ?", Date.today).each do |live| %>
               <tr class="d-flex align-items-center">
-                <td style="width: 10%"><%= image_tag performing_artist.live.get_live_image(50,50) %></td>
-                <td style="width: 53%"><%= link_to performing_artist.live.name, live_path(performing_artist.live) %></td>
-                <td style="width: 15%"><%= performing_artist.live.live_date %></td>
-                <td style="width: 15%">START: <%= performing_artist.live.open_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 53%"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 15%"><%= live.live_date %></td>
+                <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
                 <td style="width: 7%">
                   <div>
                     <% if customer_signed_in? %>
-                      <% if performing_artist.live.favorited_by?(current_customer) %>
-                        <%= link_to live_bookmark_lives_path(performing_artist.live), method: :delete do %>
+                      <% if live.favorited_by?(current_customer) %>
+                        <%= link_to live_bookmark_lives_path(live), method: :delete do %>
                           <i class="fas fa-solid fa-bookmark text-success"></i>
                         <% end %>
                       <% else %>
-                        <%= link_to live_bookmark_lives_path(performing_artist.live), method: :post do %>
+                        <%= link_to live_bookmark_lives_path(live), method: :post do %>
                           <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
                         <% end %>
                       <% end %>
