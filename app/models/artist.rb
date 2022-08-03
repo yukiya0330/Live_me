@@ -5,6 +5,7 @@ class Artist < ApplicationRecord
   has_many :performing_artists, dependent: :destroy
   has_many :genres, through: :artist_genres
   has_many :lives, through: :performing_artists
+  has_many :customers, through: :favorite_artists
   
   has_one_attached :artist_image
 

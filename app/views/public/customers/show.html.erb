@@ -11,7 +11,11 @@
       <div class="row mt-3">
         <div class="col-12">
           <h4 class="sub-title">まだ見ぬアーティストを発掘！</h4>
-          <div class="my-5 text-center">ここに挿入</div>
+          <div class="">
+            <% @artists.each do |artist| %>
+              <%= link_to "クリック", artist_path(artist) %>
+            <% end %>
+          </div>
         </div>
       </div>  
       <div class="row mt-3 bookmark-list">
@@ -75,7 +79,7 @@
               <tbody>
                 <% current_customer.favorite_genres.each do |favorite_genre| %>
                 <tr class="d-flex align-items-center">
-                  <td style="width: 100%">
+                  <td style="width: 100%" class="m-1">
                     <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "削除しますか？"} %>
                   </td>
                 </tr>

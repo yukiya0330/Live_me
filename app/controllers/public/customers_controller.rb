@@ -1,6 +1,10 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
+    @artists = Artist.all
+    # @artists = Artist.where(@favorite_artists.customer_id == @customer.id)
+    # @favorite_artists = FavoriteArtist.where(customer_id: @customer.id)
+    # @artists == @favorite_artists
   end
 
   def edit
