@@ -1,7 +1,7 @@
 <div class="container artist-page">
   <div class="row mt-5">
     <div class="col-11 mx-auto d-flex justify-content-between">
-      <h2><%= @artist.name %></h2>
+      <h2 class="main-title"><%= @artist.name %></h2>
       <div>
         <% if customer_signed_in? %>
           <% if @artist.favorited_by?(current_customer) %>
@@ -56,7 +56,7 @@
   </div>
   <div class="row mt-3">
     <div class="col-10 mx-auto">
-      <h4>このバンドの良い所!!</h4>
+      <h4 class="col-5 sub-title">このバンドの良い所!!</h4>
     </div>  
     <div class="col-10 mx-auto">
       <% if customer_signed_in? %>
@@ -72,29 +72,74 @@
       <% end %>
     </div>
   </div>
-  <div class="row my-3">
+  <div class="row mt-3 comment-list">
     <div class="col-10 mx-auto">
-      <h4>コメント一覧</h4>
+      <h4 class="col-5 sub-title">コメント一覧</h4>
+    </div>
+    <div class="col-10 mx-auto">
+      <% if @artist.comments.present? %>
+        <table>
+          <tbody>
+            <% @artist.comments.each do |comment| %>
+              <tr class="d-flex align-items-center">
+                <td style="width: 10%"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
+                <td style="width: 15%"><%= comment.customer.nickname %>さん</td>
+                <td style="width: 70%"><%= comment.comment %></td>
+                <td style="width: 5%">
+                  <% if current_customer == comment.customer %>
+                    <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
+                      <i class="fa fa-solid fa-trash text-secondary"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="my-5 text-center">投稿がありません　最初の投稿者になりませんか？</p>
+      <% end %>
     </div>  
+  </div>
+  <div class="row my-3 live-list">
     <div class="col-10 mx-auto">
-      <table class="w-100">
-        <tbody>
-          <% @artist.comments.each do |comment| %>
-          <tr>
-            <td style="width: 10%" class="align-middle"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
-            <td style="width: 15%" class="align-middle"><%= comment.customer.nickname %>さん</td>
-            <td style="width: 70%" class="align-middle"><%= comment.comment %></td>
-            <td style="width: 5%" class="align-middle">
-              <% if current_customer == comment.customer %>
-                <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
-                  <i class="fa fa-solid fa-trash text-secondary"></i>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h4 class="col-5 sub-title">ライブ予定</h4>
+    </div>
+    <div class="col-10 mx-auto">
+      <% if @artist.performing_artists.present? %>
+        <table>
+          <tbody>
+            <% @artist.performing_artists.each do |performing_artist| %>
+              <tr class="d-flex align-items-center">
+                <td style="width: 10%"><%= image_tag performing_artist.live.get_live_image(50,50) %></td>
+                <td style="width: 53%"><%= link_to performing_artist.live.name, live_path(performing_artist.live) %></td>
+                <td style="width: 15%"><%= performing_artist.live.live_date %></td>
+                <td style="width: 15%">START: <%= performing_artist.live.open_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 7%">
+                  <div>
+                    <% if customer_signed_in? %>
+                      <% if performing_artist.live.favorited_by?(current_customer) %>
+                        <%= link_to live_bookmark_lives_path(performing_artist.live), method: :delete do %>
+                          <i class="fas fa-solid fa-bookmark text-success"></i>
+                        <% end %>
+                      <% else %>
+                        <%= link_to live_bookmark_lives_path(performing_artist.live), method: :post do %>
+                          <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
+                        <% end %>
+                      <% end %>
+                    <% end %>  
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="my-5 text-center">
+          現在、ライブの予定はありません</br>
+          ライブ日程の追加がある場合は、<%= link_to "ここ", new_live_path %>をクリックしてください
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

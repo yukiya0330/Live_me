@@ -62,3 +62,46 @@ img.logo {
   letter-spacing: .05em;
   font-weight: 900;
 }
+
+.comment-list, .live-list, .favorite-list, .bookmark-list{
+  // テーブルスクロール
+  table {
+    width: 100%;
+    border-spacing: 0;
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
+  }
+  tbody, tr, th, td {
+    display: block; 
+  }
+  tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+  tbody {
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  tbody td{
+    width: 19%;
+    float: left;
+  }
+}
+
+.sub-title{
+  padding: 1rem 2rem;
+  border-left: 5px solid #000;
+  background: #f4f4f4;
+}
+
+.main-title {
+  padding: 1rem 3rem;
+  -webkit-transform: skew(-15deg);
+  transform: skew(-15deg);
+  color: #fff;
+  background: black;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
