@@ -30,7 +30,7 @@
               <% @artist.genres.each do |genre| %>
                 <% if customer_signed_in? %>
                   <% if genre.favorited_by?(current_customer) %>
-                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
+                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "btn btn-warning", data: {confirm: "現在お気に入りに登録されています 登録を解除しますか？"} %>
                   <% else %>
                     <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
                   <% end %>

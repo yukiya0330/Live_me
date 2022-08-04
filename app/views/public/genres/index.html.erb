@@ -3,7 +3,7 @@
     <div class="row mt-5">
       <div class="col-12 mt-3">
         あなたの現在のお気に入りジャンル・・・<br>
-        <% current_customer.favorite_genres.each do |favorite_genre|%>
+        <% current_customer.favorite_genres.each do |favorite_genre| %>
           <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "削除しますか？"} %>
         <% end %>
       </div>
@@ -11,10 +11,14 @@
   <% end %>
   <div class="row my-5">
     <div class="col-12">
-      <h4 class="sub-title">ジャンル一覧</h4>
+      <h4 class="sub-title">ジャンル一覧</h4><br>
       <% @genres.each do |genre| %>
         <% if customer_signed_in? %>
-          <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "btn btn-warning", data: {confirm: "追加しますか？"} %>
+          <% if genre.favorited_by?(current_customer) %>
+            <%= link_to genre.name, "#", class: "btn btn-warning", data: {confirm: "追加済みです！"} %>
+          <% else %>
+            <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "btn btn-warning", data: {confirm: "追加しますか？"} %>
+          <% end %>
         <% else %>
           <%= link_to genre.name, "#", class: "btn btn-warning" %>
         <% end %>
