@@ -53,29 +53,17 @@
   <duv class="row my-5 live-list">
     <div class="col-12">
       <h2 class="sub-title">ライブ予定</h2>
-      <% if @live_house.lives.where("live_date > ?", Date.today).present? %>
+      <% if @live_house.lives.where("live_date >= ?", Date.today).present? %>
         <table class="w-100">
         <tbody>
-          <% @live_house.lives.where("live_date > ?", Date.today).each do |live| %>
+          <% @live_house.lives.where("live_date >= ?", Date.today).each do |live| %>
             <tr class="d-flex align-items-center">
               <td style="width: 15%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 50%"><%= link_to live.name, live_path(live) %></td>
               <td style="width: 15%"><%= live.live_date %></td>
               <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
-              <td style="width: 5%">
-                <div>
-                  <% if customer_signed_in? %>
-                    <% if live.favorited_by?(current_customer) %>
-                      <%= link_to live_bookmark_lives_path(live), method: :delete do %>
-                        <i class="fas fa-solid fa-bookmark text-success"></i>
-                      <% end %>
-                    <% else %>
-                      <%= link_to live_bookmark_lives_path(live), method: :post do %>
-                        <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
-                      <% end %>
-                    <% end %>
-                  <% end %>  
-                </div>
+              <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
+                <%= render "public/bookmark_lives/btn", live: live %>
               </td>
             </tr>
           <% end %>

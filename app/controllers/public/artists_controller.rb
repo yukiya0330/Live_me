@@ -5,7 +5,7 @@ class Public::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find(params[:id])
-    @comments = Comment.all
+    @comments = Comment.all.order(id: "DESC")
   end
   
   def new

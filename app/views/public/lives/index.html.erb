@@ -10,9 +10,10 @@
         <thead class="bg-light">
           <tr>
             <th style="width: 15%"></th>
-            <th style="width: 20%">ライブ名</th>
-            <th style="width: 45%">出演アーティスト</th>
-            <th style="width: 15%">日程</th>
+            <th style="width: 20%">LIVE</th>
+            <th style="width: 35%">ARTIST</th>
+            <th style="width: 15%" class="text-center">DATE</th>
+            <th style="width: 10%" class="text-center">START</th>
             <th style="width: 5%"></th>
           </tr>
         </thead>
@@ -21,26 +22,15 @@
             <tr>
               <td style="width: 15%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
-              <td style="width: 45%" class="align-middle">
+              <td style="width: 35%" class="align-middle">
                 <% live.performing_artists.first(4).each do |performing_artist| %>
                   <%= performing_artist.artist.name %>
                 <% end %>
               </td>
-              <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
-              <td style="width: 5%" class="align-middle">
-                <div>
-                  <% if customer_signed_in? %>
-                    <% if live.favorited_by?(current_customer) %>
-                      <%= link_to live_bookmark_lives_path(live), method: :delete do %>
-                        <i class="fas fa-solid fa-bookmark text-success"></i>
-                      <% end %>
-                    <% else %>
-                      <%= link_to live_bookmark_lives_path(live), method: :post do %>
-                        <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
-                      <% end %>
-                    <% end %>
-                  <% end %>  
-                </div>
+              <td style="width: 15%" class="align-middle text-center"><%= live.live_date %></td>
+              <td style="width: 10%" class="align-middle text-center"><%= live.start_time.strftime( "%H:%M" ) %></td>
+              <td style="width: 5%" class="align-middle" id="bookmark_lives_<%= live.id %>">
+                <%= render "public/bookmark_lives/btn", live: live %>
               </td>
             </tr>
           <% end %>

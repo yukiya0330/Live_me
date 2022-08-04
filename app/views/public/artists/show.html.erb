@@ -2,18 +2,8 @@
   <div class="row mt-5">
     <div class="col-11 mx-auto d-flex justify-content-between">
       <h2 class="main-title"><%= @artist.name %></h2>
-      <div>
-        <% if customer_signed_in? %>
-          <% if @artist.favorited_by?(current_customer) %>
-            <%= link_to artist_favorite_artists_path(@artist), method: :delete do %>
-              <i class="fas fa-heart " aria-hidden="true" style="color: red;"></i>
-            <% end %>
-          <% else %>
-            <%= link_to artist_favorite_artists_path(@artist), method: :post do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: gray;"></i>
-            <% end %>
-          <% end %>
-        <% end %>  
+      <div id="favorite_artists_<%= @artist.id %>">
+        <%= render "public/favorite_artists/btn", artist: @artist %>
       </div>
     </div>
   </div>
@@ -40,7 +30,7 @@
               <% @artist.genres.each do |genre| %>
                 <% if customer_signed_in? %>
                   <% if genre.favorited_by?(current_customer) %>
-                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "btn btn-warning", data: {confirm: "登録を解除しますか？"} %>
+                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "btn btn-warning", data: {confirm: "現在お気に入りに登録されています 登録を解除しますか？"} %>
                   <% else %>
                     <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "btn btn-warning", data: {confirm: "登録しますか？"} %>
                   <% end %>
@@ -57,16 +47,10 @@
   <div class="row mt-3">
     <div class="col-10 mx-auto">
       <h4 class="sub-title">このバンドの良い所!!</h4>
-    </div>  
+    </div>
     <div class="col-10 mx-auto">
       <% if customer_signed_in? %>
-        <%= form_with model: @comment, url: artist_comments_path(@artist), method: :post do |f| %>
-          <%= f.text_area :comment, class: "col-12" %>
-          <%= f.hidden_field :customer_id, :value => current_customer.id %>
-          <div class="text-right">
-            <%= f.submit "投稿" %>
-          </div>
-        <% end %>
+        <%= render "public/comments/form", comment: @comment, artist: @artist %>
       <% else %>
         会員登録を行うとコメントできます!!
       <% end %>
@@ -76,29 +60,8 @@
     <div class="col-10 mx-auto">
       <h4 class="sub-title">コメント一覧</h4>
     </div>
-    <div class="col-10 mx-auto">
-      <% if @artist.comments.present? %>
-        <table>
-          <tbody>
-            <% @artist.comments.each do |comment| %>
-              <tr class="d-flex align-items-center">
-                <td style="width: 10%" class="text-center"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
-                <td style="width: 15%"><%= comment.customer.nickname %></td>
-                <td style="width: 70%"><%= comment.comment %></td>
-                <td style="width: 5%">
-                  <% if current_customer == comment.customer %>
-                    <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"} do %>
-                      <i class="fa fa-solid fa-trash text-secondary"></i>
-                    <% end %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p class="my-5 text-center">投稿がありません　最初の投稿者になりませんか？</p>
-      <% end %>
+    <div class="col-10 mx-auto comments_area">
+      <%= render "public/comments/index", artist: @artist %>
     </div>  
   </div>
   <div class="row my-3 live-list">
@@ -106,29 +69,17 @@
       <h4 class="sub-title">ライブ予定</h4>
     </div>
     <div class="col-10 mx-auto">
-      <% if @artist.lives.where("live_date > ?", Date.today).present? %>
+      <% if @artist.lives.where("live_date >= ?", Date.today).present? %>
         <table>
           <tbody>
-            <% @artist.lives.where("live_date > ?", Date.today).each do |live| %>
+            <% @artist.lives.where("live_date >= ?", Date.today).each do |live| %>
               <tr class="d-flex align-items-center">
                 <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 53%"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 55%"><%= link_to live.name, live_path(live) %></td>
                 <td style="width: 15%"><%= live.live_date %></td>
                 <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
-                <td style="width: 7%">
-                  <div>
-                    <% if customer_signed_in? %>
-                      <% if live.favorited_by?(current_customer) %>
-                        <%= link_to live_bookmark_lives_path(live), method: :delete do %>
-                          <i class="fas fa-solid fa-bookmark text-success"></i>
-                        <% end %>
-                      <% else %>
-                        <%= link_to live_bookmark_lives_path(live), method: :post do %>
-                          <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
-                        <% end %>
-                      <% end %>
-                    <% end %>  
-                  </div>
+                <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
+                  <%= render "public/bookmark_lives/btn", live: live %>
                 </td>
               </tr>
             <% end %>
