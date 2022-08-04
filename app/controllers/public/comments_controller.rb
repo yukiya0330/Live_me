@@ -1,15 +1,14 @@
 class Public::CommentsController < ApplicationController
   def create
-    comment = current_customer.comments.new(comment_params)
-    comment.save
-    redirect_to request.referer
-    logger.debug comment.errors.inspect 
+    @comment = current_customer.comments.new(comment_params)
+    @artist = @comment.artist
+    @comment.save
   end
   
   def destroy
-    comment = Comment.find_by(id: params[:id])
-    comment.destroy
-    redirect_to request.referer
+    @comment = Comment.find_by(id: params[:id])
+    @artist = @comment.artist
+    @comment.destroy
   end
   
   private
