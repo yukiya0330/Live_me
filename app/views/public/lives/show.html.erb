@@ -7,16 +7,8 @@
         <div class="my-auto">
           <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "btn btn-primary" %>
         </div>
-        <div>
-          <% if @live.favorited_by?(current_customer) %>
-            <%= link_to live_bookmark_lives_path(@live), method: :delete do %>
-              <i class="fas fa-solid fa-bookmark text-success"></i>
-            <% end %>
-          <% else %>
-            <%= link_to live_bookmark_lives_path(@live), method: :post do %>
-              <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
-            <% end %>
-          <% end %>
+        <div id="bookmark_lives_<%= @live.id %>">
+          <%= render "public/bookmark_lives/btn", live: @live %>
         </div>
       <% end %>
     </div>  

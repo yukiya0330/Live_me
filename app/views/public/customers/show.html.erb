@@ -28,12 +28,8 @@
                   <tr class="d-flex align-items-center">
                     <td style="width: 10%"><%= image_tag bookmark_live.live.get_live_image(50,50) %></td>
                     <td style="width: 60%"><%= link_to bookmark_live.live.name, live_path(bookmark_live.live) %></td>
-                    <td style="width: 20%">START: <%= bookmark_live.live.open_time.strftime( "%H:%M" ) %></td>
-                    <td style="width: 10%">
-                      <%= link_to live_bookmark_lives_path(bookmark_live.live), method: :delete, data: {confirm: "削除しますか？"}  do %>
-                        <i class="fas fa-solid fa-bookmark text-success"></i>
-                      <% end %>  
-                    </td>
+                    <td style="width: 15%"><%= bookmark_live.live.live_date %></td>
+                    <td style="width: 15%">START: <%= bookmark_live.live.open_time.strftime( "%H:%M" ) %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -47,23 +43,12 @@
         <div class="col-7">
           <h4 class="sub-title">お気に入りのアーティスト</h4>
           <% if current_customer.favorite_artists.present? %>
-            <table style="width: 100%">
+            <table style="width: 80%">
               <tbody>
                 <% current_customer.favorite_artists.each do |favorite_artist| %>
                 <tr class="d-flex align-items-center">
                   <td style="width: 20%"><%= image_tag favorite_artist.artist.get_artist_image(50,50) %></td>
-                  <td style="width: 70%"><%= link_to favorite_artist.artist.name, artist_path(favorite_artist.artist) %></td>
-                  <td style="width: 10%">
-                    <% if favorite_artist.artist.favorited_by?(current_customer) %>
-                      <%= link_to artist_favorite_artists_path(favorite_artist.artist), method: :delete do %>
-                        <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                      <% end %>
-                    <% else %>
-                      <%= link_to artist_favorite_artists_path(favorite_artist.artist), method: :post do %>
-                        <i class="fas fa-heart" aria-hidden="true"></i>
-                      <% end %>
-                    <% end %>
-                  </td>
+                  <td style="width: 80%"><%= link_to favorite_artist.artist.name, artist_path(favorite_artist.artist) %></td>
                 </tr>
                 <% end %>
               </tbody>

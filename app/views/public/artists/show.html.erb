@@ -2,18 +2,8 @@
   <div class="row mt-5">
     <div class="col-11 mx-auto d-flex justify-content-between">
       <h2 class="main-title"><%= @artist.name %></h2>
-      <div>
-        <% if customer_signed_in? %>
-          <% if @artist.favorited_by?(current_customer) %>
-            <%= link_to artist_favorite_artists_path(@artist), method: :delete do %>
-              <i class="fas fa-heart " aria-hidden="true" style="color: red;"></i>
-            <% end %>
-          <% else %>
-            <%= link_to artist_favorite_artists_path(@artist), method: :post do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: gray;"></i>
-            <% end %>
-          <% end %>
-        <% end %>  
+      <div id="favorite_artists_<%= @artist.id %>">
+        <%= render "public/favorite_artists/btn", artist: @artist %>
       </div>
     </div>
   </div>
@@ -106,29 +96,17 @@
       <h4 class="sub-title">ライブ予定</h4>
     </div>
     <div class="col-10 mx-auto">
-      <% if @artist.lives.where("live_date > ?", Date.today).present? %>
+      <% if @artist.lives.where("live_date >= ?", Date.today).present? %>
         <table>
           <tbody>
-            <% @artist.lives.where("live_date > ?", Date.today).each do |live| %>
+            <% @artist.lives.where("live_date >= ?", Date.today).each do |live| %>
               <tr class="d-flex align-items-center">
                 <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 53%"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 55%"><%= link_to live.name, live_path(live) %></td>
                 <td style="width: 15%"><%= live.live_date %></td>
                 <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
-                <td style="width: 7%">
-                  <div>
-                    <% if customer_signed_in? %>
-                      <% if live.favorited_by?(current_customer) %>
-                        <%= link_to live_bookmark_lives_path(live), method: :delete do %>
-                          <i class="fas fa-solid fa-bookmark text-success"></i>
-                        <% end %>
-                      <% else %>
-                        <%= link_to live_bookmark_lives_path(live), method: :post do %>
-                          <i class="fas fa-solid fa-bookmark text-secondary" style="color: red;"></i>
-                        <% end %>
-                      <% end %>
-                    <% end %>  
-                  </div>
+                <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
+                  <%= render "public/bookmark_lives/btn", live: live %>
                 </td>
               </tr>
             <% end %>
