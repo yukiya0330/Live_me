@@ -11,9 +11,9 @@
       <div class="row mt-3">
         <div class="col-12">
           <h4 class="sub-title">まだ見ぬアーティストを発掘！</h4>
-          <div class="">
-            <% @artists.each do |artist| %>
-              <%= link_to "クリック", artist_path(artist) %>
+          <div class="text-center my-5">
+            <% @artists.first(1).each do |artist| %>
+              <%= link_to "見てみる!", artist_path(artist), class: "btn btn-info" %>
             <% end %>
           </div>
         </div>

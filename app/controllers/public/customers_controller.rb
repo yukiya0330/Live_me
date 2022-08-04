@@ -1,10 +1,8 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
-    @artists = Artist.all
-    # @artists = Artist.where(@favorite_artists.customer_id == @customer.id)
-    # @favorite_artists = FavoriteArtist.where(customer_id: @customer.id)
-    # @artists == @favorite_artists
+    # @favorite_artist = FavoriteArtist.where(customer_id: @customer.id)
+    @artists = Artist.where.not(id: @customer.artist_ids).order("RANDOM()")
   end
 
   def edit
