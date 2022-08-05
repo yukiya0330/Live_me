@@ -42,7 +42,7 @@
       <div class="text-center my-5">
         <% if @after_lives.present? %>
           <% @after_lives.shuffle.each do |live| %>
-            <%= link_to "今日行きたい!", live_path(live), class: "watch-button" %>
+            <%= link_to "今日行きたい!", live_path(live), class: "watch-btn" %>
           <% end %>
         <% else %>
           予定されているライブはありません<br>

@@ -5,7 +5,7 @@
       <!--ログインしている場合のみ表示-->
       <% if customer_signed_in? %>
         <div class="my-auto">
-          <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "btn btn-primary" %>
+          <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "default-btn bg-primary p-2 w-auto" %>
         </div>
         <div id="bookmark_lives_<%= @live.id %>">
           <%= render "public/bookmark_lives/btn", live: @live %>
@@ -22,7 +22,7 @@
             <td><div class="mini-title">PLASE</div></td>
             <td>
               <% @live.live_schedules.each do |live_schedule| %>
-                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "btn btn-outline-secondary" %>
+                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "default-btn bg-secondary p-2 w-auto" %>
               <% end %>
             </td>
           </tr>
@@ -54,7 +54,7 @@
             <td><div class="mini-title">ACT</div></td>
             <td>
               <% @live.performing_artists.each do |performing_artist| %>
-                <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "btn btn-warning" %>
+                <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "default-btn bg-info p-2 w-auto" %>
               <% end %>
             </td>
           </tr>
