@@ -15,10 +15,12 @@ class Public::ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
+      flash[:success] = "投稿依頼完了しました"
       redirect_to customers_completion_path
     else
+      flash[:danger] = "入力内容を確認してください"
       render :new
-    end  
+    end
   end
   
   private

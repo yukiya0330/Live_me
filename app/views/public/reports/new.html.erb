@@ -1,8 +1,9 @@
+<%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-5">
     <h1 class="main-title"><%= @live.name %></h1>
   </div>
-  <%= form_with model: @report, url: reports_path, method: :post do |f| %>
+  <%= form_with model: @report, url: reports_path(live_id: @live.id), method: :post do |f| %>
     <div class="row">
       <div class="col-6">
         <%= f.file_field :report_image %>
@@ -17,6 +18,7 @@
           </tbody>
         </table>
         <div class="text-center">
+          <%= f.hidden_field :live_id, :value => @live.id %>
           <%= f.submit "投降", class: "btn default-btn bg-success p-2 mt-2" %>
         </div>  
       </div>

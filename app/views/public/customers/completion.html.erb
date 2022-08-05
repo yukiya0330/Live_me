@@ -1,7 +1,14 @@
+<%= render 'layouts/flash_messages' %>
 <div class="container">
-  <div class="row">
-    <h4>管理者に依頼を行いました！</h4>
-    <%= link_to "トップページ", root_path, class: "btn btn-primary" %>
-    <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-primary" %>
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+    <h4>管理者に依頼を行いました！<br>反映までお待ちください！</h4>
+    </div>
+  </div> 
+  <div class="row my-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページ", root_path, class: "default-btn bg-primary p-2 w-auto mr-5" %>
+      <%= link_to "マイページ", customer_path(current_customer), class: "default-btn bg-info p-2 w-auto" %>
+    </div>
   </div>
 </div>

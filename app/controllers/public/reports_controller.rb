@@ -20,18 +20,23 @@ class Public::ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.customer_id = current_customer.id
     if @report.save
-      redirect_to customer_path(current_customer)
+      flash[:success] = "投稿されました"
+      redirect_to report_path(@report)
     else
-      @live = @report.live
+      flash.now[:danger] = "投稿に失敗しました"
+      @live = Live.find_by(params[:id])
       render :new
-    end  
+      logger.debug @report.errors.inspect 
+    end
   end
   
   def update
     @report = Report.find(params[:id])
     if @report.update(report_params)
-      redirect_to customer_path(current_customer)
+      flash[:success] = "編集内容が保存されました"
+      redirect_to report_path(@report)
     else
+      flash.now[:danger] = "編集内容を確認してください"
       render :edit
     end  
   end

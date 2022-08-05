@@ -72,7 +72,7 @@
       <% if @artist.lives.where("live_date >= ?", Date.today).present? %>
         <table>
           <tbody>
-            <% @artist.lives.where("live_date >= ?", Date.today).each do |live| %>
+            <% @artist.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
               <tr class="d-flex align-items-center">
                 <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
                 <td style="width: 55%"><%= link_to live.name, live_path(live) %></td>

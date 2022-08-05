@@ -1,3 +1,4 @@
+<%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-3">
     <div class="col-3 text-center">
@@ -11,9 +12,14 @@
       <div class="row mt-3">
         <div class="col-12">
           <h4 class="sub-title">まだ見ぬアーティストを発掘！</h4>
-          <div class="text-center my-5">
-            <% @artists.first(1).each do |artist| %>
-              <%= link_to "見てみる!", artist_path(artist), class: "watch-btn" %>
+          <div class="text-center mt-4">
+            <% if @artists.present? %>
+              <% @artists.first(1).each do |artist| %>
+                <%= link_to "見てみる!", artist_path(artist), class: "watch-btn mb-2" %>
+                <p>※お気に入りをしていないアーティストがランダムで表示されます</p>
+              <% end %>
+            <% else %>
+              アーティストの追加をおまちください！
             <% end %>
           </div>
         </div>

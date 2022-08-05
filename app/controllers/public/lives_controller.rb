@@ -1,6 +1,6 @@
 class Public::LivesController < ApplicationController
   def index
-    @lives = Live.all
+    @lives = Live.order(live_date: "DESC").where(status: 1)
   end
 
   def show
@@ -14,8 +14,10 @@ class Public::LivesController < ApplicationController
   def create
     @live = Live.new(live_params)
     if @live.save
+      flash[:success] = "投稿依頼完了しました"
       redirect_to customers_completion_path
     else
+      flash[:danger] = "入力内容を確認してください"
       render :new
     end  
   end
