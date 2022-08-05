@@ -1,11 +1,13 @@
 <div class="container">
-  <div class="row mt-3">
-    <h3><%= @artist.name %>の詳細</h3>
-  </div>
   <div class="row mt-5">
+    <div class="col-12 mx-auto">
+    <h3 class="main-title"><%= @artist.name %></h3>
+    </div>
+  </div>
+  <div class="row mt-1">
     <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(500,500) %></div>
     <div class="col-6">
-      <table cellpadding="10">
+      <table cellpadding="10" class="mx-auto">
         <tbody>
           <tr>
             <td>アーティスト名</td>
@@ -37,15 +39,15 @@
             <td>ジャンル</td>
             <td>
               <% @artist_genres.each do |artist_genre| %>
-                <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "btn btn-warning", data: { confirm: "ジャンルを削除しますか？" } %>
+                <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "ジャンルを削除しますか？" } %>
               <% end %>
             </td>
           </tr>
         </tbody>
       </table>
-      <div class="ml-5">
-        <%= link_to "編集する", edit_admin_artist_path(@artist), class: "btn btn-success" %>
-        <%= link_to "削除", admin_artist_path(@artist), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"}  %>
+      <div class="mt-3 text-center">
+        <%= link_to "編集する", edit_admin_artist_path(@artist), class: "btn default-btn bg-success p-2" %>
+        <%= link_to "削除", admin_artist_path(@artist), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"}  %>
       </div>
     </div>
   </div>

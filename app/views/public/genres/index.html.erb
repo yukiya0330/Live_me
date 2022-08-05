@@ -1,16 +1,20 @@
 <div class="container">
-  <% if customer_signed_in? %>
-    <div class="row mt-5">
-      <div class="col-12 mt-3">
-        あなたの現在のお気に入りジャンル・・・<br>
-        <% current_customer.favorite_genres.each do |favorite_genre| %>
-          <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "削除しますか？"} %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-  <div class="row my-5">
+  <div class="row">
     <div class="col-12">
+      <% if customer_signed_in? %>
+        <div class="row mt-5">
+          <div class="col-12 mt-3">
+            あなたの現在のお気に入りジャンル・・・<br>
+            <% current_customer.favorite_genres.each do |favorite_genre| %>
+              <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "削除しますか？"} %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+  <div class="row my-5">
+    <div class="col-6">
       <h4 class="sub-title">ジャンル一覧</h4><br>
       <% @genres.each do |genre| %>
         <% if customer_signed_in? %>
@@ -23,6 +27,22 @@
           <%= link_to genre.name, "#", class: "default-btn bg-warning p-2 w-auto text-dark" %>
         <% end %>
       <% end %>
+    </div>
+    <div class="col-6 artist-list">
+      <h5 class="sub-title">お気に入りのジャンルに一致するアーティスト</h5>
+      <table class="table shadow p-3 mb-5 rounded text-center" style="width: 90%">
+        <tbody style="height: 400px">
+          <% @my_artist_genres.each do |artist_genre| %>
+            <tr>
+              <td style="width: 15%" class="align-middle"><%= image_tag artist_genre.artist.get_artist_image(50,50) %></td>
+              <td style="width: 65%" class="align-middle text-left"><%= link_to artist_genre.artist.name, artist_path(artist_genre.artist) %></td>
+              <td style="width: 20%" class="align-middle" id="favorite_artists_<%= artist_genre.artist.id %>">
+                <%= render "public/favorite_artists/btn", artist: artist_genre.artist %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -63,15 +63,15 @@ img.logo {
   font-weight: 900;
 }
 
-.comment-list, .live-list, .favorite-list, .bookmark-list{
-  // テーブルスクロール
+// テーブルスクロール
+.comment-list, .live-list, .favorite-list, .bookmark-list, .artist-list{
   table {
     width: 100%;
     border-spacing: 0;
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
   }
   tbody, tr, th, td {
-    display: block; 
+    display: block;
   }
   tr:after {
     content: ' ';
@@ -96,6 +96,7 @@ img.logo {
   border-left: 5px solid #000;
   background: #f4f4f4;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  font-weight: 600;
 }
 
 .main-title {

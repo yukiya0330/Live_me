@@ -4,9 +4,12 @@
   </div>
   <%= form_with model: @customer, url: admin_customer_path,  method: :patch do |f| %>
     <div class="row mt-5">
-      <div class="col-6 text-center"><%= f.file_field :profile_image %></div>
-      <div class="col-6">
-        <table cellpadding="10">
+      <div class="col-6 text-center">
+        <%= image_tag @customer.get_profile_image(500,500) %>
+        <%= f.file_field :profile_image %>
+      </div>
+      <div class="col-6 my-auto">
+        <table cellpadding="10" class="mx-auto">
           <tbody>
             <tr>
               <td>名前</td>
@@ -27,11 +30,11 @@
                 <%= f.radio_button(:is_deleted, true) %>退会
               </td>
             </tr>
-            <tr>
-              <td><%= f.submit "変更を保存", class: "btn btn-success"%></td>
-            </tr>
           </tbody>
         </table>
+        <div class="text-center">
+          <%= f.submit "変更を保存", class: "btn default-btn bg-success p-2" %>
+        </div>
       </div>
     </div>
   <% end %>  
