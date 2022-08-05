@@ -13,7 +13,7 @@
           <h4 class="sub-title">まだ見ぬアーティストを発掘！</h4>
           <div class="text-center my-5">
             <% @artists.first(1).each do |artist| %>
-              <%= link_to "見てみる!", artist_path(artist), class: "btn btn-info" %>
+              <%= link_to "見てみる!", artist_path(artist), class: "watch-button" %>
             <% end %>
           </div>
         </div>

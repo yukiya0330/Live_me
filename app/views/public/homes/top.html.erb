@@ -40,8 +40,15 @@
     <div class="col-10">
       <h4 class="sub-title">とりあえずライブに行きたい人へ</h4>
       <div class="text-center my-5">
-        <% @after_lives.shuffle.each do |live| %>
-          <%= link_to "今日行きたい!", live_path(live) %>
+        <% if @after_lives.present? %>
+          <% @after_lives.shuffle.each do |live| %>
+            <%= link_to "今日行きたい!", live_path(live), class: "watch-button" %>
+          <% end %>
+        <% else %>
+          予定されているライブはありません<br>
+          <% if customer_signed_in? %>
+            ライブ日程の追加がある場合は、<%= link_to "ここ", new_live_path %>をクリックしてください
+          <% end %>
         <% end %>
       </div>
     </div>
