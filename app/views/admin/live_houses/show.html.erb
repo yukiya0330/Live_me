@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-12 mx-auto">
-      <h2><%= @live_house.name %></h2>
+      <h2 class="main-title"><%= @live_house.name %></h2>
     </div>
   </div>
   <div class="row mt-1">
@@ -9,7 +9,7 @@
     <div class="col-6">
       
       <div class="map">
-        <div id="map">
+        <div id="map" class="mx-auto">
         </div>
       </div>
       <div type="text/javascript">
@@ -36,10 +36,10 @@
         </script>
       </div>  
       
-      <table cellpadding="10">
+      <table cellpadding="10" class="mx-auto">
         <tbody>
           <tr>
-            <td>紹介文</td>
+            <td class="d-flex align-items-start">紹介文</td>
             <td><%= @live_house.introduction %></td>
           </tr>
           <tr>
@@ -47,7 +47,7 @@
             <td><%= @live_house.postal_code %></td>
           </tr>
           <tr>
-            <td>住所</td>
+            <td class="d-flex align-items-start">住所</td>
             <td><%= @live_house.address %></td>
           </tr>
           <tr>
@@ -60,9 +60,9 @@
           </tr>
         </tbody>
       </table>
-      <div class="ml-5">
-        <%= link_to "編集する", edit_admin_live_house_path(@live_house), class: "btn btn-success" %>
-        <%= link_to "削除", admin_live_house_path(@live_house), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
+      <div class="text-center">
+        <%= link_to "編集する", edit_admin_live_house_path(@live_house), class: "btn default-btn bg-success p-2" %>
+        <%= link_to "削除", admin_live_house_path(@live_house), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"} %>
       </div>
     </div>
   </div>

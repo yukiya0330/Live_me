@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row mt-3">
-    <h3><%= @live.name %>の詳細</h3>
-  </div>
   <div class="row mt-5">
+    <h3 class="main-title"><%= @live.name %></h3>
+  </div>
+  <div class="row mt-1">
     <div class="col-6 text-center"><%= image_tag @live.get_live_image(500,500) %></div>
     <div class="col-6">
-      <table cellpadding="10">
+      <table cellpadding="10" class="mx-auto">
         <tbody>
           <tr>
             <td>ライブ名</td>
@@ -25,7 +25,7 @@
             <td>ライブハウス</td>
             <td>
               <% @live.live_schedules.each do |live_schedule| %>
-                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "btn btn-warning", data: { confirm: "削除してもよろしいですか？" }  %>
+                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto", data: { confirm: "削除してもよろしいですか？" }  %>
               <% end %>
             </td>
           </tr>
@@ -67,7 +67,7 @@
             <td>出演アーティスト</td>
             <td>
               <% @performing_artists.each do |performing_artist| %>
-                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "btn btn-warning", data: { confirm: "削除してもよろしいですか？" } %>
+                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "削除してもよろしいですか？" } %>
               <% end %>
             </td>
           </tr>
@@ -77,9 +77,9 @@
           </tr>
         </tbody>
       </table>
-      <div>
-        <%= link_to "編集する", edit_admin_live_path(@live), class: "btn btn-success" %>
-        <%= link_to "削除する", admin_live_path(@live), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
+      <div class="text-center">
+        <%= link_to "編集する", edit_admin_live_path(@live), class: "btn default-btn btn-success p-2" %>
+        <%= link_to "削除する", admin_live_path(@live), method: :delete, class: "btn default-btn btn-danger p-2", data: {confirm: "削除しますか？"} %>
       </div>
     </div>
   </div>
