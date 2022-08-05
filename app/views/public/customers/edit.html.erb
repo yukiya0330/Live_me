@@ -6,7 +6,7 @@
     <div class="row mt-5">
       <div class="col-6 text-center"><%= image_tag @customer.get_profile_image(500, 500)%><%= f.file_field :profile_image %></div>
       <div class="col-6 my-auto">
-        <table cellpadding="15">
+        <table cellpadding="15" class="mx-auto">
           <tbody>
             <tr>
               <td>名前</td>
@@ -20,11 +20,11 @@
               <td>メールアドレス</td>
               <td><%= f.email_field :email %></td>
             </tr>
-            <tr>
-              <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
-            </tr>
           </tbody>
         </table>
+        <div class="text-center">
+        <%= f.submit "変更を保存", class: "btn default-btn p-1 bg-success" %>
+        </div>
       </div>
     </div>
   <% end %>  

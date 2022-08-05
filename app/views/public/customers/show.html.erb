@@ -4,7 +4,7 @@
       <div class="py-3 bg-light rounded-lg">
       <%= image_tag current_customer.get_profile_image(200,200), class: "rounded-circle" %><br>
       <%= current_customer.nickname %><br>
-      <%= link_to "編集", edit_customer_path(current_customer), class: "btn btn-success" %>
+      <%= link_to "編集", edit_customer_path(current_customer), class: "default-btn p-1 bg-success" %>
       </div>
     </div>
     <div class="col-9">
@@ -13,7 +13,7 @@
           <h4 class="sub-title">まだ見ぬアーティストを発掘！</h4>
           <div class="text-center my-5">
             <% @artists.first(1).each do |artist| %>
-              <%= link_to "見てみる!", artist_path(artist), class: "btn btn-info" %>
+              <%= link_to "見てみる!", artist_path(artist), class: "watch-btn" %>
             <% end %>
           </div>
         </div>
@@ -26,7 +26,7 @@
               <tbody>
                 <% current_customer.bookmark_lives.each do |bookmark_live| %>
                   <tr class="d-flex align-items-center">
-                    <td style="width: 10%"><%= image_tag bookmark_live.live.get_live_image(50,50) %></td>
+                    <td style="width: 10%" class="text-center"><%= image_tag bookmark_live.live.get_live_image(50,50) %></td>
                     <td style="width: 60%"><%= link_to bookmark_live.live.name, live_path(bookmark_live.live) %></td>
                     <td style="width: 15%"><%= bookmark_live.live.live_date %></td>
                     <td style="width: 15%">START: <%= bookmark_live.live.open_time.strftime( "%H:%M" ) %></td>
@@ -39,7 +39,7 @@
           <% end %>
         </div>
       </div>
-      <div class="row mt-3 favorite-list">
+      <div class="row my-5 favorite-list">
         <div class="col-7">
           <h4 class="sub-title">お気に入りのアーティスト</h4>
           <% if current_customer.favorite_artists.present? %>
@@ -47,7 +47,7 @@
               <tbody>
                 <% current_customer.favorite_artists.each do |favorite_artist| %>
                 <tr class="d-flex align-items-center">
-                  <td style="width: 20%"><%= image_tag favorite_artist.artist.get_artist_image(50,50) %></td>
+                  <td style="width: 20%" class="text-center"><%= image_tag favorite_artist.artist.get_artist_image(50,50) %></td>
                   <td style="width: 80%"><%= link_to favorite_artist.artist.name, artist_path(favorite_artist.artist) %></td>
                 </tr>
                 <% end %>
@@ -65,7 +65,7 @@
                 <% current_customer.favorite_genres.each do |favorite_genre| %>
                 <tr class="d-flex align-items-center">
                   <td style="width: 100%" class="m-1">
-                    <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "btn btn-warning", data: {confirm: "削除しますか？"} %>
+                    <%= link_to favorite_genre.genre.name, genre_favorite_genres_path(favorite_genre.genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "削除しますか？"} %>
                   </td>
                 </tr>
                 <% end %>
