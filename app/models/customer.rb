@@ -11,6 +11,7 @@ class Customer < ApplicationRecord
   has_many :bookmark_lives, dependent: :destroy
   has_many :lives, through: :reports
   has_many :artists, through: :favorite_artists
+  has_many :genres, through: :favorite_genres
   
   has_one_attached :profile_image
   
