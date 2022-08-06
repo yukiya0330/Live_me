@@ -30,4 +30,17 @@ class Artist < ApplicationRecord
   def favorited_by?(customer)
     favorite_artists.where(customer_id: customer.id).exists?
   end
+  
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Artist.where(name: content)
+    elsif method == 'forward'
+      Artist.where('name LIKE ?', content+'%')
+    elsif method == 'backward'
+      Artist.where('name LIKE ?', '%'+content)
+    else
+      Artist.where('name LIKE ?', '%'+content+'%')
+    end
+  end
+
 end

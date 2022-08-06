@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get 'customers/request' => 'customers#request'
     get 'customers/completion' => 'customers#completion'
     get 'customers/my_report' => 'customers#my_report'
+    get '/search', to: 'searches#search'
     resources :customers, only: [:show, :edit, :update]
     resources :artists, only: [:show, :index, :new, :create] do
       resource :favorite_artists, only: [:create, :destroy]
