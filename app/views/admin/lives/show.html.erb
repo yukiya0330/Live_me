@@ -26,7 +26,7 @@
             <td>ライブハウス</td>
             <td>
               <% @live.live_schedules.each do |live_schedule| %>
-                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto", data: { confirm: "削除してもよろしいですか？" }  %>
+                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto my-1", data: { confirm: "削除してもよろしいですか？" }  %>
               <% end %>
             </td>
           </tr>
@@ -92,7 +92,7 @@
             <td>出演アーティスト</td>
             <td>
               <% @performing_artists.each do |performing_artist| %>
-                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "削除してもよろしいですか？" } %>
+                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "削除してもよろしいですか？" } %>
               <% end %>
             </td>
           </tr>

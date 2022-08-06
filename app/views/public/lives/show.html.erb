@@ -22,7 +22,7 @@
             <td><div class="mini-title">PLASE</div></td>
             <td>
               <% @live.live_schedules.each do |live_schedule| %>
-                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "default-btn bg-secondary p-2 w-auto" %>
+                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "default-btn bg-secondary p-2 w-auto mt-1" %>
               <% end %>
             </td>
           </tr>
@@ -79,7 +79,7 @@
             <td><div class="mini-title">ACT</div></td>
             <td>
               <% @live.performing_artists.each do |performing_artist| %>
-                <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "default-btn bg-info p-2 w-auto" %>
+                <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "default-btn bg-info p-2 w-auto my-1" %>
               <% end %>
             </td>
           </tr>
