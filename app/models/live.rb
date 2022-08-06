@@ -28,4 +28,17 @@ class Live < ApplicationRecord
   def favorited_by?(customer)
     bookmark_lives.where(customer_id: customer.id).exists?
   end
+  
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Live.where(name: content)
+    elsif method == 'forward'
+      Live.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      Live.where('name LIKE ?', '%' + content)
+    else
+      Live.where('name LIKE ?', '%' + content + '%')
+    end
+  end  
+  
 end
