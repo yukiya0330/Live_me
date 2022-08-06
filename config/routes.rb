@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end  
     resources :lives
     resources :comments, only: [:index, :show, :destroy]
+    resources :reports, only: [:index, :show, :destroy]
   end
   
   scope module: :public do

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row mt-5">
+    <%= image_tag @report.customer.get_profile_image(50,50) %>
+    <h4 class="my-auto"><%= @report.customer.nickname %>'s REPORT</h4>
+  </div>  
+  <div class="row mt-1">
+    <h1 class="main-title"><%= @report.live.name %></h1>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6 text-center my-auto"><%= image_tag @report.get_report_image(500,500) %></div>
+    <div class="col-6">
+      <table cellpadding="10">
+        <tbody>
+          <tr>
+            <td class="d-flex align-items-start"><div class="mini-title">REPORT</div></td>
+            <td><%= @report.comment %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">DATE</div></td>
+            <td><%= @report.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <%= link_to "削除", admin_report_path(@report), method: :delete, class: "btn default-btn bg-danger p-2 mt-2", data: {confirm: "削除しますか？"} %>
+      </div>
+    </div>
+  </div>
+</div>
