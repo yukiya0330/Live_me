@@ -58,7 +58,7 @@
             <td><div class="mini-title">ADV.</div></td> 
             <td>
               <% if @live.advance_price.present? %>
-                <%= @live.advance_price %>
+                ¥<%= @live.advance_price.to_s(:delimited) %>
               <% else %>
                 ask
               <% end %>
@@ -66,10 +66,9 @@
           </tr>
           <tr>
             <td><div class="mini-title">DOOR.</div></td> 
-            <td>当日価格</td>
             <td>
               <% if @live.today_price.present? %>
-                <%= @live.today_price %>
+                ¥<%= @live.today_price.to_s(:delimited) %>
               <% else %>
                 ask
               <% end %>

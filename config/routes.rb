@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :artists do
       resource :performing_artists, only: [:new, :create]
       resources :performing_artists, only: [:destroy]
-    end  
+    end
     resources :live_houses do
       resource :live_schedules, only: [:new, :create]
       resources :live_schedules, only: [:destroy]
@@ -32,7 +32,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'homes/about'
     get 'customers/request' => 'customers#request'
-    get 'customers/completion' => 'customers/completion'
+    get 'customers/completion' => 'customers#completion'
+    get 'customers/my_report' => 'customers#my_report'
     resources :customers, only: [:show, :edit, :update]
     resources :artists, only: [:show, :index, :new, :create] do
       resource :favorite_artists, only: [:create, :destroy]

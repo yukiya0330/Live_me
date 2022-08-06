@@ -52,7 +52,9 @@
       <% if customer_signed_in? %>
         <%= render "public/comments/form", comment: @comment, artist: @artist %>
       <% else %>
-        会員登録を行うとコメントできます!!
+        <div class="text-center my-5">
+          会員登録を行うとコメントできます!!
+        </div>
       <% end %>
     </div>
   </div>
