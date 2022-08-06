@@ -1,6 +1,6 @@
 class Public::LiveHousesController < ApplicationController
   def index
-    @live_houses = LiveHouse.all
+    @live_houses = LiveHouse.where(status: 0).page params[:page]
   end
 
   def show

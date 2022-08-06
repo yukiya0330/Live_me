@@ -69,3 +69,4 @@ gem "net-smtp"
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'jquery-rails'
+gem 'kaminari'
