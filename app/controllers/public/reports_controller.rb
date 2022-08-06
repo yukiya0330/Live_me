@@ -41,6 +41,13 @@ class Public::ReportsController < ApplicationController
     end  
   end
   
+  def destroy
+    @report = Report.find(params[:id])
+    @report.destroy
+    flash[:success] = "一件のレポートが削除されました"
+    redirect_to reports_path
+  end
+  
   private
   def report_params
     params.require(:report).permit(:report_image, :comment, :customer_id, :live_id)

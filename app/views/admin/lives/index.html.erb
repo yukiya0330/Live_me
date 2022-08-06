@@ -1,8 +1,10 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-12">
-      <h3 class="sub-title">ライブ一覧</h3>
-      <%= link_to "＋", new_admin_live_path, class: "float-right" %>
+  <div class="row justify-content-between mt-5">
+    <h3 class="sub-title">ライブ一覧</h3>
+    <div class="my-auto">
+      <%= link_to new_admin_live_path do %>
+        <i class="fas fa-solid fa-plus"></i>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -23,7 +25,13 @@
               <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 40%" class="align-middle"><%= link_to live.name, admin_live_path(live) %></td>
               <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
-              <td style="width: 15%" class="align-middle"><%= live.start_time.strftime( "%H:%M" ) %></td>
+              <td style="width: 15%" class="align-middle">
+                <% if live.start_time.present? %>
+                  <%= live.start_time.strftime( "%H:%M" ) %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
               <td style="width: 15%" class="align-middle"><%= live.status_i18n %></td>
             </tr>
           <% end %>

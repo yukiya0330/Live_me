@@ -7,6 +7,7 @@ class Admin::LiveSchedulesController < ApplicationController
     @live_schedule = LiveSchedule.new(live_schedule_params)
     if @live_schedule.save
       @live = @live_schedule.live
+      flash[:success] = "ライブハウスが追加されました"
       redirect_to request.referer
     else
       redirect_to request.referer
@@ -16,6 +17,7 @@ class Admin::LiveSchedulesController < ApplicationController
   def destroy
     @live_schedule = LiveSchedule.find(params[:id])
     @live_schedule.destroy
+    flash[:success] = "一件のライブハウスが削除されました"
     redirect_to request.referer
   end
   

@@ -28,7 +28,13 @@
                 <% end %>
               </td>
               <td style="width: 15%" class="align-middle text-center"><%= live.live_date %></td>
-              <td style="width: 10%" class="align-middle text-center"><%= live.start_time.strftime( "%H:%M" ) %></td>
+              <td style="width: 10%" class="align-middle text-center">
+                <% if live.start_time.present? %>
+                  <%= live.start_time.strftime( "%H:%M" ) %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
               <td style="width: 5%" class="align-middle" id="bookmark_lives_<%= live.id %>">
                 <%= render "public/bookmark_lives/btn", live: live %>
               </td>

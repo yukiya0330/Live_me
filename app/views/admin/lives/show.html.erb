@@ -1,3 +1,4 @@
+<%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-5">
     <h3 class="main-title"><%= @live.name %></h3>
@@ -25,7 +26,7 @@
             <td>ライブハウス</td>
             <td>
               <% @live.live_schedules.each do |live_schedule| %>
-                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto", data: { confirm: "削除してもよろしいですか？" }  %>
+                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto my-1", data: { confirm: "削除してもよろしいですか？" }  %>
               <% end %>
             </td>
           </tr>
@@ -39,19 +40,43 @@
           </tr>
           <tr>
             <td>開場時間</td>
-            <td><%= @live.open_time.strftime( "%H:%M" ) %></td>
+            <td>
+              <% if @live.open_time.present? %>
+                <%= @live.open_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>開演時間</td>
-            <td><%= @live.start_time.strftime( "%H:%M" ) %></td>
+            <td>
+              <% if @live.start_time.present? %>
+                <%= @live.start_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>前売価格</td>
-            <td><%= @live.advance_price %></td>
+            <td>
+              <% if @live.advance_price.present? %>
+                <%= @live.advance_price %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>当日価格</td>
-            <td><%= @live.today_price %></td>
+            <td>
+              <% if @live.today_price.present? %>
+                <%= @live.today_price %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>アーティスト追加</td>
@@ -67,7 +92,7 @@
             <td>出演アーティスト</td>
             <td>
               <% @performing_artists.each do |performing_artist| %>
-                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "削除してもよろしいですか？" } %>
+                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "削除してもよろしいですか？" } %>
               <% end %>
             </td>
           </tr>
