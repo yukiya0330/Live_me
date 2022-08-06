@@ -36,19 +36,44 @@
           </tr>
           <tr>
             <td><div class="mini-title">OPEN</div></td>
-            <td><%= @live.open_time.strftime( "%H:%M" ) %></td>
+            <td>
+              <% if @live.open_time.present? %>
+                <%= @live.open_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td><div class="mini-title">START</div></td>
-            <td><%= @live.start_time.strftime( "%H:%M" ) %></td>
+            <td>
+              <% if @live.start_time.present? %>
+                <%= @live.start_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td><div class="mini-title">ADV.</div></td> 
-            <td>¥ <%= @live.advance_price %></td>
+            <td>
+              <% if @live.advance_price.present? %>
+                <%= @live.advance_price %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td><div class="mini-title">DOOR.</div></td> 
-            <td>¥ <%= @live.today_price %></td>
+            <td>当日価格</td>
+            <td>
+              <% if @live.today_price.present? %>
+                <%= @live.today_price %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td><div class="mini-title">ACT</div></td>

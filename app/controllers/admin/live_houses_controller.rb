@@ -18,8 +18,10 @@ class Admin::LiveHousesController < ApplicationController
   def create
     @live_house = LiveHouse.new(live_house_params)
     if @live_house.save
+      flash[:success] = "登録されました"
       redirect_to admin_live_house_path(@live_house)
     else
+      flash.now[:danger] = "入力内容を確認してください"
       render :new
     end  
   end
@@ -27,8 +29,10 @@ class Admin::LiveHousesController < ApplicationController
   def update
     @live_house = LiveHouse.find(params[:id])
     if @live_house.update(live_house_params)
+      flash[:success] = "編集内容が保存されました"
       redirect_to admin_live_house_path(@live_house)
     else
+      flash.now[:danger] = "編集内容を確認してください"
       render :edit
     end  
   end
@@ -36,6 +40,7 @@ class Admin::LiveHousesController < ApplicationController
   def destroy
     @live_house = LiveHouse.find(params[:id])
     @live_house.destroy
+    flash.now[:danger] = "1件の登録が削除されました"
     redirect_to admin_lives_house_path
   end
   

@@ -1,3 +1,4 @@
+<%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-5">
     <h3 class="main-title"><%= @live.name %></h3>
@@ -39,19 +40,43 @@
           </tr>
           <tr>
             <td>開場時間</td>
-            <td><%= @live.open_time.strftime( "%H:%M" ) %></td>
+            <td>
+              <% if @live.open_time.present? %>
+                <%= @live.open_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>開演時間</td>
-            <td><%= @live.start_time.strftime( "%H:%M" ) %></td>
+            <td>
+              <% if @live.start_time.present? %>
+                <%= @live.start_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>前売価格</td>
-            <td><%= @live.advance_price %></td>
+            <td>
+              <% if @live.advance_price.present? %>
+                <%= @live.advance_price %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>当日価格</td>
-            <td><%= @live.today_price %></td>
+            <td>
+              <% if @live.today_price.present? %>
+                <%= @live.today_price %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>アーティスト追加</td>

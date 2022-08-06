@@ -19,8 +19,10 @@ class Admin::LivesController < ApplicationController
   def create
     @live = Live.new(live_params)
     if @live.save
+      flash[:success] = "登録されました"
       redirect_to admin_live_path(@live)
     else
+      flash.now[:danger] = "入力内容を確認してください"
       render :new
     end  
   end
@@ -28,8 +30,10 @@ class Admin::LivesController < ApplicationController
   def update
     @live = Live.find(params[:id])
     if @live.update(live_params)
+      flash[:success] = "編集内容が保存されました"
       redirect_to admin_live_path(@live)
     else
+      flash.now[:danger] = "編集内容を確認してください"
       render :edit
     end  
   end
@@ -37,6 +41,7 @@ class Admin::LivesController < ApplicationController
   def destroy
     @live = Live.find(params[:id])
     @live.destroy
+      flash.now[:danger] = "1件の登録が削除されました"
     redirect_to admin_lives_path
   end
   

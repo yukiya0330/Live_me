@@ -23,7 +23,13 @@
               <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 40%" class="align-middle"><%= link_to live.name, admin_live_path(live) %></td>
               <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
-              <td style="width: 15%" class="align-middle"><%= live.start_time.strftime( "%H:%M" ) %></td>
+              <td style="width: 15%" class="align-middle">
+                <% if live.start_time.present? %>
+                  <%= live.start_time.strftime( "%H:%M" ) %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
               <td style="width: 15%" class="align-middle"><%= live.status_i18n %></td>
             </tr>
           <% end %>
