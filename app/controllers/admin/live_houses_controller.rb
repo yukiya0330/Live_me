@@ -1,6 +1,6 @@
 class Admin::LiveHousesController < ApplicationController
   def index
-    @live_houses = LiveHouse.all
+    @live_houses = LiveHouse.page params[:page]
   end
 
   def show

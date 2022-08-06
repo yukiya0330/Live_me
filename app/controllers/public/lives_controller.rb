@@ -1,6 +1,6 @@
 class Public::LivesController < ApplicationController
   def index
-    @lives = Live.order(live_date: "DESC").where(status: 1)
+    @lives = Live.order(live_date: "DESC").where(status: 1).page params[:page]
   end
 
   def show

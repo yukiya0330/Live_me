@@ -1,6 +1,6 @@
 class Public::ArtistsController < ApplicationController
   def index
-    @artists = Artist.where(status: 1)
+    @artists = Artist.where(status: 1).page params[:page]
   end
 
   def show

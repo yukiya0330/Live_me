@@ -1,6 +1,6 @@
 class Public::ReportsController < ApplicationController
   def index
-    @reports = Report.all
+    @reports = Report.page params[:page]
   end
 
   def show
