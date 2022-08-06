@@ -12,7 +12,8 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <table class="table text-center">
+      <% if lives.present? %>
+        <table class="table text-center">
         <thead>
           <tr>
             <th style="width: 15%"></th>
@@ -23,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @lives.each do |live| %>
+          <% lives.each do |live| %>
             <tr>
               <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
               <td style="width: 40%" class="align-middle"><%= link_to live.name, admin_live_path(live) %></td>
@@ -40,7 +41,9 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @lives %>
+      <% else %>
+        <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
+      <% end %> 
     </div>
   </div>
 </div>

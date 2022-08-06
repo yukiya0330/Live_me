@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/' => 'homes#top'
+    get '/search', to: 'searches#search'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, except: [:show] do
       resource :artist_genres, only: [:new, :create, :edit]

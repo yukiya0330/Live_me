@@ -7,7 +7,8 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <table class="table text-center">
+      <% if customers.present? %>
+        <table class="table text-center">
         <thead>
           <tr>
             <th style="width: 15%"></th>
@@ -18,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
+          <% customers.each do |customer| %>
             <tr>
               <td style="width: 15%" class="align-middle"><%= image_tag customer.get_profile_image(50,50) %></td>
               <td style="width: 20%" class="align-middle"><%= link_to customer.name, admin_customer_path(customer) %></td>
@@ -35,7 +36,9 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @customers %>
+      <% else %>
+        <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
+      <% end %> 
     </div>
   </div>  
 </div>
