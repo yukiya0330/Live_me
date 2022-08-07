@@ -24,6 +24,13 @@ class Admin::CustomersController < ApplicationController
     end 
   end
   
+  def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    flash[:success] = "一件のユーザーが削除されました"
+    redirect_to admin_customers_path
+  end
+  
   private
   def customer_params
     params.require(:customer).permit(:name, :nickname, :email, :is_deleted, :profile_image)
