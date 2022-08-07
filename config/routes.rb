@@ -36,7 +36,10 @@ Rails.application.routes.draw do
     get 'customers/completion' => 'customers#completion'
     get 'customers/my_report' => 'customers#my_report'
     get '/search', to: 'searches#search'
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update] do
+      get '/unsubscribe' => 'customers#unsubscribe'
+      patch '/withdraw' => 'customers#withdraw'
+    end
     resources :artists, only: [:show, :index, :new, :create] do
       resource :favorite_artists, only: [:create, :destroy]
       resource :comments, only: [:create]

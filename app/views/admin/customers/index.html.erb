@@ -25,10 +25,10 @@
               <td style="width: 20%" class="align-middle"><%= customer.nickname %></td>
               <td style="width: 30%" class="align-middle"><%= customer.email %></td>
               <td style="width: 15%" class="align-middle">
-                <% if customer.is_deleted = true %>
-                  有効
+                <% if customer.is_deleted == false %>
+                  <p class="text-success my-auto">有効</p>
                 <% else %>
-                  退会済み
+                  <p class="text-secondary my-auto">退会</p>
                 <% end %>
               </td>
             </tr>
