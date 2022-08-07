@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+
   def show
     @customer = Customer.find(params[:id])
     @artists = Artist.where.not(id: @customer.artist_ids).order("RANDOM()")

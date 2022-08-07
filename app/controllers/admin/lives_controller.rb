@@ -1,4 +1,6 @@
 class Admin::LivesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @lives = Live.page params[:page]
   end

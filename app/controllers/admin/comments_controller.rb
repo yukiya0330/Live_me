@@ -1,4 +1,6 @@
 class Admin::CommentsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @customer = Customer.find(params[:customer_id])
     @comments = @customer.comments.order(created_at: "DESC")

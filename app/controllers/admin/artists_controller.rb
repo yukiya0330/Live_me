@@ -1,4 +1,6 @@
 class Admin::ArtistsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @artists = Artist.page params[:page]
   end

@@ -1,4 +1,6 @@
 class Public::FavoriteGenresController < ApplicationController
+  before_action :authenticate_customer!
+  
   def create
     genre = Genre.find(params[:genre_id])
     favorite_genre = current_customer.favorite_genres.new(genre_id: genre.id)

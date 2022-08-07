@@ -1,4 +1,6 @@
 class Admin::ArtistGenresController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @genres = Genre.all
     @artist_genre = ArtistGenre.new
