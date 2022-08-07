@@ -24,6 +24,12 @@ class Public::CustomersController < ApplicationController
     end
   end
   
+  def withdraw
+    current_customer.update(is_deleted: true)
+    sign_out current_customer
+    redirect_to root_path, notice: "正常に退会しました"
+  end
+  
   private
   def customer_params
     params.require(:customer).permit(:profile_image, :name, :nickname, :email)
