@@ -1,4 +1,6 @@
 class Admin::LiveHousesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @live_houses = LiveHouse.page params[:page]
   end

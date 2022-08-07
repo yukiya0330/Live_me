@@ -1,4 +1,6 @@
 class Public::FavoriteArtistsController < ApplicationController
+  before_action :authenticate_customer!
+s  
   def create
     @artist = Artist.find(params[:artist_id])
     favorite_artist = current_customer.favorite_artists.new(artist_id: @artist.id)

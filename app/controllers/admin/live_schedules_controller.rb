@@ -1,4 +1,6 @@
 class Admin::LiveSchedulesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @live = Live.find(params[:live_id])
   end
