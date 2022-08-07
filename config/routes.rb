@@ -56,7 +56,11 @@ Rails.application.routes.draw do
     resources :reports
     resources :genres, only: [:index] do
       resource :favorite_genres, only: [:create, :destroy]
-    end  
+    end
+    resources :contacts, only: [:new, :create]
+    post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+    post 'contacts/back', to: 'contacts#back', as: 'back'
+    get 'done', to: 'contacts#done', as: 'done'    
   end
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

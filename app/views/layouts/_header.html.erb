@@ -38,6 +38,9 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-dark" %>
             </li>
+            <li>
+              <%= link_to "お問合せ", new_contact_path, class: "btn btn-outline-dark" %>
+            </li>
           </ul>
         <% elsif admin_signed_in? %>
           <!--管理者ログイン後-->

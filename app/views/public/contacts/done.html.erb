@@ -1,0 +1,14 @@
+<%= render 'layouts/flash_messages' %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+    <h4>送信が完了しました</h4>
+    </div>
+  </div> 
+  <div class="row my-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページ", root_path, class: "default-btn bg-primary p-2 w-auto mr-5" %>
+      <%= link_to "マイページ", customer_path(current_customer), class: "default-btn bg-info p-2 w-auto" %>
+    </div>
+  </div>
+</div>
