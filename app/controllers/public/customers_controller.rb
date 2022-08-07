@@ -29,7 +29,8 @@ class Public::CustomersController < ApplicationController
   def withdraw
     current_customer.update(is_deleted: true)
     sign_out current_customer
-    redirect_to root_path, notice: "正常に退会しました"
+      flash[:success] = "正常に退会しました"
+    redirect_to root_path
   end
   
   private

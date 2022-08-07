@@ -13,6 +13,7 @@ module LiveMe
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s]
     config.logger = Logger.new(STDOUT)
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

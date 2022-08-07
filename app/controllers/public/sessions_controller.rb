@@ -5,18 +5,21 @@ class Public::SessionsController < Devise::SessionsController
   before_action :customer_state, only: [:create]
 
   def after_sign_in_path_for(resource)
+    flash[:success] = 'ログインしました'
     root_path
   end
 
   def after_sign_out_path_for(resource)
+    flash[:success] = 'ログアウトしました'
     root_path
   end
   
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
-  end  
+    flash[:success] = 'ゲストユーザーとしてログインしました'
+    redirect_to root_path
+  end
   
   # GET /resource/sign_in
   # def new
