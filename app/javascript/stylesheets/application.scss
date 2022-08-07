@@ -10,6 +10,13 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  position:  relative;        /* 位置指定 */
+  z-index: 10;                /* 重なり順指定 */
+}
+.alert{
+  position:  absolute;        /* 位置指定 */
+  z-index: 100;               /* 重なり順指定 */
+  width: 100%;
 }
 header {
   width: 100%;
@@ -184,4 +191,18 @@ img.logo {
 }
 .pagination {
   justify-content: center;
+}
+
+.alert-notice {
+  display: none;
+}
+
+.error-messages {
+  background-color: #ffccccd1;
+  >ul {
+    padding: 20px 0 20px 5px;
+    >li {
+      list-style: none;
+    }
+  }
 }

@@ -228,7 +228,7 @@ ja:
       last: "&raquo;"
       previous: "&lsaquo;"
       next: "&rsaquo;"
-      truncate: "..." 
+      truncate: "..."
   activerecord:
     models:
       customer: 会員
@@ -237,4 +237,4 @@ ja:
         email: メールアドレス
         password: パスワード
         name: 名前
-        nickname: ニックネーム      
+        nickname: ニックネーム

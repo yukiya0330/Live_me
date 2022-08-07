@@ -6,6 +6,7 @@
           <div class="card-title border-bottom mb-3"><h3>ログイン</h3></div>
           <p class="mb-2 card-text mt-3">会員の方はこちらからログイン</p>
           <%= form_with model: @customer, url: new_customer_session_path do |f| %>
+          <%= render "public/shared/error_messages", resource: @customer %>
             <div class="field form-group">
               <%= f.label :email, "メールアドレス" %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
