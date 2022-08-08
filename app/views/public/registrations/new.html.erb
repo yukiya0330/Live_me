@@ -1,0 +1,67 @@
+<div class="container sign-in-area">
+  <div class="row mt-5">
+    <div class="col-10 col-md-10 col-lg-10 mx-auto mb-5">
+      <div class="card shadow">
+        <div class="card-body text-secondary">
+          <div class="card-title border-bottom mb-3"><h3>新規会員登録</h3></div>
+          <%= form_with model: @customer, url: customer_registration_path do |f| %>
+          <%= render "public/shared/error_messages", resource: resource %>
+            <div class="row">
+              <div class="col-lg-12">
+                <table class="table text-nowrap table-borderless">
+                  <tr>
+                    <div class="field form-group">
+                      <td><%= f.label :name, "名前", class: "form-label" %></td>
+                      <td><%= f.text_field :name, autocomplete: "name", placeholder: "田中 太郎", class: "form-control input-text-area" %></td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="field form-group">
+                      <td><%= f.label :nickname, "ニックネーム", class: "form-label" %></td>
+                      <td><%= f.text_field :nickname, autocomplete: "nickname", placeholder: "タロー", class: "form-control input-text-area" %></td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="field form-group">
+                      <td><%= f.label :email, "メールアドレス", class: "form-label" %></td>
+                      <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: "form-control input-text-area" %></td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="field form-group">
+                      <td><%= f.label :password, "パスワード(6文字以上)", class: "form-label" %></td>
+                      <td><%= f.password_field :password, autocomplete: "new-password", class: "form-control input-text-area" %></td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="field form-group">
+                      <td><%= f.label :password_confirmation, "パスワード(確認用)", class: "form-label" %></td>
+                      <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control input-text-area" %></td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="actions form-group" >
+                      <td class=" text-center" colspan="10"><%= f.submit "新規登録", class: "btn btn-block btn-template-reverse input-button-area" %></td>
+                    </div>
+                  </tr>
+                  <% end %>
+                  <tr>
+                    <td class="text-center" colspan="10">
+                      <div class="sign-up-link text-center text-secondary">
+                        <span><i class="fa fa-solid fa-caret-right"></i> すでに登録済みの方 <i class="fa fa-solid fa-caret-left"></i></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center" colspan="10">
+                      <%= link_to "ログインはこちら", new_session_path(resource_name) , class: "btn btn-block btn-template input-button input-btn-area" %>
+                    </td>
+                  </tr>
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

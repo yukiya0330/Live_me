@@ -1,0 +1,78 @@
+<%= render 'layouts/flash_messages' %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 mx-auto">
+      <h2 class="main-title"><%= @live_house.name %></h2>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6 text-center"><%= image_tag @live_house.get_house_image(500,500) %></div>
+    <div class="col-6">
+      
+      <div class="map">
+        <div id="map" class="mx-auto">
+        </div>
+      </div>
+      <div type="text/javascript">
+        <script>
+          function initMap(){
+          // The location of Uluru
+            const uluru = {lat: <%= @live_house.latitude %>, lng: <%= @live_house.longitude %> };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 15,
+              center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+              position: uluru,
+              map: map,
+            });
+          }            
+          window.initMap = initMap;        
+        </script>
+        <script async
+          src="https://maps.googleapis.com/maps/api/js?v=3.46
+              &key=<%= ENV['GOOGLE_API'] %>&callback=initMap">
+        </script>
+      </div>  
+      
+      <table cellpadding="10" class="mx-auto">
+        <tbody>
+          <tr>
+            <td style="width: 30%">紹介文</td>
+            <td style="width: 70%"><%= @live_house.introduction %></td>
+          </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td><%= @live_house.postal_code %></td>
+          </tr>
+          <tr>
+            <td class="d-flex align-items-start">住所</td>
+            <td><%= @live_house.address %></td>
+          </tr>
+          <tr>
+            <td>Official Site</td>
+            <td><%= link_to @live_house.official_url, @live_house.official_url %></td>
+          </tr>
+          <tr>
+            <td>公開ステータス</td>
+            <td>
+              <% if @live_house.status == "release" %>
+                <p class="text-success my-auto">公開</p>
+              <% elsif @live_house.status == "not_release" %>
+                <p class="text-secondary my-auto">非公開</p>
+              <% else %>
+                <p class="text-danger my-auto">閉店</p>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <%= link_to "編集する", edit_admin_live_house_path(@live_house), class: "btn default-btn bg-success p-2" %>
+        <%= link_to "削除", admin_live_house_path(@live_house), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"} %>
+      </div>
+    </div>
+  </div>
+</div>

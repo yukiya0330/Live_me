@@ -1,0 +1,98 @@
+<div class="container artist-page">
+  <div class="row mt-5">
+    <div class="col-11 mx-auto d-flex justify-content-between">
+      <h2 class="main-title"><%= @artist.name %></h2>
+      <div id="favorite_artists_<%= @artist.id %>">
+        <%= render "public/favorite_artists/btn", artist: @artist %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(400,400) %></div>
+    <div class="col-6">
+      <table cellpadding="10">
+        <tbody>
+          <tr>
+            <td><div class="mini-title">ARTIST</div></td>
+            <td><%= @artist.name %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">INTRODUCTION</div></td>
+            <td><%= @artist.introduction %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">OFFICIAL SITE</div></td>
+            <td><%= link_to @artist.official_url, @artist.official_url %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">GENRE</div></td>
+            <td>
+              <% @artist.genres.each do |genre| %>
+                <% if customer_signed_in? %>
+                  <% if genre.favorited_by?(current_customer) %>
+                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "現在お気に入りに登録されています 登録を解除しますか？"} %>
+                  <% else %>
+                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "登録しますか？"} %>
+                  <% end %>
+                <% else %>
+                    <%= link_to genre.name, "#", class: "default-btn bg-warning p-2 w-auto text-dark" %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-10 mx-auto">
+      <h4 class="sub-title">このバンドの良い所!!</h4>
+    </div>
+    <div class="col-10 mx-auto">
+      <% if customer_signed_in? %>
+        <%= render "public/comments/form", comment: @comment, artist: @artist %>
+      <% else %>
+        <div class="text-center my-5">
+          会員登録を行うとコメントできます!!
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mt-3 comment-list">
+    <div class="col-10 mx-auto">
+      <h4 class="sub-title">コメント一覧</h4>
+    </div>
+    <div class="col-10 mx-auto comments_area">
+      <%= render "public/comments/index", artist: @artist %>
+    </div>  
+  </div>
+  <div class="row my-3 live-list">
+    <div class="col-10 mx-auto">
+      <h4 class="sub-title">ライブ予定</h4>
+    </div>
+    <div class="col-10 mx-auto">
+      <% if @artist.lives.where("live_date >= ?", Date.today).present? %>
+        <table>
+          <tbody>
+            <% @artist.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
+              <tr class="d-flex align-items-center">
+                <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 55%"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 15%"><%= live.live_date %></td>
+                <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
+                  <%= render "public/bookmark_lives/btn", live: live %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="my-5 text-center">
+          現在、ライブの予定はありません</br>
+          ライブ日程の追加がある場合は、<%= link_to "ここ", new_live_path %>をクリックしてください
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

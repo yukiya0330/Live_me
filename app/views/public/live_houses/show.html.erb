@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="main-title"><%= @live_house.name %></h2>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6 text-center"><%= image_tag @live_house.get_house_image(500,500) %></div>
+    <div class="col-6">
+      <!--Googleマップ-->
+      <div class="map">
+        <div id="map" class="mx-auto">
+      </div>
+      </div>
+      <div type="text/javascript">
+        <script>
+          function initMap(){
+            const uluru = {lat: <%= @live_house.latitude %>, lng: <%= @live_house.longitude %> };
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 15,
+              center: uluru,
+            });
+            const marker = new google.maps.Marker({
+              position: uluru,
+              map: map,
+            });
+          }            
+          window.initMap = initMap;        
+        </script>
+        <script async
+          src="https://maps.googleapis.com/maps/api/js?v=3.46
+              &key=<%= ENV['GOOGLE_API'] %>&callback=initMap">
+        </script>
+      </div>  
+      <table cellpadding="10" class="mt-2">
+        <tbody>
+          <tr>
+            <td><div class="mini-title">INTRODUCTION</div></td>
+            <td><%= @live_house.introduction %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">ADDRESS</div></td>
+            <td>〒<%= @live_house.postal_code.to_s.insert(3, "-") %></br><%= @live_house.address %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">OFFICIAL SITE</div></td>
+            <td><%= link_to @live_house.official_url, @live_house.official_url %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <duv class="row my-5 live-list">
+    <div class="col-12">
+      <h2 class="sub-title">ライブ予定</h2>
+      <% if @live_house.lives.where("live_date >= ?", Date.today).present? %>
+        <table class="w-100">
+        <tbody>
+          <% @live_house.lives.where("live_date >= ?", Date.today).each do |live| %>
+            <tr class="d-flex align-items-center">
+              <td style="width: 15%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
+              <td style="width: 50%"><%= link_to live.name, live_path(live) %></td>
+              <td style="width: 15%"><%= live.live_date %></td>
+              <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
+              <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
+                <%= render "public/bookmark_lives/btn", live: live %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <p class="my-5 text-center">
+          現在、ライブの予定はありません</br>
+          ライブ日程の追加がある場合は、<%= link_to "ここ", new_live_path %>をクリックしてください
+        </p>
+      <% end %>
+    </div>
+  </duv>
+</div>

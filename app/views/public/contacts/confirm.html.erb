@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row mt-5">
+    <h3 class="sub-title">お問合せフォーム</h3>
+  </div>
+  <div class="row my-2">
+    <div class="col-12">
+      <table cellpadding="10">
+        <tbody>
+          <tr>
+            <td><div class="mini-title">お名前</div></td>
+            <td><%= @contact.name %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">メッセージ</div></td>
+            <td style="white-space: pre-wrap;"><%= @contact.message %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>      
+
+<%= form_for(@contact) do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :phone_number %>
+  <%= f.hidden_field :subject %>
+  <%= f.hidden_field :message %>
+  <div class="text-center"><%= f.submit '送信', class: "btn default-btn bg-success p-2 my-2" %></div>
+<% end %>
+<%= form_for @contact, url: back_path do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :phone_number %>
+  <%= f.hidden_field :subject %>
+  <%= f.hidden_field :message %>
+  <div class="text-center"><%= f.submit '入力画面に戻る', class: "btn default-btn bg-primary p-2 my-2" %></div>
+<% end %>

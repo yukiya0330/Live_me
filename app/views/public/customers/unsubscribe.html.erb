@@ -1,0 +1,11 @@
+<div class="p-5">
+  <h4 class="text-center"><strong>本当に退会しますか？</strong></h4>
+</div>
+<p class="text-center">退会すると、会員登録情報や</p>
+<p class="text-center">これまでのお気に入り情報が閲覧できなくなります。</p>
+<p class="text-center">退会する場合は、「退会する」をクリックしてください。</p>
+<p class="text-center">
+  <%= link_to '退会しない', customer_path(current_customer), class: 'btn default-btn p-1 bg-primary' %>
+  <%= link_to '退会する', customer_withdraw_path(current_customer), method: :patch, data: {confirm: "本当に退会しますか？"}, class: 'btn btn-md btn-outline-danger p-1' %>
+</p>
+

@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row justify-content-between mt-5">
+    <h3 class="sub-title">ライブハウス一覧</h3>
+    <div class="my-auto">
+      <%= render "admin/searches/form" %>
+    </div>
+    <div class="my-auto">
+      <%= link_to new_admin_live_house_path do %>
+        <i class="fas fa-solid fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <% if live_houses.present? %>
+        <table class="table shadow p-3 mb-5 bg-body rounded text-center">
+          <thead class="bg-light">
+            <tr>
+              <th style="width: 15%"></th>
+              <th style="width: 65%">ライブハウス</th>
+              <th style="width: 20%">公開ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% live_houses.each do |live_house| %>
+              <tr>
+                <td style="width: 15%" class="align-middle"><%= image_tag live_house.get_house_image(50,50) %></td>
+                <td style="width: 65%" class="align-middle"><%= link_to live_house.name, admin_live_house_path(live_house) %></td>
+                <td style="width: 20%" class="align-middle">
+                  <% if live_house.status == "release" %>
+                    <p class="text-success my-auto">公開</p>
+                  <% elsif live_house.status == "not_release" %>
+                    <p class="text-secondary my-auto">非公開</p>
+                  <% else %>
+                    <p class="text-danger my-auto">閉店</p>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate live_houses %>
+      <% else %>
+        <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
+      <% end %> 
+    </div>
+  </div>
+</div>

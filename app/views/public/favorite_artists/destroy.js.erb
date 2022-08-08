@@ -1,0 +1,2 @@
+$("#favorite_artists_<%= @artist.id %>").html("<%= j(render"public/favorite_artists/btn", artist: @artist )%>");
+$(".favorite_artists_count_<%= @artist.id %>").html("<%= j(render"public/favorite_artists/count", artist: @artist )%>");

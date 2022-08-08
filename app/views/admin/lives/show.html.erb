@@ -1,0 +1,119 @@
+<%= render 'layouts/flash_messages' %>
+<div class="container">
+  <div class="row mt-5">
+    <h3 class="main-title"><%= @live.name %></h3>
+  </div>
+  <div class="row my-1">
+    <div class="col-6 text-center"><%= image_tag @live.get_live_image(500,500) %></div>
+    <div class="col-6">
+        <table cellpadding="5" class="mx-auto">
+          <tbody>
+            <tr>
+              <td style="width: 30%">ライブ名</td>
+              <td style="width: 70%"><%= @live.name %></td>
+            </tr>
+            <tr>
+              <td>ライブハウス追加</td>
+              <td>
+                <%= form_with model: @live.live_schedules, url: admin_live_house_live_schedules_path(@live.live_schedules), method: :post do |f| %>
+                  <%= f.collection_select :live_house_id, LiveHouse.all, :id, :name, include_blank: "選択して下さい" %>
+                  <%= f.hidden_field :live_id, value: @live.id %>
+                  <%= f.submit "登録" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>ライブハウス</td>
+              <td>
+                <% @live.live_schedules.each do |live_schedule| %>
+                  <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto my-1", data: { confirm: "削除してもよろしいですか？" }  %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>日程</td>
+              <td><%= @live.live_date %></td>
+            </tr>
+            <tr>
+              <td>紹介文</td>
+              <td><%= @live.introduction %></td>
+            </tr>
+            <tr>
+              <td>開場時間</td>
+              <td>
+                <% if @live.open_time.present? %>
+                  <%= @live.open_time.strftime( "%H:%M" ) %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>開演時間</td>
+              <td>
+                <% if @live.start_time.present? %>
+                  <%= @live.start_time.strftime( "%H:%M" ) %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>前売価格</td>
+              <td>
+                <% if @live.advance_price.present? %>
+                  <%= @live.advance_price %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>当日価格</td>
+              <td>
+                <% if @live.today_price.present? %>
+                  <%= @live.today_price %>
+                <% else %>
+                  ask
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>アーティスト追加</td>
+              <td>
+                <%= form_with model: @live.performing_artists, url: admin_artist_performing_artists_path(@live.performing_artists), method: :post do |f| %>
+                  <%= f.collection_select :artist_id, Artist.all, :id, :name, include_blank: "選択して下さい" %>
+                  <%= f.hidden_field :live_id, value: @live.id %>
+                  <%= f.submit "登録" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>出演アーティスト</td>
+              <td>
+                <% @performing_artists.each do |performing_artist| %>
+                  <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "削除してもよろしいですか？" } %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>公開ステータス</td>
+              <td>
+                <% if @live.status == "wait" %>
+                  <p class="text-danger my-auto">処理待ち</p>
+                <% elsif @live.status == "release" %>
+                  <p class="text-success my-auto">公開</p>
+                <% else %>
+                  <p class="text-secondary my-auto">非公開</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center mt-2">
+          <%= link_to "編集する", edit_admin_live_path(@live), class: "btn default-btn btn-success p-2" %>
+          <%= link_to "削除する", admin_live_path(@live), method: :delete, class: "btn default-btn btn-danger p-2", data: {confirm: "削除しますか？"} %>
+        </div>
+    </div>
+  </div>
+</div>

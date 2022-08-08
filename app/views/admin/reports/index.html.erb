@@ -1,0 +1,36 @@
+<%= render 'layouts/flash_messages' %>
+<div class="container">
+  <div class="row mt-5">
+    <h3 class="sub-title"><%= @customer.name %> のレポート一覧</h3>
+  </div>
+  <div class="row">
+    <% if @reports.present? %>
+      <div class="col-12">
+        <table class="table shadow p-3 mb-5 bg-body rounded text-center">
+          <thead class="bg-light">
+            <tr>
+              <th style="width: 15%"></th>
+              <th style="width: 25%">ライブ名</th>
+              <th style="width: 40%">コメント</th>
+              <th style="width: 20%">投稿日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <tr>
+                <td style="width: 15%" class="align-middle"><%= image_tag report.get_report_image(50,50) %></td>
+                <td style="width: 25%" class="align-middle"><%= link_to report.live.name, admin_report_path(report) %></td>
+                <td style="width: 50%" class="align-middle text-left"><%= report.comment.truncate(35, separator: '.') %></td>
+                <td style="width: 20%" class="align-middle"><%= report.created_at.strftime( '%Y/%m/%d' ) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="col-12 my-5 text-center">
+        レポートはまだ投稿されていません
+      </div>  
+    <% end %>
+  </div>
+</div>

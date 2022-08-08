@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row justify-content-between mt-5">
+    <h3 class="sub-title">ライブ一覧</h3>
+    <div class="my-auto">
+      <%= render "admin/searches/form" %>
+    </div>
+    <div class="my-auto">
+      <%= link_to new_admin_live_path do %>
+        <i class="fas fa-solid fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <% if lives.present? %>
+        <table class="table shadow p-3 mb-5 bg-body rounded text-center">
+          <thead class="bg-light">
+            <tr>
+              <th style="width: 15%"></th>
+              <th style="width: 40%">ライブ名</th>
+              <th style="width: 15%">日程</th>
+              <th style="width: 15%">時間</th>
+              <th style="width: 15%">公開ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% lives.each do |live| %>
+              <tr>
+                <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 40%" class="align-middle"><%= link_to live.name, admin_live_path(live) %></td>
+                <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
+                <td style="width: 15%" class="align-middle">
+                  <% if live.start_time.present? %>
+                    <%= live.start_time.strftime( "%H:%M" ) %>
+                  <% else %>
+                    ask
+                  <% end %>
+                </td>
+                <td style="width: 15%" class="align-middle">
+                  <% if live.status == "wait" %>
+                    <p class="text-danger my-auto">処理待ち</p>
+                  <% elsif live.status == "release" %>
+                    <p class="text-success my-auto">公開</p>
+                  <% else %>
+                    <p class="text-secondary my-auto">非公開</p>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate lives %>
+      <% else %>
+        <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
+      <% end %> 
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container live-page">
+  <div class="row mt-5">
+    <div class="col-11 mx-auto d-flex justify-content-between">
+      <h2 class="main-title"><%= @live.name %></h2>
+      <!--ログインしている場合のみ表示-->
+      <% if customer_signed_in? %>
+        <div class="my-auto">
+          <%= link_to "レポートを作成する", new_report_path(live_id: @live.id), class: "default-btn bg-primary p-2 w-auto" %>
+        </div>
+        <div id="bookmark_lives_<%= @live.id %>">
+          <%= render "public/bookmark_lives/btn", live: @live %>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+  <div class="row mt-2">
+    <div class="col-6 text-center my-auto"><%= image_tag @live.get_live_image(500,500) %></div>
+    <div class="col-6">
+      <table cellpadding="10">
+        <tbody>
+          <tr>
+            <td><div class="mini-title">PLASE</div></td>
+            <td>
+              <% @live.live_schedules.each do |live_schedule| %>
+                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "default-btn bg-secondary p-2 w-auto mt-1" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">DATE</div></td>
+            <td><%= @live.live_date %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">INFO</div></td>
+            <td><%= @live.introduction %></td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">OPEN</div></td>
+            <td>
+              <% if @live.open_time.present? %>
+                <%= @live.open_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">START</div></td>
+            <td>
+              <% if @live.start_time.present? %>
+                <%= @live.start_time.strftime( "%H:%M" ) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">ADV.</div></td> 
+            <td>
+              <% if @live.advance_price.present? %>
+                ¥<%= @live.advance_price.to_s(:delimited) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">DOOR.</div></td> 
+            <td>
+              <% if @live.today_price.present? %>
+                ¥<%= @live.today_price.to_s(:delimited) %>
+              <% else %>
+                ask
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="mini-title">ACT</div></td>
+            <td>
+              <% @live.performing_artists.each do |performing_artist| %>
+                <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "default-btn bg-info p-2 w-auto my-1" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

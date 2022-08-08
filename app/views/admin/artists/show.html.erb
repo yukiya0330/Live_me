@@ -1,0 +1,63 @@
+<%= render 'layouts/flash_messages' %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 mx-auto">
+    <h3 class="main-title"><%= @artist.name %></h3>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(500,500) %></div>
+    <div class="col-6">
+      <table cellpadding="10" class="mx-auto">
+        <tbody>
+          <tr>
+            <td>アーティスト名</td>
+            <td><%= @artist.name %></td>
+          </tr>
+          <tr>
+            <td>紹介文</td>
+            <td><%= @artist.introduction %></td>
+          </tr>
+          <tr>
+            <td>オフィシャルサイト</td>
+            <td><%= @artist.official_url %></td>
+          </tr>
+          <tr>
+            <td>公開ステータス</td>
+            <td>
+              <% if @artist.status == "wait" %>
+                <p class="text-danger my-auto">処理待ち</p>
+              <% elsif @artist.status == "release" %>
+                <p class="text-success my-auto">公開</p>
+              <% else %>
+                <p class="text-secondary my-auto">非公開</p>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>ジャンル選択</td>
+            <td>
+              <%= form_with model: @artist.artist_genres, url: admin_genre_artist_genres_path(@artist.artist_genres), method: :post do |f| %>
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+                <%= f.hidden_field :artist_id, value: @artist.id %>
+                <%= f.submit "登録" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td>
+              <% @artist_genres.each do |artist_genre| %>
+                <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "ジャンルを削除しますか？" } %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-3 text-center">
+        <%= link_to "編集する", edit_admin_artist_path(@artist), class: "btn default-btn bg-success p-2" %>
+        <%= link_to "削除", admin_artist_path(@artist), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"}  %>
+      </div>
+    </div>
+  </div>
+</div>

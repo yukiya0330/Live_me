@@ -1,0 +1,32 @@
+<%= render 'layouts/flash_messages' %>
+<div class="container">
+  <div class="row mt-5">
+    <%= image_tag @report.customer.get_profile_image(50,50) %>
+    <h4 class="my-auto"><%= @report.customer.nickname %>'s REPORT</h4>
+  </div>  
+  <div class="row mt-1">
+    <h1><%= @report.live.name %></h1>
+  </div>
+  <%= form_with model: @report, url: report_path(@report), method: :patch do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= image_tag @report.get_report_image(500,500) %>
+        <%= f.file_field :report_image %>
+      </div>
+      <div class="col-6">
+        <table cellpadding="10">
+          <tbody>
+            <tr>
+              <td class="d-flex align-items-start"><div class="mini-title">REPORT</div></td>
+              <td><%= f.text_area :comment, cols: "40", rows: "10" %></td>
+            </tr>
+            <%= f.hidden_field :live_id, value: params[:id] %>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <%= f.submit "変更を更新", class: "btn default-btn bg-success p-2 mt-2" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mt-3 justify-content-between">
+    <h3 class="sub-title">ライブ一覧</h3>
+    <div class="my-auto">
+      <%= render "public/searches/form" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <% if lives.present? %>
+        <table class="table shadow p-3 mb-5 bg-body rounded">
+          <thead class="bg-light">
+            <tr>
+              <th style="width: 15%"></th>
+              <th style="width: 20%">LIVE</th>
+              <th style="width: 35%">ARTIST</th>
+              <th style="width: 15%" class="text-center">DATE</th>
+              <th style="width: 10%" class="text-center">START</th>
+              <th style="width: 5%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% lives.each do |live| %>
+              <tr>
+                <td style="width: 15%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 35%" class="align-middle">
+                  <% live.performing_artists.first(4).each do |performing_artist| %>
+                    <%= performing_artist.artist.name %>
+                  <% end %>
+                </td>
+                <td style="width: 15%" class="align-middle text-center"><%= live.live_date %></td>
+                <td style="width: 10%" class="align-middle text-center">
+                  <% if live.start_time.present? %>
+                    <%= live.start_time.strftime( "%H:%M" ) %>
+                  <% else %>
+                    ask
+                  <% end %>
+                </td>
+                <td style="width: 5%" class="align-middle" id="bookmark_lives_<%= live.id %>">
+                  <%= render "public/bookmark_lives/btn", live: live %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+          <%= paginate lives %>
+      <% else %>
+        <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
+      <% end %> 
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<% if customer_signed_in? %>
+  <% if artist.favorited_by?(current_customer) %>
+    <%= link_to artist_favorite_artists_path(artist), method: :delete, remote: true do %>
+      <i class="fas fa-heart fa-lg" aria-hidden="true" style="color: red;"></i>
+    <% end %>
+  <% else %>
+    <%= link_to artist_favorite_artists_path(artist), method: :post, remote: true do %>
+      <i class="fas fa-heart fa-lg text-secondary" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+<% end %>  
