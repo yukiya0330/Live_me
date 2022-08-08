@@ -24,7 +24,15 @@
           </tr>
           <tr>
             <td>公開ステータス</td>
-            <td><%= @artist.status_i18n %></td>
+            <td>
+              <% if @artist.status == "wait" %>
+                <p class="text-danger my-auto">処理待ち</p>
+              <% elsif @artist.status == "release" %>
+                <p class="text-success my-auto">公開</p>
+              <% else %>
+                <p class="text-secondary my-auto">非公開</p>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>ジャンル選択</td>

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-content-between mt-5">
+  <div class="row justify-content-between mt-3">
     <h3 class="sub-title">会員一覧</h3>
     <div class="my-auto">
       <%= render "admin/searches/form" %>
@@ -27,15 +27,16 @@
                 <td style="width: 30%" class="align-middle"><%= customer.email %></td>
                 <td style="width: 15%" class="align-middle">
                   <% if customer.is_deleted = true %>
-                    有効
+                    <p class="text-success my-auto">有効</p>
                   <% else %>
-                    退会済み
+                    <p class="text-secondary my-auto">退会</p>
                   <% end %>
                 </td>
               </tr>
             <% end %>
           </tbody>
         </table>
+        <%= paginate customers %>
       <% else %>
         <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
       <% end %> 

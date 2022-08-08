@@ -1,7 +1,7 @@
 <%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-3 live-list">
-    <div class="col-10">
+    <div class="col-12">
       <h3 class="sub-title">今日のライブ(<%= @today_lives.count %>件)</h3>
       <% if @today_lives.present? %>
         <table>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-10">
+    <div class="col-12">
       <h4 class="sub-title">とりあえずライブに行きたい人へ</h4>
       <div class="text-center mt-4">
         <% if @after_lives.present? %>
@@ -56,7 +56,7 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-10">
+    <div class="col-12">
       <h4 class="sub-title">新着ライブ</h4>
       <table class="table table-borderless shadow p-3 bg-body rounded">
         <tbody>
@@ -92,7 +92,7 @@
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-10">
+    <div class="col-12">
       <h4 class="sub-title">新着ライブレポート</h4>
       <table class="table table-borderless shadow p-3 bg-body rounded">
         <tbody>

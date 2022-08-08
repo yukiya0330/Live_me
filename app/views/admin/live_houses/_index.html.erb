@@ -26,11 +26,20 @@
               <tr>
                 <td style="width: 15%" class="align-middle"><%= image_tag live_house.get_house_image(50,50) %></td>
                 <td style="width: 65%" class="align-middle"><%= link_to live_house.name, admin_live_house_path(live_house) %></td>
-                <td style="width: 20%" class="align-middle"><%= live_house.status_i18n %></td>
+                <td style="width: 20%" class="align-middle">
+                  <% if live_house.status == "release" %>
+                    <p class="text-success my-auto">公開</p>
+                  <% elsif live_house.status == "not_release" %>
+                    <p class="text-secondary my-auto">非公開</p>
+                  <% else %>
+                    <p class="text-danger my-auto">閉店</p>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
         </table>
+        <%= paginate live_houses %>
       <% else %>
         <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
       <% end %> 
