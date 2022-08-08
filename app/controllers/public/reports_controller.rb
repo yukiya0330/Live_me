@@ -26,7 +26,6 @@ class Public::ReportsController < ApplicationController
       flash.now[:danger] = "投稿に失敗しました"
       @live = Live.find_by(params[:id])
       render :new
-      logger.debug @report.errors.inspect 
     end
   end
   
