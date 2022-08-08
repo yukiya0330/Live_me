@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-content-between mt-5">
+  <div class="row justify-content-between mt-3">
     <h3 class="sub-title">会員一覧</h3>
     <div class="my-auto">
       <%= render "admin/searches/form" %>
@@ -36,6 +36,7 @@
             <% end %>
           </tbody>
         </table>
+        <%= paginate customers %>
       <% else %>
         <p class="text-center mt-5">お探しのワードは見つかりませんでした</p>
       <% end %> 

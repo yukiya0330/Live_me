@@ -6,13 +6,13 @@ class Admin::SearchesController < ApplicationController
 	  @content = params[:content]
 	  @method = params[:method]
 	  if @model == 'artist'
-	    @records = Artist.search_for(@content, @method)
+	    @records = Artist.search_for(@content, @method).page params[:page]
 	  elsif @model == 'live'
-		  @records = Live.search_for(@content, @method)
+		  @records = Live.search_for(@content, @method).page params[:page]
 	  elsif @model == 'live_house'
-		  @records = LiveHouse.search_for(@content, @method)
+		  @records = LiveHouse.search_for(@content, @method).page params[:page]
 	  else
-		  @records = Customer.search_for(@content, @method)
+		  @records = Customer.search_for(@content, @method).page params[:page]
 	  end
 	end
 end
