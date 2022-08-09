@@ -3,7 +3,11 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @artists = Artist.where.not(id: @customer.artist_ids).order("RANDOM()")
+    if Rails.env.production? 
+      @artists = Artist.where.not(id: @customer.artist_ids).order("RAND()")
+    elsif Rails.env.development? 
+      @artists = Artist.where.not(id: @customer.artist_ids).order("RANDOM()")
+    end
     @artists = @artists.where(status: 1)
   end
 
