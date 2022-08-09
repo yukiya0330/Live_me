@@ -3,15 +3,11 @@
     <div class="navbar-brand col-1">
       <% if admin_signed_in? %>
         <!--管理者ログイン後-->
-        <%= link_to admin_path do %>
-          <%= image_tag asset_path("logo.png", class: "logo") %>
-        <% end %>
+        <%= link_to image_tag("/logo.png", alt: "ロゴ", class: "logo"), admin_path %>
       <% else %>
         <!--それ以外-->
-        <%= link_to root_path do %>
-          <%= image_tag asset_path("logo.png", class: "logo") %>
-        <% end %>
-      <% end %> 
+        <%= link_to image_tag("logo.png", alt: "ロゴ", class: "logo"), root_path %>
+      <% end %>
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <div class="ml-auto">
