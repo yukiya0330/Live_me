@@ -35,20 +35,22 @@
     <div class="col-6 artist-list">
       <h5 class="sub-title">お気に入りのジャンルに一致するアーティスト</h5>
       <% if customer_signed_in? %>
-        <table class="table shadow p-3 mb-5 rounded text-center" style="width: 90%">
-        <tbody style="height: 400px">
-          <!--全てのジャンルから自分のお気に入りジャンルを取得-->
-          <% ArtistGenre.where(genre_id: current_customer.genres.ids).select(:artist_id).distinct.each do |artist_genre| %>
-            <tr>
-              <td style="width: 15%" class="align-middle"><%= image_tag artist_genre.artist.get_artist_image(50,50) %></td>
-              <td style="width: 65%" class="align-middle text-left"><%= link_to artist_genre.artist.name, artist_path(artist_genre.artist) %></td>
-              <td style="width: 20%" class="align-middle" id="favorite_artists_<%= artist_genre.artist.id %>">
-                <%= render "public/favorite_artists/btn", artist: artist_genre.artist %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table>
+          <tbody style="height: 400px; width: auto;">
+            <!--全てのジャンルから自分のお気に入りジャンルを取得-->
+            <% ArtistGenre.where(genre_id: current_customer.genres.ids).select(:artist_id).distinct.each do |artist_genre| %>
+              <tr class="d-flex align-items-center">
+                <td style="width: 30%" class="align-middle text-center"><%= image_tag artist_genre.artist.get_artist_image(50,50) %></td>
+                <td style="width: 50%" class="align-middle text-left"><%= link_to artist_genre.artist.name, artist_path(artist_genre.artist) %></td>
+                <td style="width: 20%" class="align-middle text-center" id="favorite_artists_<%= artist_genre.artist.id %>">
+                  <%= render "public/favorite_artists/btn", artist: artist_genre.artist %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
       <% else %>
         <div class="text-center my-5">
           会員登録することで、ご利用になれます

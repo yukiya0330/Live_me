@@ -3,13 +3,21 @@
     <div class="navbar-brand col-1">
       <% if admin_signed_in? %>
         <!--管理者ログイン後-->
-        <%= link_to image_tag("logo.png", alt: "ロゴ", :width => '120%', :height => 'auto'), admin_path %>
+        <% if Rails.env.production? %>
+          <%= link_to image_tag("/logo.png", alt: "ロゴ", :width => "200px"), admin_path %>
+        <% elsif Rails.env.development? %>
+          <%= link_to image_tag("logo.png", alt: "ロゴ", :width => "200px"), admin_path %>
+        <% end %>
       <% else %>
         <!--それ以外-->
-        <%= link_to image_tag("logo.png", alt: "ロゴ", :width => '120%', :height => 'auto'), root_path %>
+        <% if Rails.env.production? %>
+          <%= link_to image_tag("/logo.png", alt: "ロゴ", :width => "200px"), root_path %>
+        <% elsif Rails.env.development? %>
+          <%= link_to image_tag("logo.png", alt: "ロゴ", :width => "200px"), root_path %>
+        <% end %>
       <% end %>
     </div>
-    <div class="collapse navbar-collapse default-navmenu" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navmenu">
       <div class="ml-auto">
         <% if customer_signed_in? %>
           <!--会員ログイン後-->
