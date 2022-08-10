@@ -1,22 +1,24 @@
 <% if artist.comments.present? %>
-  <table>
-    <tbody>
-      <% artist.comments.order(id: "DESC").each do |comment| %>
-        <tr class="d-flex align-items-center">
-          <td style="width: 10%" class="text-center"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
-          <td style="width: 15%"><%= comment.customer.nickname %></td>
-          <td style="width: 70%"><%= comment.comment %></td>
-          <td style="width: 5%">
-            <% if current_customer == comment.customer %>
-              <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"}, remote: true do %>
-                <i class="fa fa-solid fa-trash text-secondary"></i>
+  <div class="table-responsive">
+    <table>
+      <tbody style="width: auto;">
+        <% artist.comments.order(id: "DESC").each do |comment| %>
+          <tr class="d-flex align-items-center">
+            <td style="width: 10%" class="text-left"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
+            <td style="width: 15%"><%= comment.customer.nickname %></td>
+            <td style="width: 70%; overflow-wrap : break-word;"><%= comment.comment %></td>
+            <td style="width: 5%" class="text-right">
+              <% if current_customer == comment.customer %>
+                <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"}, remote: true do %>
+                  <i class="fa fa-solid fa-trash text-secondary"></i>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
   <p class="my-5 text-center">投稿がありません　最初の投稿者になりませんか？</p>
 <% end %>

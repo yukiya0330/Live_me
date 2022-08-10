@@ -8,14 +8,10 @@
     </div>
   </div>
   <div class="row mt-1">
-    <div class="col-6 text-center"><%= image_tag @artist.get_artist_image(400,400) %></div>
-    <div class="col-6">
+    <div class="col-lg-6 text-center"><%= image_tag @artist.get_artist_image(400,400) %></div>
+    <div class="col-lg-6">
       <table cellpadding="10">
         <tbody>
-          <tr>
-            <td><div class="mini-title">ARTIST</div></td>
-            <td><%= @artist.name %></td>
-          </tr>
           <tr>
             <td><div class="mini-title">INTRODUCTION</div></td>
             <td><%= @artist.introduction %></td>
@@ -45,10 +41,10 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-10 mx-auto">
+    <div class="col-lg-10 mx-auto">
       <h4 class="sub-title">このバンドの良い所!!</h4>
     </div>
-    <div class="col-10 mx-auto">
+    <div class="col-lg-10 mx-auto">
       <% if customer_signed_in? %>
         <%= render "public/comments/form", comment: @comment, artist: @artist %>
       <% else %>
@@ -59,34 +55,36 @@
     </div>
   </div>
   <div class="row mt-3 comment-list">
-    <div class="col-10 mx-auto">
+    <div class="col-lg-10 mx-auto">
       <h4 class="sub-title">コメント一覧</h4>
     </div>
-    <div class="col-10 mx-auto comments_area">
+    <div class="col-lg-10 mx-auto comments_area">
       <%= render "public/comments/index", artist: @artist %>
     </div>  
   </div>
   <div class="row my-3 live-list">
-    <div class="col-10 mx-auto">
+    <div class="col-lg-10 mx-auto">
       <h4 class="sub-title">ライブ予定</h4>
     </div>
-    <div class="col-10 mx-auto">
+    <div class="col-lg-10 mx-auto">
       <% if @artist.lives.where("live_date >= ?", Date.today).present? %>
-        <table>
-          <tbody>
-            <% @artist.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
-              <tr class="d-flex align-items-center">
-                <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 55%"><%= link_to live.name, live_path(live) %></td>
-                <td style="width: 15%"><%= live.live_date %></td>
-                <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
-                <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
-                  <%= render "public/bookmark_lives/btn", live: live %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table>
+            <tbody style="width: auto;">
+              <% @artist.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
+                <tr class="d-flex align-items-center">
+                  <td style="width: 20%" class="text-left"><%= image_tag live.get_live_image(50,50) %></td>
+                  <td style="width: 40%"><%= link_to live.name, live_path(live) %></td>
+                  <td style="width: 15%"><%= live.live_date %></td>
+                  <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
+                  <td style="width: 10%" class="text-right" id="bookmark_lives_<%= live.id %>">
+                    <%= render "public/bookmark_lives/btn", live: live %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       <% else %>
         <p class="my-5 text-center">
           現在、ライブの予定はありません</br>
