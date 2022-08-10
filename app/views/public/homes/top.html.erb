@@ -1,27 +1,27 @@
 <%= render 'layouts/flash_messages' %>
 <div class="container">
-  <div class="row mt-3 live-list">
+  <div class="row mt-3">
     <div class="col-12">
       <h3 class="sub-title">今日のライブ(<%= @today_lives.count %>件)</h3>
       <% if @today_lives.present? %>
-        <table class="table-responsive">
+        <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
           <tbody>
             <% @today_lives.each do |live| %>
-              <tr class="d-flex align-items-center">
-                <td style="width: 10%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 20%"><%= link_to live.name, live_path(live) %></td>
-                <td style="width: 25%">
+              <tr>
+                <td style="width: 10%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 25%" class="align-middle">
                   <% live.performing_artists.first(3).each do |performing_artist| %>
                     <%= performing_artist.artist.name %>
                   <% end %>
                 </td>
-                <td style="width: 25%">
+                <td style="width: 25%" class="align-middle">
                   <% live.live_schedules.each do |live_schedule| %>
                     <%= live_schedule.live_house.name %>
                   <% end %>
                 </td>
-                <td style="width: 15%">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
-                <td style="width: 5%">
+                <td style="width: 15%" class="align-middle">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 5%" class="align-middle">
                   <% if customer_signed_in? %>
                     <div id="bookmark_lives_<%= live.id %>">
                       <%= render "public/bookmark_lives/btn", live: live %>
