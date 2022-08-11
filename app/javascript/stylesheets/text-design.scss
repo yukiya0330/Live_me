@@ -1,10 +1,17 @@
 .sub-title{
+  // display: inline-block;
+  // padding: 0.5rem 1rem;
+  // border-left: 5px solid #000;
+  // background: #f4f4f4;
+  // box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  font-weight: 600;
   display: inline-block;
   padding: 0.5rem 1rem;
-  border-left: 5px solid #000;
-  background: #f4f4f4;
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
-  font-weight: 600;
+  color: #fff;
+  background: black;
+  -webkit-box-shadow: 5px 5px 0 #afafaf;
+  box-shadow: 5px 5px 0 #afafaf;  
+  
   @media (max-width: 1199px) {
     font-size: 20px;
   }

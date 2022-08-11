@@ -84,11 +84,12 @@
   .nav_menu_li {
     margin-bottom: 30px;
     list-style: none;
+    text-align: center;
   }
 
   /* クリックで表示されるメニュー：クリックされた後 */
   .nav.show {
-    opacity: 0.8;
+    opacity: 0.9;
     visibility: visible;
   }
 }
