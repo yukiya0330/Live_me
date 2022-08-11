@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-lg-12">
       <div class="row mt-5">
-        <div class="col-12 mt-3">
+        <div class="col-lg-12 mt-3">
           <h3 class="sub-title">あなたのお気に入りジャンル</h3><br>
           <% if customer_signed_in? %>
             <% current_customer.favorite_genres.each do |favorite_genre| %>
@@ -35,9 +35,9 @@
     <div class="col-6 artist-list">
       <h5 class="sub-title">お気に入りのジャンルに一致するアーティスト</h5>
       <% if customer_signed_in? %>
-      <div class="table-responsive">
-        <table>
-          <tbody style="height: 400px; width: auto;">
+      <div class="col-12 table-responsive mt-1">
+        <table class="table table-borderless shadow p-3 mb-5 bg-body rounded">
+          <tbody style="height: 400px">
             <!--全てのジャンルから自分のお気に入りジャンルを取得-->
             <% ArtistGenre.where(genre_id: current_customer.genres.ids).select(:artist_id).distinct.each do |artist_genre| %>
               <tr class="d-flex align-items-center">
