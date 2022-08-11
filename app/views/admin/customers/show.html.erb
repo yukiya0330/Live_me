@@ -33,8 +33,8 @@
         </tbody>
       </table>
       <div class="text-center my-1">
-        <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn default-btn bg-success p-2 mr-3" %>
-        <%= link_to "削除する", admin_customer_path(@customer), method: :delete, class: 'btn default-btn bg-danger p-2', data: {confirm: "削除しますか？"} %>        
+        <%= link_to "編集", edit_admin_customer_path(@customer), class: "btn default-btn bg-success p-2 mr-3" %>
+        <%= link_to "会員情報削除", admin_customer_path(@customer), method: :delete, class: 'btn default-btn bg-danger p-2', data: {confirm: "削除しますか？"} %>        
       </div>
       <div class="text-center my-1">
         <%= link_to "コメント一覧", admin_comments_path(customer_id: @customer.id), class: "btn default-btn btn-primary p-2 mr-3" %>

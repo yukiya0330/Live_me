@@ -15,10 +15,8 @@ class Customer < ApplicationRecord
   
   has_one_attached :profile_image
 
-  with_options presence: true do
-    validates :name
-    validates :nickname
-  end
+  validates :name, presence: true
+  validates :nickname, presence: true
   validates :is_deleted, inclusion: { in: [true, false] }
 
   def get_profile_image(width, height)
