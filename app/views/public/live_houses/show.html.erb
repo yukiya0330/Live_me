@@ -3,7 +3,7 @@
     <h2 class="main-title"><%= @live_house.name %></h2>
   </div>
   <div class="row mt-1">
-    <div class="col-lg-6 text-center"><%= image_tag @live_house.get_house_image(300,300) %></div>
+    <div class="col-lg-6 text-center"><%= image_tag @live_house.get_house_image(500,500), class: "img-fluid" %></div>
     <div class="col-lg-6">
       <!--Googleマップ-->
       <div class="map">
@@ -33,16 +33,16 @@
       <table cellpadding="10" class="mt-2">
         <tbody>
           <tr>
-            <td><div class="mini-title">INTRODUCTION</div></td>
-            <td><%= @live_house.introduction %></td>
+            <td><div class="mini-title">INFO</div></td>
+            <td class="text-break"><%= @live_house.introduction %></td>
           </tr>
           <tr>
             <td><div class="mini-title">ADDRESS</div></td>
-            <td>〒<%= @live_house.postal_code.to_s.insert(3, "-") %></br><%= @live_house.address %></td>
+            <td class="text-break">〒<%= @live_house.postal_code.to_s.insert(3, "-") %></br><%= @live_house.address %></td>
           </tr>
           <tr>
-            <td><div class="mini-title">OFFICIAL SITE</div></td>
-            <td><%= link_to @live_house.official_url, @live_house.official_url %></td>
+            <td><div class="mini-title">SITE</div></td>
+            <td class="text-break"><%= link_to @live_house.official_url, @live_house.official_url %></td>
           </tr>
         </tbody>
       </table>

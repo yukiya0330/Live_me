@@ -14,7 +14,7 @@
     </div>  
   </div>
   <div class="row mt-2">
-    <div class="col-lg-6 text-center my-auto"><%= image_tag @live.get_live_image(300,300) %></div>
+    <div class="col-lg-6 text-center my-auto"><%= image_tag @live.get_live_image(500,500), class: "img-fluid" %></div>
     <div class="col-lg-6">
       <table cellpadding="10">
         <tbody>
@@ -32,7 +32,7 @@
           </tr>
           <tr>
             <td><div class="mini-title">INFO</div></td>
-            <td><%= @live.introduction %></td>
+            <td class="text-break"><%= @live.introduction %></td>
           </tr>
           <tr>
             <td><div class="mini-title">OPEN</div></td>

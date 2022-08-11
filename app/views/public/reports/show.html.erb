@@ -8,8 +8,8 @@
     <h1 class="main-title"><%= @report.live.name %></h1>
   </div>
   <div class="row mt-1">
-    <div class="col-6 text-center my-auto"><%= image_tag @report.get_report_image(500,500) %></div>
-    <div class="col-6">
+    <div class="col-lg-6 text-center my-auto"><%= image_tag @report.get_report_image(500,500), class: "img-fluid" %></div>
+    <div class="col-lg-6">
       <table cellpadding="10">
         <tbody>
           <tr>
@@ -22,7 +22,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="text-center">
+      <div class="text-center my-2">
         <% if @report.customer == current_customer %>
           <%= link_to "編集する", edit_report_path(@report), class: "btn default-btn bg-success p-2 mt-2" %>
           <%= link_to "削除する", report_path(@report), method: :delete, class: "btn default-btn bg-danger p-2 mt-2", data: {confirm: "削除しますか？"} %>

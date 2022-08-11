@@ -15,18 +15,18 @@
           <tbody>
             <tr>
               <td><div class="mini-title">ARTIST</div></td>
-              <td><%= f.text_field :name, size: "41" %></td>
+              <td><%= f.text_field :name, class: "form-control" %></td>
             </tr>
             <tr>
-              <td class="d-flex align-items-start"><div class="mini-title">INTRODUCTION</div></td>
+              <td class="d-flex align-items-start"><div class="mini-title">INFO</div></td>
               <td>
-                <%= f.text_area :introduction, cols: "40", rows: "10" %>
+                <%= f.text_area :introduction, rows: "10", class: "form-control" %>
                 <p>※ジャンルもあわせてご記入ください</p>
               </td>
             </tr>
             <tr>
-              <td><div class="mini-title">OFFICIAL SITE</div></td>
-              <td><%= f.text_field :official_url, size: "41" %></td>
+              <td><div class="mini-title">SITE</div></td>
+              <td><%= f.text_field :official_url, class: "form-control" %></td>
             </tr>
           </tbody>
         </table>

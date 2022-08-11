@@ -37,7 +37,7 @@ class Public::ReportsController < ApplicationController
     else
       flash.now[:danger] = "編集内容を確認してください"
       render :edit
-    end  
+    end
   end
   
   def destroy
