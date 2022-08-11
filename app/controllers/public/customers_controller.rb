@@ -17,7 +17,6 @@ class Public::CustomersController < ApplicationController
   
   def my_report
     @reports = current_customer.reports
-    @reports = Report.all
   end
   
   def update

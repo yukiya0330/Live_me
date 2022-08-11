@@ -3,38 +3,40 @@
   <div class="row mt-3">
     <div class="col-12">
       <h3 class="sub-title">今日のライブ(<%= @today_lives.count %>件)</h3>
-      <% if @today_lives.present? %>
-        <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
-          <tbody>
-            <% @today_lives.each do |live| %>
-              <tr>
-                <td style="width: 10%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
-                <td style="width: 25%" class="align-middle">
-                  <% live.performing_artists.first(3).each do |performing_artist| %>
-                    <%= performing_artist.artist.name %>
-                  <% end %>
-                </td>
-                <td style="width: 25%" class="align-middle">
-                  <% live.live_schedules.each do |live_schedule| %>
-                    <%= live_schedule.live_house.name %>
-                  <% end %>
-                </td>
-                <td style="width: 15%" class="align-middle">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
-                <td style="width: 5%" class="align-middle">
-                  <% if customer_signed_in? %>
-                    <div id="bookmark_lives_<%= live.id %>">
-                      <%= render "public/bookmark_lives/btn", live: live %>
-                    </div>
-                  <% end %>  
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <div class="my-5 text-center">今日のライブはありません</div>
-      <% end %>
+      <div class="col-12 table-responsive">
+        <% if @today_lives.present? %>
+          <table class="table shadow p-3 mb-5 bg-body rounded">
+            <tbody>
+              <% @today_lives.each do |live| %>
+                <tr>
+                  <td style="width: 10%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                  <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+                  <td style="width: 25%" class="align-middle">
+                    <% live.performing_artists.first(3).each do |performing_artist| %>
+                      <%= performing_artist.artist.name %>
+                    <% end %>
+                  </td>
+                  <td style="width: 25%" class="align-middle">
+                    <% live.live_schedules.each do |live_schedule| %>
+                      <%= live_schedule.live_house.name %>
+                    <% end %>
+                  </td>
+                  <td style="width: 15%" class="align-middle">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
+                  <td style="width: 5%" class="align-middle">
+                    <% if customer_signed_in? %>
+                      <div id="bookmark_lives_<%= live.id %>">
+                        <%= render "public/bookmark_lives/btn", live: live %>
+                      </div>
+                    <% end %>  
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <div class="my-5 text-center">今日のライブはありません</div>
+        <% end %>
+      </div>  
     </div>
   </div>
   <div class="row mt-3">
@@ -58,34 +60,36 @@
   <div class="row mt-3">
     <div class="col-12">
       <h4 class="sub-title">新着ライブ</h4>
-      <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
-        <tbody>
-          <% @new_lives.first(3).each do |live| %>
-            <tr>
-              <td style="width: 10%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
-              <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
-              <td style="width: 30%" class="align-middle">
-                <% live.performing_artists.first(3).each do |performing_artist| %>
-                  <%= performing_artist.artist.name %>
-                <% end %>
-              </td>
-              <td style="width: 20%" class="align-middle">
-                <% live.live_schedules.each do |live_schedule| %>
-                  <%= live_schedule.live_house.name %>
-                <% end %>
-              </td>
-              <td style="width: 20%" class="align-middle text-center">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
-              <td style="width: 5%" class="align-middle">
-                <% if customer_signed_in? %>
-                  <div id="bookmark_lives_<%= live.id %>">
-                    <%= render "public/bookmark_lives/btn", live: live %>
-                  </div>
-                <% end %>  
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="col-12 table-responsive">
+        <table class="table shadow p-3 mb-5 bg-body rounded">
+          <tbody>
+            <% @new_lives.first(3).each do |live| %>
+              <tr>
+                <td style="width: 10%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 30%" class="align-middle">
+                  <% live.performing_artists.first(3).each do |performing_artist| %>
+                    <%= performing_artist.artist.name %>
+                  <% end %>
+                </td>
+                <td style="width: 20%" class="align-middle">
+                  <% live.live_schedules.each do |live_schedule| %>
+                    <%= live_schedule.live_house.name %>
+                  <% end %>
+                </td>
+                <td style="width: 20%" class="align-middle text-center">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 5%" class="align-middle">
+                  <% if customer_signed_in? %>
+                    <div id="bookmark_lives_<%= live.id %>">
+                      <%= render "public/bookmark_lives/btn", live: live %>
+                    </div>
+                  <% end %>  
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>  
       <div class="text-right">
         <%= link_to "全てのライブをみる", lives_path %>
       </div>
@@ -94,23 +98,25 @@
   <div class="row my-3">
     <div class="col-12">
       <h4 class="sub-title">新着ライブレポート</h4>
-      <% if @new_reports.present? %>
-        <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
-          <tbody>
-            <% @new_reports.first(3).each do |report| %>
-              <tr>
-                <td style="width: 10%" class="align-middle"><%= image_tag report.customer.get_profile_image(50,50) %></td>
-                <td style="width: 10%" class="align-middle"><%= report.customer.nickname %></td>
-                <td style="width: 20%" class="align-middle"><%= link_to report.live.name, report_path(report) %></td>
-                <td style="width: 50%" class="align-middle text-left"><%= report.comment.truncate(25, separator: '.') %></td>
-                <td style="width: 20%" class="align-middle"><%= report.created_at.strftime('%Y/%m/%d') %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <div class="my-5 text-center">まだレポートの投稿はありません</div>
-      <% end %>
+      <div class="col-12 table-responsive">
+        <% if @new_reports.present? %>
+          <table class="table shadow p-3 mb-5 bg-body rounded">
+            <tbody>
+              <% @new_reports.first(3).each do |report| %>
+                <tr>
+                  <td style="width: 10%" class="align-middle"><%= image_tag report.customer.get_profile_image(50,50) %></td>
+                  <td style="width: 10%" class="align-middle"><%= report.customer.nickname %></td>
+                  <td style="width: 20%" class="align-middle"><%= link_to report.live.name, report_path(report) %></td>
+                  <td style="width: 50%" class="align-middle text-left"><%= report.comment.truncate(25, separator: '.') %></td>
+                  <td style="width: 20%" class="align-middle"><%= report.created_at.strftime('%Y/%m/%d') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <div class="my-5 text-center">まだレポートの投稿はありません</div>
+        <% end %>
+      </div>  
       <div class="text-right">
         <%= link_to "全てのレポートをみる", reports_path %>
       </div>
