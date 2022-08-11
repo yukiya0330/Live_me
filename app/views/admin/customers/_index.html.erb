@@ -6,23 +6,23 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 table-responsive">
       <% if customers.present? %>
-        <table class="table shadow p-3 mb-5 bg-body rounded text-center">
+        <table class="table shadow p-3 mb-5 bg-body rounded">
           <thead class="bg-light">
             <tr>
-              <th style="width: 15%"></th>
-              <th style="width: 20%">名前</th>
+              <th style="width: 10%"></th>
+              <th style="width: 25%">名前</th>
               <th style="width: 20%">ニックネーム</th>
               <th style="width: 30%">メールアドレス</th>
-              <th style="width: 15%">会員ステータス</th>
+              <th style="width: 15%">ステータス</th>
             </tr>
           </thead>
           <tbody>
             <% customers.each do |customer| %>
               <tr>
-                <td style="width: 15%" class="align-middle"><%= image_tag customer.get_profile_image(50,50) %></td>
-                <td style="width: 20%" class="align-middle"><%= link_to customer.name, admin_customer_path(customer) %></td>
+                <td style="width: 10%" class="align-middle"><%= image_tag customer.get_profile_image(50,50) %></td>
+                <td style="width: 25%" class="align-middle"><%= link_to customer.name, admin_customer_path(customer) %></td>
                 <td style="width: 20%" class="align-middle"><%= customer.nickname %></td>
                 <td style="width: 30%" class="align-middle"><%= customer.email %></td>
                 <td style="width: 15%" class="align-middle">

@@ -5,11 +5,11 @@
   </div>
   <%= form_with model: @customer, url: admin_customer_path,  method: :patch do |f| %>
     <div class="row mt-5">
-      <div class="col-6 text-center">
-        <%= image_tag @customer.get_profile_image(500,500) %>
+      <div class="col-lg-6 text-center">
+        <%= image_tag @customer.get_profile_image(500,500), class: "img-fluid" %>
         <%= f.file_field :profile_image %>
       </div>
-      <div class="col-6 my-auto">
+      <div class="col-lg-6 my-auto">
         <table cellpadding="10" class="mx-auto">
           <tbody>
             <tr>
@@ -33,7 +33,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="text-center">
+        <div class="text-center my-1">
           <%= f.submit "変更を保存", class: "btn default-btn bg-success p-2" %>
         </div>
       </div>

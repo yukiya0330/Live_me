@@ -1,41 +1,39 @@
 <%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-5">
-    <div class="col-12 mx-auto">
-      <h2 class="main-title"><%= @live_house.name %></h2>
-    </div>
+    <h2 class="main-title"><%= @live_house.name %></h2>
   </div>
   <%= form_with model: @live_house, url: admin_live_house_path, method: :patch do |f| %>
     <div class="row">
-      <div class="col-6 text-center">
-        <%= image_tag @live_house.get_house_image(500, 500) %>
+      <div class="col-lg-6 text-center">
+        <%= image_tag @live_house.get_house_image(500, 500), class: "img-fluid" %>
         <%= f.file_field :house_image %>
       </div>
-      <div class="col-6">
-        <table cellpadding="10" class="mx-auto">
+      <div class="col-lg-6 mt-1">
+        <table cellpadding="10" class="w-100">
           <tbody>
             <tr>
-              <td>ライブハウス名</td>
-              <td><%= f.text_field :name, size: "41" %></td>
+              <td class="mini-title">LIVEHOUSE</td>
+              <td><%= f.text_field :name, class: "form-control" %></td>
             </tr>
             <tr>
-              <td class="d-flex align-items-start">紹介文</td>
-              <td><%= f.text_area :introduction, cols: "40", rows: "10" %></td>
+              <td class="mini-title">INFO</td>
+              <td><%= f.text_area :introduction, rows: "10", class: "form-control" %></td>
             </tr>
             <tr>
-              <td>郵便番号</td>
-              <td><%= f.text_field :postal_code, size: "41" %></td>
+              <td class="mini-title">POST</td>
+              <td><%= f.text_field :postal_code, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>住所</td>
-              <td><%= f.text_area :address, size: "41" %></td>
+              <td class="mini-title">ADDRESS</td>
+              <td><%= f.text_area :address, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>オフィシャルサイト</td>
-              <td><%= f.text_field :official_url, size: "41" %></td>
+              <td class="mini-title">SITE</td>
+              <td><%= f.text_field :official_url, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>公開ステータス</td>
+              <td class="mini-title">STATUS</td>
               <td>
                 <%= f.collection_radio_buttons :status, LiveHouse.statuses_i18n, :first , :last do |b| %>
                   <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>
@@ -44,7 +42,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="text-center">
+        <div class="text-center my-1">
           <%= f.submit "変更を更新", class: "btn default-btn bg-success p-2" %>
         </div>
       </div>

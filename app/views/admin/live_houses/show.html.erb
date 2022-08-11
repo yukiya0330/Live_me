@@ -1,16 +1,14 @@
 <%= render 'layouts/flash_messages' %>
 <div class="container">
   <div class="row mt-5">
-    <div class="col-12 mx-auto">
-      <h2 class="main-title"><%= @live_house.name %></h2>
-    </div>
+    <h2 class="main-title"><%= @live_house.name %></h2>
   </div>
   <div class="row mt-1">
-    <div class="col-6 text-center"><%= image_tag @live_house.get_house_image(500,500) %></div>
-    <div class="col-6">
+    <div class="col-lg-6 text-center"><%= image_tag @live_house.get_house_image(500,500), class: "img-fluid" %></div>
+    <div class="col-lg-6">
       
       <div class="map">
-        <div id="map" class="mx-auto">
+        <div id="map" class="mx-auto mt-1">
         </div>
       </div>
       <div type="text/javascript">
@@ -37,26 +35,22 @@
         </script>
       </div>  
       
-      <table cellpadding="10" class="mx-auto">
+      <table cellpadding="10" class="mx-auto mt-1">
         <tbody>
           <tr>
-            <td style="width: 30%">紹介文</td>
-            <td style="width: 70%"><%= @live_house.introduction %></td>
+            <td class="mini-title">INFO</td>
+            <td class="text-break"><%= @live_house.introduction %></td>
           </tr>
           <tr>
-            <td>郵便番号</td>
-            <td><%= @live_house.postal_code %></td>
+            <td class="mini-title">ADDRESS</td>
+            <td class="text-break">〒<%= @live_house.postal_code.to_s.insert(3, "-") %></br><%= @live_house.address %></td>
           </tr>
           <tr>
-            <td class="d-flex align-items-start">住所</td>
-            <td><%= @live_house.address %></td>
+            <td class="mini-title">SITE</td>
+            <td class="text-break"><%= link_to @live_house.official_url, @live_house.official_url %></td>
           </tr>
           <tr>
-            <td>Official Site</td>
-            <td><%= link_to @live_house.official_url, @live_house.official_url %></td>
-          </tr>
-          <tr>
-            <td>公開ステータス</td>
+            <td class="mini-title">STATUS</td>
             <td>
               <% if @live_house.status == "release" %>
                 <p class="text-success my-auto">公開</p>
@@ -69,7 +63,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="text-center">
+      <div class="text-center my-1">
         <%= link_to "編集する", edit_admin_live_house_path(@live_house), class: "btn default-btn bg-success p-2" %>
         <%= link_to "削除", admin_live_house_path(@live_house), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"} %>
       </div>
