@@ -16,6 +16,7 @@ class Live < ApplicationRecord
     validates :live_date
   end
   validates :status, inclusion: { in: Live.statuses.keys }
+
   
   def get_live_image(width, height)
     unless live_image.attached?

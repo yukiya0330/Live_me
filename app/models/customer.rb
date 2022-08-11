@@ -14,13 +14,13 @@ class Customer < ApplicationRecord
   has_many :genres, through: :favorite_genres
   
   has_one_attached :profile_image
-  
+
   with_options presence: true do
     validates :name
     validates :nickname
   end
   validates :is_deleted, inclusion: { in: [true, false] }
-    
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/profile.jpg')

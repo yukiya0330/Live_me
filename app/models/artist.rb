@@ -16,9 +16,7 @@ class Artist < ApplicationRecord
     validates :introduction
   end
   validates :status, inclusion: { in: Artist.statuses.keys }
-  
-  
-  
+
   def get_artist_image(width, height)
     unless artist_image.attached?
       file_path = Rails.root.join('app/assets/images/artist.jpg')

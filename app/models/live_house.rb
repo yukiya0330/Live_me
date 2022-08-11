@@ -13,7 +13,7 @@ class LiveHouse < ApplicationRecord
     validates :address
   end 
   validates :status, inclusion: { in: LiveHouse.statuses.keys }
-  
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
     
