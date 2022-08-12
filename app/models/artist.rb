@@ -40,5 +40,4 @@ class Artist < ApplicationRecord
       Artist.where('name LIKE ?', '%'+content+'%')
     end
   end
-
 end
