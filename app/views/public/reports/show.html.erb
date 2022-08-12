@@ -24,8 +24,8 @@
       </table>
       <div class="text-center my-2">
         <% if @report.customer == current_customer %>
-          <%= link_to "編集する", edit_report_path(@report), class: "btn default-btn bg-success p-2 mt-2" %>
-          <%= link_to "削除する", report_path(@report), method: :delete, class: "btn default-btn bg-danger p-2 mt-2", data: {confirm: "削除しますか？"} %>
+          <%= link_to "編集", edit_report_path(@report), class: "btn default-btn bg-success p-2 mt-2" %>
+          <%= link_to "削除", report_path(@report), method: :delete, class: "btn default-btn bg-danger p-2 mt-2", data: {confirm: "削除しますか？"} %>
         <% end %>
       </div>
     </div>
