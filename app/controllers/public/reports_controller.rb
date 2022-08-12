@@ -24,7 +24,7 @@ class Public::ReportsController < ApplicationController
       redirect_to report_path(@report)
     else
       flash.now[:danger] = "投稿に失敗しました"
-      @live = Live.find_by(params[:id])
+      @live = Live.find_by(id: params[:live_id])
       render :new
     end
   end
