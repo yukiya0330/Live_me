@@ -22,7 +22,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,
       keys: [
-        :name, :nickname,
+        :name, :nickname,:profile_image,
       ])
 
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email])

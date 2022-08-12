@@ -13,12 +13,12 @@
             <tr>
               <td>ジャンル名</td>
               <td><%= f.text_field :name %></td>
-              <td><%= f.submit "登録", class: "btn default-btn bg-success p-1 w-auto" %></td>
+              <td><%= f.submit "更新", class: "btn default-btn bg-success p-1 w-auto" %></td>
             </tr>
           </tbody>
         </table>
       <% end %>
-      <%= link_to "削除", admin_genre_path(@genre), method: :delete, class: "btn default-btn bg-danger p-2 mt-2" %>
+      <%= link_to "削除", admin_genre_path(@genre), method: :delete, class: "btn default-btn bg-danger p-2 mt-2", data: {confirm: "削除しますか？"} %>
     </div>
   </div>
 </div>
