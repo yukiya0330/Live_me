@@ -3,6 +3,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :ensure_normal_user, only: %i[update destroy]
   
   def ensure_normal_customer
@@ -11,6 +12,22 @@ class Public::RegistrationsController < Devise::RegistrationsController
       redirect_to root_path
     end
   end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    root_path
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up,
+      keys: [
+        :name, :nickname,:profile_image,
+      ])
+
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
+  end
+
 
   # GET /resource/sign_up
   # def new

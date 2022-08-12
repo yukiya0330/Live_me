@@ -20,7 +20,7 @@
                 <p>※お気に入りをしていないアーティストがランダムで表示されます</p>
               <% end %>
             <% else %>
-              アーティストの追加をおまちください！
+              アーティストの追加をお待ちください！
             <% end %>
           </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="col-7">
           <h4 class="sub-title">お気に入りのアーティスト</h4>
           <% if current_customer.favorite_artists.present? %>
-            <table class="table-responsive">
+            <table class="table-responsive col-lg-10">
               <tbody>
                 <% current_customer.favorite_artists.each do |favorite_artist| %>
                 <tr class="d-flex align-items-center">

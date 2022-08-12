@@ -53,7 +53,7 @@
         </tbody>
       </table>
       <div class="my-1 text-center">
-        <%= link_to "編集する", edit_admin_artist_path(@artist), class: "btn default-btn bg-success p-2" %>
+        <%= link_to "編集", edit_admin_artist_path(@artist), class: "btn default-btn bg-success p-2" %>
         <%= link_to "削除", admin_artist_path(@artist), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"}  %>
       </div>
     </div>
