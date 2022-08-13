@@ -4,7 +4,6 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { customer.valid? }
 
-    # let!(:other_customer) { create(:customer) }
     let(:customer) { build(:customer) }
 
     context 'nameカラム' do
@@ -35,21 +34,25 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
         expect(Customer.reflect_on_association(:comments).macro).to eq :has_many
       end
     end
+    
     context 'Reportモデルとの関係' do
       it '1:Nとなっている' do
         expect(Customer.reflect_on_association(:reports).macro).to eq :has_many
       end
     end
+    
     context 'FavoriteArtistモデルとの関係' do
       it '1:Nとなっている' do
         expect(Customer.reflect_on_association(:favorite_artists).macro).to eq :has_many
       end
     end
+    
     context 'FavoriteGenreモデルとの関係' do
       it '1:Nとなっている' do
         expect(Customer.reflect_on_association(:favorite_genres).macro).to eq :has_many
       end
     end
+    
     context 'BookmarlLiveモデルとの関係' do
       it '1:Nとなっている' do
         expect(Customer.reflect_on_association(:bookmark_lives).macro).to eq :has_many
