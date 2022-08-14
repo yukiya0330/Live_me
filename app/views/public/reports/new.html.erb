@@ -5,8 +5,11 @@
   </div>
   <%= form_with model: @report, url: reports_path(live_id: @live.id), method: :post do |f| %>
     <div class="row">
-      <div class="col-lg-6">
-        <%= f.file_field :report_image %>
+      <div class="col-lg-6 mt-2">
+        <%= f.file_field :report_image, class: "push", multiple: true, onchange: "loadImage(this);" %>
+        <div id="post_images" style="display: none;">
+          <p id="preview"></p>
+        </div>
       </div>
       <div class="col-lg-6 mt-1">
         <table cellpadding="10" class="w-100">
@@ -25,3 +28,4 @@
     </div>
   <% end %>
 </div>
+<%= render "public/artists/loadimage" %>

@@ -34,6 +34,7 @@ class Public::ReportsController < ApplicationController
     if @report.update(report_params)
       flash[:success] = "編集内容が保存されました"
       redirect_to report_path(@report)
+      logger.debug @report.errors.inspect
     else
       flash.now[:danger] = "編集内容を確認してください"
       render :edit

@@ -10,7 +10,10 @@
               <div class="col-lg-12">
                 <div class="field form-group">
                   <%= f.label :profile_image, "プロフィール画像", class: "form-label" %><br>
-                  <%= f.file_field :profile_image, class: "form-label" %>
+                  <%= f.file_field :profile_image, class: "push", multiple: true, onchange: "loadImage(this);" %>
+                  <div id="post_images" style="display: none;">
+                    <p id="preview"></p>
+                  </div>
                 </div>
                 <div class="field form-group">
                   <%= f.label :name, "名前", class: "form-label" %>
@@ -53,3 +56,4 @@
     </div>
   </div>
 </div>
+<%= render "public/artists/loadimage" %>
