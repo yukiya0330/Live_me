@@ -5,9 +5,15 @@
   </div>
   <%= form_with model: @live_house, url: admin_live_house_path, method: :patch do |f| %>
     <div class="row">
-      <div class="col-lg-6 text-center">
-        <%= image_tag @live_house.get_house_image(500, 500), class: "img-fluid" %>
-        <%= f.file_field :house_image %>
+      <div class="col-lg-6 mt-2">
+        <%= f.file_field :house_image, class: "push", onchange: "loadImage(this);" %>
+        <div id="post_images" style="display: none;">
+          <p id="preview"></p>
+        </div>
+        <!--画像選択で非表示-->
+        <div id="delete_image">
+          <%= image_tag @live_house.get_house_image(500,500), class: "img-fluid" %>
+        </div>
       </div>
       <div class="col-lg-6 mt-1">
         <table cellpadding="10" class="w-100">
@@ -49,3 +55,4 @@
     </div>
   <% end %>
 </div>
+<%= render "public/artists/loadimage" %>

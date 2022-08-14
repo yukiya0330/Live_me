@@ -3,11 +3,17 @@
   <div class="row mt-3">
     <h3 class="sub-title"><%= @customer.name %>さんの会員情報編集</h3>
   </div>
-  <%= form_with model: @customer, url: admin_customer_path,  method: :patch do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
     <div class="row mt-1">
-      <div class="col-lg-6 text-center">
-        <%= image_tag @customer.get_profile_image(500,500), class: "img-fluid" %>
-        <%= f.file_field :profile_image %>
+      <div class="col-lg-6 mt-2">
+        <%= f.file_field :profile_image, class: "push", onchange: "loadImage(this);" %>
+        <div id="post_images" style="display: none;">
+          <p id="preview"></p>
+        </div>
+        <!--画像選択で非表示-->
+        <div id="delete_image">
+          <%= image_tag @customer.get_profile_image(500,500), class: "img-fluid" %>
+        </div>
       </div>
       <div class="col-lg-6 my-auto">
         <table cellpadding="10" class="mx-auto">
@@ -40,3 +46,4 @@
     </div>
   <% end %>  
 </div>
+<%= render "public/artists/loadimage" %>
