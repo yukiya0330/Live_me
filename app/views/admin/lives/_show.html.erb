@@ -1,0 +1,131 @@
+<div class="row mt-5">
+  <div class="col-lg-11 mx-auto d-flex justify-content-between">
+    <h2 class="main-title"><%= live.name %></h2>
+    <!--ログインしている場合のみ表示-->
+    <% if customer_signed_in? %>
+      <div class="my-auto" style="font-size: 15px;">
+        <%= link_to "レポート作成", new_report_path(live_id: live.id), class: "default-btn bg-primary p-1 w-auto" %>
+      </div>
+      <div id="bookmark_lives_<%= live.id %>">
+        <%= render "public/bookmark_lives/btn", live: live %>
+      </div>
+    <% end %>
+  </div>  
+</div>
+<div class="row my-1">
+  <div class="col-lg-6 text-center"><%= image_tag live.get_live_image(500,500), class: "img-fluid" %></div>
+  <div class="col-lg-6 mt-1">
+    <table cellpadding="10">
+      <tbody>
+        <% if admin_signed_in? %>
+          <tr class="bg-light">
+            <td>LIVEHOUSE?</td>
+            <td>
+              <%= form_with model: live.live_schedules, url: admin_live_house_live_schedules_path(live.live_schedules), method: :post do |f| %>
+                <%= f.collection_select :live_house_id, LiveHouse.all, :id, :name, include_blank: "選択して下さい" %>
+                <%= f.hidden_field :live_id, value: live.id %>
+                <%= f.submit "登録" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><div class="mini-title">PLASE</div></td>
+          <td>
+            <% live.live_schedules.each do |live_schedule| %>
+              <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto my-1", data: { confirm: "削除してもよろしいですか？" }  %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">DATE</div></td>
+          <td class="text-break"><%= live.live_date %></td>
+        </tr>
+        <tr>
+          <td class="d-flex align-items-start"><div class="mini-title">INFO</div></td>
+          <td><%= live.introduction %></td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">OPEN</div></td>
+          <td>
+            <% if live.open_time.present? %>
+              <%= live.open_time.strftime( "%H:%M" ) %>
+            <% else %>
+              ask
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">START</div></td>
+          <td>
+            <% if live.start_time.present? %>
+              <%= live.start_time.strftime( "%H:%M" ) %>
+            <% else %>
+              ask
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">ADV.</div></td> 
+          <td>
+            <% if live.advance_price.present? %>
+              ¥ <%= live.advance_price %>
+            <% else %>
+              ask
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">DOOR.</div></td> 
+          <td>
+            <% if live.today_price.present? %>
+              ¥ <%= live.today_price %>
+            <% else %>
+              ask
+            <% end %>
+          </td>
+        </tr>
+        <% if admin_signed_in? %>
+          <tr class="bg-light">
+            <td>ARTIST?</td>
+            <td>
+              <%= form_with model: live.performing_artists, url: admin_artist_performing_artists_path(live.performing_artists), method: :post do |f| %>
+                <%= f.collection_select :artist_id, Artist.all, :id, :name, include_blank: "選択して下さい" %>
+                <%= f.hidden_field :live_id, value: live.id %>
+                <%= f.submit "登録" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="d-flex align-items-start"><div class="mini-title">ARTIST</div></td>
+          <td>
+            <% live.performing_artists.each do |performing_artist| %>
+              <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "削除してもよろしいですか？" } %>
+            <% end %>
+          </td>
+        </tr>
+        <% if admin_signed_in? %>
+          <tr>
+            <td><div class="mini-title">STATUS</div></td>
+            <td>
+              <% if live.status == "wait" %>
+                <p class="text-danger my-auto">処理待ち</p>
+              <% elsif live.status == "release" %>
+                <p class="text-success my-auto">公開</p>
+              <% else %>
+                <p class="text-secondary my-auto">非公開</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if admin_signed_in? %>
+      <div class="text-center mt-2">
+        <%= link_to "編集", edit_admin_live_path(live), class: "btn default-btn btn-success p-2" %>
+        <%= link_to "削除", admin_live_path(live), method: :delete, class: "btn default-btn btn-danger p-2", data: {confirm: "削除しますか？"} %>
+      </div>
+    <% end %>
+  </div>
+</div>

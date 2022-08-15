@@ -1,45 +1,5 @@
 <div class="container artist-page">
-  <div class="row mt-5">
-    <div class="col-11 mx-auto d-flex justify-content-between">
-      <h2 class="main-title"><%= @artist.name %></h2>
-      <div id="favorite_artists_<%= @artist.id %>">
-        <%= render "public/favorite_artists/btn", artist: @artist %>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-1">
-    <div class="col-lg-6 text-center"><%= image_tag @artist.get_artist_image(500,500), class: "img-fluid" %></div>
-    <div class="col-lg-6">
-      <table cellpadding="10">
-        <tbody>
-          <tr>
-            <td><div class="mini-title">INFO</div></td>
-            <td class="text-break"><%= @artist.introduction %></td>
-          </tr>
-          <tr>
-            <td><div class="mini-title">SITE</div></td>
-            <td class="text-break"><%= link_to @artist.official_url, @artist.official_url %></td>
-          </tr>
-          <tr>
-            <td><div class="mini-title">GENRE</div></td>
-            <td>
-              <% @artist.genres.each do |genre| %>
-                <% if customer_signed_in? %>
-                  <% if genre.favorited_by?(current_customer) %>
-                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "現在お気に入りに登録されています 登録を解除しますか？"} %>
-                  <% else %>
-                    <%= link_to genre.name, genre_favorite_genres_path(genre), method: :post, class: "default-btn bg-warning p-2 w-auto text-dark", data: {confirm: "登録しますか？"} %>
-                  <% end %>
-                <% else %>
-                    <%= link_to genre.name, "#", class: "default-btn bg-warning p-2 w-auto text-dark" %>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= render "admin/artists/show", artist: @artist %>
   <div class="row mt-3">
     <div class="col-lg-10 mx-auto">
       <h4 class="sub-title">このアーティストの良い所!!</h4>

@@ -8,25 +8,6 @@
     <h1 class="main-title"><%= @report.live.name %></h1>
   </div>
   <%= form_with model: @report, url: report_path(@report.id), method: :patch do |f| %>
-    <div class="row">
-      <div class="col-lg-6 mt-2">
-        <%= f.file_field :report_image, class: "push", onchange: "loadImage(this);" %>
-        <div id="post_images" style="display: none;">
-          <p id="preview"></p>
-        </div>
-        <!--画像選択で非表示-->
-        <div id="delete_image">
-          <%= image_tag @report.get_report_image(500,500), class: "img-fluid" %>
-        </div>
-      </div>
-      <div class="col-lg-6 my-2">
-        <div class="mini-title my-1">REPORT</div><br>
-        <%= f.text_area :comment, rows: "10", class: "form-control" %>
-        <div class="text-center">
-          <%= f.submit "更新", class: "btn default-btn bg-success p-2 mt-2" %>
-        </div>
-      </div>
-    </div>
+    <%= render "form", f: f, report: @report, live: @live %>
   <% end %>
 </div>
-<%= render "public/artists/loadimage" %>

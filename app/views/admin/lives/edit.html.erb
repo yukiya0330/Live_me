@@ -4,63 +4,6 @@
     <h3 class="main-title"><%= @live.name %></h3>
   </div>
   <%= form_with model: @live, url: admin_live_path(@live), method: :patch do |f| %>
-    <div class="row mt-1">
-      <div class="col-lg-6 mt-2">
-        <%= f.file_field :live_image, class: "push", onchange: "loadImage(this);" %>
-        <div id="post_images" style="display: none;">
-          <p id="preview"></p>
-        </div>
-        <!--画像選択で非表示-->
-        <div id="delete_image">
-          <%= image_tag @live.get_live_image(500,500), class: "img-fluid" %>
-        </div>
-      </div>
-      <div class="col-lg-6 mt-1">
-        <table cellpadding="10" class="w-100">
-          <tbody>
-            <tr>
-              <td class="mini-title">LIVE</td>
-              <td><%= f.text_field :name, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">DATE</td>
-              <td><%= f.date_field :live_date %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">INFO</td>
-              <td><%= f.text_area :introduction, rows: "10", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">OPEN</td>
-              <td><%= f.time_field :open_time %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">START</td>
-              <td><%= f.time_field :start_time %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">ADV</td>
-              <td><%= f.text_field :advance_price, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">DOOR</td>
-              <td><%= f.text_field :today_price, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">STATUS</td>
-              <td>
-                <%= f.collection_radio_buttons :status, Live.statuses_i18n, :first , :last do |b| %>
-                  <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="text-center my-1">
-          <%= f.submit "更新", class: "btn default-btn bg-success p-2" %>
-        </div>
-      </div>
-    </div>
+    <%= render "admin/lives/form", f: f, live: @live %>
   <% end %>
 </div>
-<%= render "public/artists/loadimage" %>
