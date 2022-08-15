@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery";
+import "./slick"
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application" 
@@ -20,4 +21,13 @@ ActiveStorage.start()
 
 $(function(){
   $('.alert').fadeOut(4000);  //４秒かけて消えていく
+});
+
+$(document).on('turbolinks:load', function(){
+  $('.slick').slick({
+    // 自動再生
+    autoplay:true,
+    // ドットの表示
+    dots:true
+  });
 });
