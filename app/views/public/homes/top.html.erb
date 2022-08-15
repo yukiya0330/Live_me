@@ -1,17 +1,15 @@
 <%= render 'layouts/flash_messages' %>
 <div class="container">
-  <div class="row">
+  <div class="row mt-1">
     <div class="col-12">
       <div class="slick">
-        <div><%= image_tag("image1.jpg", class: "img-fluid")  %></div>
-        <div><%= image_tag("image2.jpg", class: "img-fluid")  %></div>
-        <div><%= image_tag("image3.jpg", class: "img-fluid")  %></div>
-        <div><%= image_tag("image4.jpg", class: "img-fluid")  %></div>
-        <div><%= image_tag("image5.jpg", class: "img-fluid")  %></div>
+        <% @reports.shuffle.first(5).each do |report| %>
+          <div><%= link_to image_tag(report.get_report_image(500,500),class: "img-fluid mx-auto"), report_path(report) %></div>
+        <% end %>
       </div>    
     </div>
   </div>
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-12">
       <h3 class="sub-title">今日のライブ(<%= @today_lives.count %>件)</h3>
       <div class="col-12 table-responsive">
