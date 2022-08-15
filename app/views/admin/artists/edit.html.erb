@@ -4,47 +4,6 @@
     <h3 class="main-title"><%= @artist.name %></h3>
   </div>
   <%= form_with model: @artist, url: admin_artist_path, method: :patch do |f| %>
-    <div class="row">
-      <div class="col-lg-6 mt-2">
-        <%= f.file_field :artist_image, class: "push", onchange: "loadImage(this);" %>
-        <div id="post_images" style="display: none;">
-          <p id="preview"></p>
-        </div>
-        <!--画像選択で非表示-->
-        <div id="delete_image">
-          <%= image_tag @artist.get_artist_image(500,500), class: "img-fluid" %>
-        </div>
-      </div>
-      <div class="col-lg-6 my-1">
-        <table cellpadding="10" class="w-100">
-          <tbody>
-            <tr>
-              <td class="mini-title">ARTIST</td>
-              <td><%= f.text_field :name, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">INFO</td>
-              <td><%= f.text_area :introduction, rows: "10", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">SITE</td>
-              <td><%= f.text_field :official_url, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td class="mini-title">STATUS</td>
-              <td>
-                <%= f.collection_radio_buttons :status, Artist.statuses_i18n, :first , :last do |b| %>
-                  <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="text-center my-1">
-          <%= f.submit "更新", class: "btn default-btn bg-success p-2" %>
-        </div>
-      </div>
-    </div>
+    <%= render "admin/artists/form", f: f , artist: @artist %>
   <% end %>
 </div>
-<%= render "public/artists/loadimage" %>

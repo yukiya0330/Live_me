@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-6 mt-2">
+    <%= f.file_field :artist_image, class: "push", onchange: "loadImage(this);" %>
+    <div id="post_images" style="display: none;">
+      <p id="preview"></p>
+    </div>
+    <!--画像選択で非表示-->
+    <% if artist.artist_image.present? %>
+      <div id="delete_image">
+        <%= image_tag artist.get_artist_image(500,500), class: "img-fluid" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-6">
+    <table cellpadding="10" class="w-100">
+      <tbody>
+        <tr>
+          <td><div class="mini-title">ARTIST</div></td>
+          <td><%= f.text_field :name, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="d-flex align-items-start"><div class="mini-title">INFO</div></td>
+          <td>
+            <%= f.text_area :introduction, rows: "10", class: "form-control" %>
+            <p>※ジャンルもあわせてご記入ください</p>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">SITE</div></td>
+          <td><%= f.text_field :official_url, class: "form-control" %></td>
+        </tr>
+        <% if admin_signed_in? %>
+          <tr>
+            <td><div class="mini-title">STATUS</div></td>
+            <td>
+              <%= f.collection_radio_buttons :status, Artist.statuses_i18n, :first , :last do |b| %>
+                <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <%= f.submit class: "btn default-btn bg-success p-2 my-2" %>
+    </div>  
+  </div>
+</div>
+<%= render "public/artists/loadimage" %>
