@@ -1,53 +1,5 @@
 <div class="container">
-  <div class="row mt-5">
-    <h2 class="main-title"><%= @live_house.name %></h2>
-  </div>
-  <div class="row mt-1">
-    <div class="col-lg-6 text-center"><%= image_tag @live_house.get_house_image(500,500), class: "img-fluid" %></div>
-    <div class="col-lg-6">
-      <!--Googleマップ-->
-      <div class="map">
-        <div id="map" class="mx-auto mt-1">
-      </div>
-      </div>
-      <div type="text/javascript">
-        <script>
-          function initMap(){
-            const uluru = {lat: <%= @live_house.latitude %>, lng: <%= @live_house.longitude %> };
-            const map = new google.maps.Map(document.getElementById("map"), {
-              zoom: 15,
-              center: uluru,
-            });
-            const marker = new google.maps.Marker({
-              position: uluru,
-              map: map,
-            });
-          }            
-          window.initMap = initMap;        
-        </script>
-        <script async
-          src="https://maps.googleapis.com/maps/api/js?v=3.46
-              &key=<%= ENV['GOOGLE_API'] %>&callback=initMap">
-        </script>
-      </div>  
-      <table cellpadding="10" class="mt-2">
-        <tbody>
-          <tr>
-            <td><div class="mini-title">INFO</div></td>
-            <td class="text-break"><%= @live_house.introduction %></td>
-          </tr>
-          <tr>
-            <td><div class="mini-title">ADDRESS</div></td>
-            <td class="text-break">〒<%= @live_house.postal_code.to_s.insert(3, "-") %></br><%= @live_house.address %></td>
-          </tr>
-          <tr>
-            <td><div class="mini-title">SITE</div></td>
-            <td class="text-break"><%= link_to @live_house.official_url, @live_house.official_url %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= render "admin/live_houses/show", live_house: @live_house %>
   <duv class="row my-5 live-list">
     <div class="col-lg-12">
       <h2 class="sub-title">ライブ予定</h2>

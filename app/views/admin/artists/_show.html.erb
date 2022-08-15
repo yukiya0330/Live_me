@@ -1,0 +1,65 @@
+<div class="row mt-5">
+  <div class="col-11 mx-auto d-flex justify-content-between">
+    <h2 class="main-title"><%= artist.name %></h2>
+    <% if customer_signed_in? %>
+      <div id="favorite_artists_<%= artist.id %>">
+        <%= render "public/favorite_artists/btn", artist: artist %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row mt-1">
+  <div class="col-lg-6 text-center"><%= image_tag artist.get_artist_image(500,500) %></div>
+  <div class="col-lg-6 mt-1">
+    <table cellpadding="10">
+      <tbody>
+        <tr>
+          <td><div class="mini-title">INFO</div></td>
+          <td class="text-break"><%= artist.introduction %></td>
+        </tr>
+        <tr>
+          <td><div class="mini-title">SITE</div></td>
+          <td class="text-break"><%= artist.official_url %></td>
+        </tr>
+        <% if admin_signed_in? %>
+          <tr>
+            <td><div class="mini-title">STATUS</div></td>
+            <td>
+              <% if artist.status == "wait" %>
+                <p class="text-danger my-auto">処理待ち</p>
+              <% elsif artist.status == "release" %>
+                <p class="text-success my-auto">公開</p>
+              <% else %>
+                <p class="text-secondary my-auto">非公開</p>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>GENRE?</td>
+            <td>
+              <%= form_with model: artist.artist_genres, url: admin_genre_artist_genres_path(artist.artist_genres), method: :post do |f| %>
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+                <%= f.hidden_field :artist_id, value: artist.id %>
+                <%= f.submit "登録" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><div class="mini-title">GENRE</div></td>
+          <td>
+            <% artist.artist_genres.each do |artist_genre| %>
+              <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "ジャンルを削除しますか？" } %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <% if admin_signed_in? %>
+      <div class="my-1 text-center">
+        <%= link_to "編集", edit_admin_artist_path(artist), class: "btn default-btn bg-success p-2" %>
+        <%= link_to "削除", admin_artist_path(artist), method: :delete, class: "btn default-btn bg-danger p-2", data: {confirm: "削除しますか？"}  %>
+      </div>
+    <% end %>
+  </div>
+</div>

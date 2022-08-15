@@ -16,7 +16,8 @@ class Public::CustomersController < ApplicationController
   end
   
   def my_report
-    @reports = current_customer.reports
+    @customer = Customer.find(params[:customer_id])
+    @reports = @customer.reports
   end
   
   def update
