@@ -2,7 +2,8 @@ class Admin::LivesController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @lives = Live.page params[:page]
+    @q = Live.ransack(params[:q])
+    @lives = @q.result.page params[:page]
   end
 
   def show

@@ -1,6 +1,7 @@
 class Public::ArtistsController < ApplicationController
   def index
-    @artists = Artist.where(status: 1).page params[:page]
+    @q = Artist.ransack(params[:q])
+    @artists = @q.result.where(status: 1).page params[:page]
   end
 
   def show
