@@ -1,6 +1,7 @@
 class Public::ReportsController < ApplicationController
   def index
-    @reports = Report.page params[:page]
+    @q = Report.ransack(params[:q])
+    @reports = @q.result.page params[:page]
   end
 
   def show
