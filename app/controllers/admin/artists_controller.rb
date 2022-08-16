@@ -2,7 +2,8 @@ class Admin::ArtistsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @artists = Artist.page params[:page]
+    @q = Artist.ransack(params[:q])
+    @artists = @q.result.page params[:page]
   end
 
   def show

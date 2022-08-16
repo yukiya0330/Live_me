@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/' => 'homes#top'
-    get '/search', to: 'searches#search'
     resources :customers, only: [:index, :show, :edit, :update, :destroy]
     resources :genres, except: [:show] do
       resource :artist_genres, only: [:new, :create, :edit]
@@ -39,7 +38,6 @@ Rails.application.routes.draw do
     get 'customers/request' => 'customers#request'
     get 'customers/completion' => 'customers#completion'
     get 'customers/my_report' => 'customers#my_report'
-    get '/search', to: 'searches#search'
     resources :customers, only: [:show, :edit, :update] do
       get '/unsubscribe' => 'customers#unsubscribe'
       patch '/withdraw' => 'customers#withdraw'

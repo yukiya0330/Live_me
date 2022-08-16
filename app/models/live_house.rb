@@ -24,18 +24,4 @@ class LiveHouse < ApplicationRecord
     end
     house_image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  def self.search_for(content, method)
-    if method == 'perfect'
-      LiveHouse.where(name: content)
-    elsif method == 'forward'
-      LiveHouse.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      LiveHouse.where('name LIKE ?', '%' + content)
-    else
-      LiveHouse.where('name LIKE ?', '%' + content + '%')
-    end
-  end  
-  
-  
 end
