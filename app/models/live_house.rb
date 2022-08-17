@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LiveHouse < ApplicationRecord
   has_many :live_schedules, dependent: :destroy
   has_many :lives, through: :live_schedules
