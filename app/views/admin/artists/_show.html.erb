@@ -14,8 +14,8 @@
     <table cellpadding="10">
       <tbody>
         <tr>
-          <td><div class="mini-title">INFO</div></td>
-          <td class="text-break"><%= artist.introduction %></td>
+          <td class="d-flex align-items-start"><div class="mini-title">INFO</div></td>
+          <td class="text-break"><%= safe_join(artist.introduction.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
           <td><div class="mini-title">SITE</div></td>

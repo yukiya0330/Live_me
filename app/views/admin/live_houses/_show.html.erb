@@ -35,7 +35,7 @@
       <tbody>
         <tr>
           <td class="d-flex align-items-start"><div class="mini-title">INFO</div></td>
-          <td class="text-break"><%= live_house.introduction %></td>
+          <td class="text-break"><%= safe_join(live_house.introduction.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
           <td><div class="mini-title">ADDRESS</div></td>

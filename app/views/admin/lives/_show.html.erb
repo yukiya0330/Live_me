@@ -43,7 +43,7 @@
         </tr>
         <tr>
           <td class="d-flex align-items-start"><div class="mini-title">INFO</div></td>
-          <td><%= live.introduction %></td>
+          <td><%= safe_join(live.introduction.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
           <td><div class="mini-title">OPEN</div></td>
