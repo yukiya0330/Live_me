@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Admin::LiveSchedulesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @live = Live.find(params[:live_id])
   end
-  
+
   def create
     @live_schedule = LiveSchedule.new(live_schedule_params)
     if @live_schedule.save
@@ -13,18 +15,18 @@ class Admin::LiveSchedulesController < ApplicationController
       redirect_to request.referer
     else
       redirect_to request.referer
-    end  
+    end
   end
-  
+
   def destroy
     @live_schedule = LiveSchedule.find(params[:id])
     @live_schedule.destroy
     flash[:success] = "一件のライブハウスが削除されました"
     redirect_to request.referer
   end
-  
+
   private
-  def live_schedule_params
-    params.require(:live_schedule).permit(:live_house_id, :live_id)
-  end
+    def live_schedule_params
+      params.require(:live_schedule).permit(:live_house_id, :live_id)
+    end
 end

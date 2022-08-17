@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class Admin::ArtistGenresController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @genres = Genre.all
     @artist_genre = ArtistGenre.new
     @artist = Artist.find(params[:artist_id])
   end
-  
+
   def create
     @artist_genre = ArtistGenre.new(artist_genre_params)
     if @artist_genre.save
@@ -15,9 +17,9 @@ class Admin::ArtistGenresController < ApplicationController
       redirect_to request.referer
     else
       redirect_to request.referer
-    end  
+    end
   end
-  
+
   def destroy
     @genre = Genre.find(params[:genre_id])
     @artist_genre = ArtistGenre.find_by(genre_id: @genre.id)
@@ -25,9 +27,9 @@ class Admin::ArtistGenresController < ApplicationController
     flash[:success] = "一件のジャンルが削除されました"
     redirect_to request.referer
   end
-  
+
   private
-  def artist_genre_params
-    params.require(:artist_genre).permit(:artist_id, :genre_id)
-  end
+    def artist_genre_params
+      params.require(:artist_genre).permit(:artist_id, :genre_id)
+    end
 end

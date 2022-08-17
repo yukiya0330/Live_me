@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @q = Customer.ransack(params[:q])
     @customers = @q.result.page params[:page]
@@ -13,7 +15,7 @@ class Admin::CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
   end
-  
+
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
@@ -22,18 +24,18 @@ class Admin::CustomersController < ApplicationController
     else
       flash.now[:danger] = "編集内容を確認してください"
       render :edit
-    end 
+    end
   end
-  
+
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
     flash[:success] = "一件のユーザーが削除されました"
     redirect_to admin_customers_path
   end
-  
+
   private
-  def customer_params
-    params.require(:customer).permit(:name, :nickname, :email, :is_deleted, :profile_image)
-  end
+    def customer_params
+      params.require(:customer).permit(:name, :nickname, :email, :is_deleted, :profile_image)
+    end
 end

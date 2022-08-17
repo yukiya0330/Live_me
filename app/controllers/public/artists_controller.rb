@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::ArtistsController < ApplicationController
   def index
     @q = Artist.ransack(params[:q])
@@ -8,11 +10,11 @@ class Public::ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
     @comments = Comment.all.order(id: "DESC")
   end
-  
+
   def new
     @artist = Artist.new
   end
-  
+
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
@@ -23,9 +25,9 @@ class Public::ArtistsController < ApplicationController
       render :new
     end
   end
-  
+
   private
-  def artist_params
-    params.require(:artist).permit(:artist_image, :name, :introduction, :official_url)
-  end
+    def artist_params
+      params.require(:artist).permit(:artist_image, :name, :introduction, :official_url)
+    end
 end
