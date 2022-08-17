@@ -4,7 +4,7 @@ class Genre < ApplicationRecord
   has_many :artists, through: :artist_genres
 
   validates :name, presence: true, uniqueness: true
-  
+
   def favorited_by?(customer)
     favorite_genres.where(customer_id: customer.id).exists?
   end
