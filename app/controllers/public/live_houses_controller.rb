@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::LiveHousesController < ApplicationController
   def index
     @q = LiveHouse.ransack(params[:q])

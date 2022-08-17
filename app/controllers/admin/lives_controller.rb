@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::LivesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @q = Live.ransack(params[:q])
     @lives = @q.result.page params[:page]
@@ -18,7 +20,7 @@ class Admin::LivesController < ApplicationController
   def edit
     @live = Live.find(params[:id])
   end
-  
+
   def create
     @live = Live.new(live_params)
     if @live.save
@@ -29,7 +31,7 @@ class Admin::LivesController < ApplicationController
       render :new
     end
   end
-  
+
   def update
     @live = Live.find(params[:id])
     if @live.update(live_params)
@@ -40,14 +42,14 @@ class Admin::LivesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @live = Live.find(params[:id])
     @live.destroy
     flash.now[:danger] = "1件の登録が削除されました"
     redirect_to admin_lives_path
   end
-  
+
   private
     def live_params
       params.require(:live).permit(:live_image, :name, :introduction, :live_date, :open_time, :start_time, :advance_price, :today_price, :status)
