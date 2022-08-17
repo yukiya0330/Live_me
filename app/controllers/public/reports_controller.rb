@@ -2,12 +2,8 @@
 
 class Public::ReportsController < ApplicationController
   def index
-<<<<<<< HEAD
-    @reports = Report.order(id: "DESC").page params[:page]
-=======
     @q = Report.ransack(params[:q])
     @reports = @q.result.page params[:page]
->>>>>>> origin/main
   end
 
   def show
