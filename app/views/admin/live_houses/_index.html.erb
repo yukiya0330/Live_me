@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row justify-content-between mt-5">
-    <div class="col-lg-12">
-      <h3 class="sub-title">ライブハウス一覧</h3>
-      <div class="my-auto">
-        <%= render "admin/searches/form" %>
-      </div>
+    <h3 class="sub-title">ライブハウス一覧</h3>
+    <div class="my-auto">
+      <%= render "public/searches/search", q: q %>
     </div>
     <div class="my-auto">
       <%= link_to new_admin_live_house_path do %>
@@ -19,8 +17,8 @@
           <thead class="bg-light">
             <tr>
               <th style="width: 15%"></th>
-              <th style="width: 65%">ライブハウス</th>
-              <th style="width: 20%">公開ステータス</th>
+              <th style="width: 65%">LIVEHOUSE</th>
+              <th style="width: 20%" class="text-center">STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +26,7 @@
               <tr>
                 <td style="width: 15%" class="align-middle"><%= image_tag live_house.get_house_image(50,50) %></td>
                 <td style="width: 65%" class="align-middle"><%= link_to live_house.name, admin_live_house_path(live_house) %></td>
-                <td style="width: 20%" class="align-middle">
+                <td style="width: 20%" class="align-middle text-center">
                   <% if live_house.status == "release" %>
                     <p class="text-success my-auto">公開</p>
                   <% elsif live_house.status == "not_release" %>

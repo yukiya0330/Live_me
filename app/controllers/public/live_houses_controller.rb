@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Public::LiveHousesController < ApplicationController
   def index
-    @live_houses = LiveHouse.where(status: 0).page params[:page]
+    @q = LiveHouse.ransack(params[:q])
+    @live_houses = @q.result.where(status: 0).page params[:page]
   end
 
   def show

@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row justify-content-between mt-5">
-    <div class="col-lg-12">
-      <h3 class="sub-title">ライブ一覧</h3>
-      <div class="my-auto">
-        <%= render "admin/searches/form" %>
-      </div>
+    <h3 class="sub-title">ライブ一覧</h3>
+    <div class="my-auto">
+      <%= render "public/searches/search", q: q %>
     </div>
     <div class="my-auto">
       <%= link_to new_admin_live_path do %>

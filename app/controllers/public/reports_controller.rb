@@ -1,6 +1,13 @@
+# frozen_string_literal: true
+
 class Public::ReportsController < ApplicationController
   def index
+<<<<<<< HEAD
     @reports = Report.order(id: "DESC").page params[:page]
+=======
+    @q = Report.ransack(params[:q])
+    @reports = @q.result.page params[:page]
+>>>>>>> origin/main
   end
 
   def show
@@ -11,11 +18,11 @@ class Public::ReportsController < ApplicationController
     @report = Report.new
     @live = Live.find(params[:live_id])
   end
-  
+
   def edit
     @report = Report.find(params[:id])
   end
-  
+
   def create
     @report = Report.new(report_params)
     @report.customer_id = current_customer.id
@@ -28,7 +35,7 @@ class Public::ReportsController < ApplicationController
       render :new
     end
   end
-  
+
   def update
     @report = Report.find(params[:id])
     if @report.update(report_params)
@@ -40,16 +47,16 @@ class Public::ReportsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
     flash[:success] = "一件のレポートが削除されました"
     redirect_to reports_path
   end
-  
+
   private
-  def report_params
-    params.require(:report).permit(:report_image, :comment, :customer_id, :live_id)
-  end
+    def report_params
+      params.require(:report).permit(:report_image, :comment, :customer_id, :live_id)
+    end
 end

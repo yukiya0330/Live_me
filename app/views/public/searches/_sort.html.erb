@@ -1,0 +1,6 @@
+<%= search_form_for @search do |f| %>
+  <div class='datespot-search__search-form'>
+    <%= f.select( :sorts, {'登録新しい順': 'date asc', '登録古いい順': 'date desc', 'いいね多い順': 'updated_at desc', 'いいね少ない順': 'updated_at asc'}, { selected: params[:q][:sorts] }, class: 'datespot-search__search-form--sort-field' ) %>
+    <%= f.submit "検索" %>
+  </div>
+<% end %>
