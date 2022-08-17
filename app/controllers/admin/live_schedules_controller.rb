@@ -13,7 +13,7 @@ class Admin::LiveSchedulesController < ApplicationController
       redirect_to request.referer
     else
       redirect_to request.referer
-    end  
+    end
   end
   
   def destroy
@@ -24,7 +24,7 @@ class Admin::LiveSchedulesController < ApplicationController
   end
   
   private
-  def live_schedule_params
-    params.require(:live_schedule).permit(:live_house_id, :live_id)
-  end
+    def live_schedule_params
+      params.require(:live_schedule).permit(:live_house_id, :live_id)
+    end
 end

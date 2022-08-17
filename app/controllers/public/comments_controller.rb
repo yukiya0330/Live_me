@@ -14,7 +14,7 @@ class Public::CommentsController < ApplicationController
   end
   
   private
-  def comment_params
-    params.permit(:comment, :artist_id, :customer_id)
-  end
+    def comment_params
+      params.permit(:comment, :artist_id, :customer_id)
+    end
 end

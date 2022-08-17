@@ -15,7 +15,7 @@ class Admin::ArtistGenresController < ApplicationController
       redirect_to request.referer
     else
       redirect_to request.referer
-    end  
+    end
   end
   
   def destroy
@@ -27,7 +27,7 @@ class Admin::ArtistGenresController < ApplicationController
   end
   
   private
-  def artist_genre_params
-    params.require(:artist_genre).permit(:artist_id, :genre_id)
-  end
+    def artist_genre_params
+      params.require(:artist_genre).permit(:artist_id, :genre_id)
+    end
 end

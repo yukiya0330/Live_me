@@ -27,7 +27,7 @@ class Admin::ArtistsController < ApplicationController
     else
       flash.now[:danger] = "入力内容を確認してください"
       render :new
-    end  
+    end
   end
   
   def update
@@ -38,7 +38,7 @@ class Admin::ArtistsController < ApplicationController
     else
       flash.now[:danger] = "編集内容を確認してください"
       render :edit
-    end  
+    end
   end
   
   def destroy
@@ -49,7 +49,7 @@ class Admin::ArtistsController < ApplicationController
   end
   
   private
-  def artist_params
-    params.require(:artist).permit(:artist_image, :name, :introduction, :official_url, :status)
-  end
+    def artist_params
+      params.require(:artist).permit(:artist_image, :name, :introduction, :official_url, :status)
+    end
 end

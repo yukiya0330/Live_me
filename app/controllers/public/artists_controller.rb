@@ -25,7 +25,7 @@ class Public::ArtistsController < ApplicationController
   end
   
   private
-  def artist_params
-    params.require(:artist).permit(:artist_image, :name, :introduction, :official_url)
-  end
+    def artist_params
+      params.require(:artist).permit(:artist_image, :name, :introduction, :official_url)
+    end
 end

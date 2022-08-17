@@ -22,7 +22,7 @@ class Admin::CustomersController < ApplicationController
     else
       flash.now[:danger] = "編集内容を確認してください"
       render :edit
-    end 
+    end
   end
   
   def destroy
@@ -33,7 +33,7 @@ class Admin::CustomersController < ApplicationController
   end
   
   private
-  def customer_params
-    params.require(:customer).permit(:name, :nickname, :email, :is_deleted, :profile_image)
-  end
+    def customer_params
+      params.require(:customer).permit(:name, :nickname, :email, :is_deleted, :profile_image)
+    end
 end

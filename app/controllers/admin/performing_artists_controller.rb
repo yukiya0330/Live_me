@@ -13,7 +13,7 @@ class Admin::PerformingArtistsController < ApplicationController
       redirect_to request.referer
     else
       redirect_to request.referer
-    end  
+    end
   end
   
   def destroy
@@ -24,7 +24,7 @@ class Admin::PerformingArtistsController < ApplicationController
   end
   
   private
-  def performing_artist_params
-    params.require(:performing_artist).permit(:artist_id, :live_id)
-  end
+    def performing_artist_params
+      params.require(:performing_artist).permit(:artist_id, :live_id)
+    end
 end

@@ -18,7 +18,7 @@ class Admin::GenresController < ApplicationController
   end
   
   def edit
-    @genre = Genre.find(params[:id])  
+    @genre = Genre.find(params[:id])
   end
   
   def update
@@ -40,7 +40,7 @@ class Admin::GenresController < ApplicationController
   end
   
   private
-  def genre_params
-    params.require(:genre).permit(:name)
-  end
+    def genre_params
+      params.require(:genre).permit(:name)
+    end
 end

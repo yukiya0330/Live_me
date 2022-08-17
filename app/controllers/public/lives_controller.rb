@@ -20,11 +20,11 @@ class Public::LivesController < ApplicationController
     else
       flash[:danger] = "入力内容を確認してください"
       render :new
-    end  
+    end
   end
   
   private
-  def live_params
-    params.require(:live).permit(:live_image, :name, :introduction, :live_date, :open_time, :start_time, :advance_price, :today_price, :status)
-  end
+    def live_params
+      params.require(:live).permit(:live_image, :name, :introduction, :live_date, :open_time, :start_time, :advance_price, :today_price, :status)
+    end
 end

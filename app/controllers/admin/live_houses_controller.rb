@@ -26,7 +26,7 @@ class Admin::LiveHousesController < ApplicationController
     else
       flash.now[:danger] = "入力内容を確認してください"
       render :new
-    end  
+    end
   end
   
   def update
@@ -37,7 +37,7 @@ class Admin::LiveHousesController < ApplicationController
     else
       flash.now[:danger] = "編集内容を確認してください"
       render :edit
-    end  
+    end
   end
   
   def destroy
@@ -48,7 +48,7 @@ class Admin::LiveHousesController < ApplicationController
   end
   
   private
-  def live_house_params
-    params.require(:live_house).permit(:name, :introduction, :postal_code, :address, :official_url, :status, :house_image, :latitude, :longitude)
-  end
+    def live_house_params
+      params.require(:live_house).permit(:name, :introduction, :postal_code, :address, :official_url, :status, :house_image, :latitude, :longitude)
+    end
 end

@@ -50,7 +50,7 @@ class Public::ReportsController < ApplicationController
   end
   
   private
-  def report_params
-    params.require(:report).permit(:report_image, :comment, :customer_id, :live_id)
-  end
+    def report_params
+      params.require(:report).permit(:report_image, :comment, :customer_id, :live_id)
+    end
 end
