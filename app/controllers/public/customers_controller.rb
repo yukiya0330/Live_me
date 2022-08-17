@@ -14,12 +14,12 @@ class Public::CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
   end
-  
+
   def my_report
     @customer = Customer.find(params[:customer_id])
     @reports = @customer.reports
   end
-  
+
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
@@ -30,14 +30,14 @@ class Public::CustomersController < ApplicationController
       render :edit
     end
   end
-  
+
   def withdraw
     current_customer.update(is_deleted: true)
     sign_out current_customer
     flash[:success] = "正常に退会しました"
     redirect_to root_path
   end
-  
+
   private
     def customer_params
       params.require(:customer).permit(:profile_image, :name, :nickname, :email)

@@ -13,14 +13,14 @@ class Public::SessionsController < Devise::SessionsController
     flash[:success] = "ログアウトしました"
     root_path
   end
-  
+
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
     flash[:success] = "ゲストユーザーとしてログインしました"
     redirect_to root_path
   end
-  
+
   # GET /resource/sign_in
   # def new
   #   super
