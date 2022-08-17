@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::ArtistsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @q = Artist.ransack(params[:q])
     @artists = @q.result.page params[:page]
@@ -14,11 +16,11 @@ class Admin::ArtistsController < ApplicationController
   def edit
     @artist = Artist.find(params[:id])
   end
-  
+
   def new
     @artist = Artist.new
   end
-  
+
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
@@ -29,7 +31,7 @@ class Admin::ArtistsController < ApplicationController
       render :new
     end
   end
-  
+
   def update
     @artist = Artist.find(params[:id])
     if @artist.update(artist_params)
@@ -40,14 +42,14 @@ class Admin::ArtistsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @artist = Artist.find(params[:id])
     @artist.destroy
     flash.now[:danger] = "1件の登録が削除されました"
     redirect_to admin_artists_path
   end
-  
+
   private
     def artist_params
       params.require(:artist).permit(:artist_image, :name, :introduction, :official_url, :status)

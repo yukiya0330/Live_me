@@ -147,7 +147,7 @@ Style/ExplicitBlockArgument:
   Enabled: true
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
   EnforcedStyle: always
   Exclude:
     - 'actionview/test/**/*.builder'

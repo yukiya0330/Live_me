@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::ReportsController < ApplicationController
   def index
     @q = Report.ransack(params[:q])

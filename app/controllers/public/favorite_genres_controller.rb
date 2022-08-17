@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::FavoriteGenresController < ApplicationController
   before_action :authenticate_customer!
 

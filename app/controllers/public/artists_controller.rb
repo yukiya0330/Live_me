@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::ArtistsController < ApplicationController
   def index
     @q = Artist.ransack(params[:q])

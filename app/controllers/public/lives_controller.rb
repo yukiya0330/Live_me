@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::LivesController < ApplicationController
   def index
     @q = Live.ransack(params[:q])
