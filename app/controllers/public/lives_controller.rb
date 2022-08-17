@@ -11,7 +11,7 @@ class Public::LivesController < ApplicationController
   def new
     @live = Live.new
   end
-  
+
   def create
     @live = Live.new(live_params)
     if @live.save
@@ -22,7 +22,7 @@ class Public::LivesController < ApplicationController
       render :new
     end
   end
-  
+
   private
     def live_params
       params.require(:live).permit(:live_image, :name, :introduction, :live_date, :open_time, :start_time, :advance_price, :today_price, :status)
