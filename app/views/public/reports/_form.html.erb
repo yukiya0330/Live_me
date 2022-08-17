@@ -1,3 +1,4 @@
+<%= render "public/shared/error_messages", resource: report %>
 <div class="row">
   <div class="col-lg-6 mt-2">
     <%= f.file_field :report_image, class: "push", onchange: "loadImage(this);" %>
@@ -14,7 +15,7 @@
     <table cellpadding="10" class="w-100">
       <tbody>
         <tr>
-          <td class="d-flex align-items-start"><div class="mini-title">DATE</div></td>
+          <td class="d-flex align-items-start"><div class="mini-title">REPORT</div><span class="text-danger">*</span></td>
           <td><%= f.text_area :comment, rows: "10", class: "form-control" %></td>
         </tr>
       </tbody>

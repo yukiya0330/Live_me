@@ -8,6 +8,7 @@
   <div class="row mt-5">
     <div class="col-12 text-center">
       <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch do |f| %>
+      <%= render "public/shared/error_messages", resource: @genre %>
         <table class="mx-auto">
           <tbody>
             <tr>

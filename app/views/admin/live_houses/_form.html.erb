@@ -1,3 +1,4 @@
+<%= render "public/shared/error_messages", resource: live_house %>
 <div class="row">
   <div class="col-lg-6 mt-2">
     <%= f.file_field :house_image, class: "push", onchange: "loadImage(this);" %>
@@ -15,27 +16,27 @@
     <table cellpadding="10" class="w-100">
       <tbody>
         <tr>
-          <td class="mini-title">LIVEHOUSE</td>
+          <td><div class="mini-title">LIVEHOUSE</div><span class="text-danger">*</span></td>
           <td><%= f.text_field :name, class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="mini-title">INFO</td>
+          <td class="d-flex align-items-start"><div class="mini-title">INFO</div><span class="text-danger">*</span></td>
           <td><%= f.text_area :introduction, rows: "10", class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="mini-title">POST</td>
+          <td><div class="mini-title">POST</div><span class="text-danger">*</span></td>
           <td><%= f.text_field :postal_code, class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="mini-title">ADDRESS</td>
+          <td><div class="mini-title">ADDRESS</div><span class="text-danger">*</span></td>
           <td><%= f.text_area :address, class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="mini-title">SITE</td>
+          <td><div class="mini-title">SITE</div></td>
           <td><%= f.text_field :official_url, class: "form-control" %></td>
         </tr>
         <tr>
-          <td class="mini-title">STATUS</td>
+          <td><div class="mini-title">STATUS</div></td>
           <td>
             <%= f.collection_radio_buttons :status, LiveHouse.statuses_i18n, :first , :last do |b| %>
               <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %>

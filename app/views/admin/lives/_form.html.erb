@@ -1,3 +1,4 @@
+<%= render "public/shared/error_messages", resource: live %>
 <div class="row mt-1">
   <div class="col-lg-6 mt-2">
     <%= f.file_field :live_image, class: "push", onchange: "loadImage(this);" %>
@@ -5,7 +6,7 @@
       <p id="preview"></p>
     </div>
     <!--画像選択で非表示-->
-    <% if live.live_image.present? %>
+    <% if live.live_image.present? && admin_signed_in? %>
       <div id="delete_image">
         <%= image_tag live.get_live_image(500,500), class: "img-fluid" %>
       </div>
@@ -15,15 +16,15 @@
     <table cellpadding="10" class="w-100">
       <tbody>
         <tr>
-          <td><div class="mini-title">LIVE</div></td>
+          <td><div class="mini-title">LIVE</div><span class="text-danger">*</span></td>
           <td><%= f.text_field :name, class: "form-control" %></td>
         </tr>
         <tr>
-          <td><div class="mini-title">DATE</div></td>
+          <td><div class="mini-title">DATE</div><span class="text-danger">*</span></td>
           <td><%= f.date_field :live_date %></td>
         </tr>
         <tr>
-          <td><div class="mini-title">INFO</div></td>
+          <td><div class="mini-title">INFO</div><span class="text-danger">*</span></td>
           <td><%= f.text_area :introduction, rows: "10", class: "form-control" %></td>
         </tr>
         <tr>

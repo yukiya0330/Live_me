@@ -5,6 +5,7 @@
   </div>
   <div class="row mt-3">
     <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+    <%= render "public/shared/error_messages", resource: @genre %>
       <table>
         <tbody>
           <tr>

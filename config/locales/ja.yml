@@ -229,12 +229,32 @@ ja:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
+      
   activerecord:
-    models:
-      customer: 会員
     attributes:
       customer:
         email: メールアドレス
         password: パスワード
         name: 名前
         nickname: ニックネーム
+        
+      live:
+        name: LIVE
+        introduction: INFO
+        live_date: DATE
+        
+      artist:
+        name: ARTIST
+        introduction: INFO
+        
+      report:
+        comment: REPORT
+        
+      live_house:
+        name: LIVEHOUSE
+        inclusion: INFO
+        postal_code: POST
+        address: ADDRESS
+        
+      genre:
+        name: ジャンル名
