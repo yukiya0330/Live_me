@@ -17,10 +17,10 @@
           <thead class="bg-light">
             <tr>
               <th style="width: 15%"></th>
-              <th style="width: 40%">ライブ名</th>
-              <th style="width: 15%">日程</th>
-              <th style="width: 15%">時間</th>
-              <th style="width: 15%">公開ステータス</th>
+              <th style="width: 40%"><%= sort_link(@q, :id, "ライブ", { class: "text-dark border-bottom border-dark" }) %></th>
+              <th style="width: 15%" class="text-center">日程</th>
+              <th style="width: 15%" class="text-center">時間</th>
+              <th style="width: 15%" class="text-center">STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -28,15 +28,15 @@
               <tr>
                 <td style="width: 15%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
                 <td style="width: 40%" class="align-middle"><%= link_to live.name, admin_live_path(live) %></td>
-                <td style="width: 15%" class="align-middle"><%= live.live_date %></td>
-                <td style="width: 15%" class="align-middle">
+                <td style="width: 15%" class="align-middle text-center"><%= live.live_date %></td>
+                <td style="width: 15%" class="align-middle text-center">
                   <% if live.start_time.present? %>
                     <%= live.start_time.strftime( "%H:%M" ) %>
                   <% else %>
                     ask
                   <% end %>
                 </td>
-                <td style="width: 15%" class="align-middle">
+                <td style="width: 15%" class="align-middle text-center">
                   <% if live.status == "wait" %>
                     <p class="text-danger my-auto">処理待ち</p>
                   <% elsif live.status == "release" %>

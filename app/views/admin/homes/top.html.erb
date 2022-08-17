@@ -10,7 +10,7 @@
                 <tr>
                   <td style="width: 15%" class="align-middle"><%= image_tag artist.get_artist_image(50,50) %></td>
                   <td style="width: 70%" class="align-middle"><%= link_to artist.name, admin_artist_path(artist) %></td>
-                  <td style="width: 15%" class="align-middle"><%= artist.status_i18n %></td>
+                  <td style="width: 15%" class="align-middle text-danger"><%= artist.status_i18n %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -42,7 +42,7 @@
                       start: -
                     <% end %>
                   </td>
-                  <td style="width: 15%" class="align-middle"><%= live.status_i18n %></td>
+                  <td style="width: 15%" class="align-middle text-danger"><%= live.status_i18n %></td>
                 </tr>
               <% end %>
             </tbody>

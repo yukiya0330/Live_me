@@ -17,8 +17,8 @@
           <thead class="bg-light">
             <tr>
               <th style="width: 15%"></th>
-              <th style="width: 65%">名前</th>
-              <th style="width: 20%">会員ステータス</th>
+              <th style="width: 65%"><%= sort_link(@q, :id, "アーティスト", { class: "text-dark border-bottom border-dark" }) %></th>
+              <th style="width: 20%" class="text-center">STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -26,7 +26,7 @@
               <tr>
                 <td style="width: 15%" class="align-middle"><%= image_tag artist.get_artist_image(50,50) %></td>
                 <td style="width: 65%" class="align-middle"><%= link_to artist.name, admin_artist_path(artist) %></td>
-                <td style="width: 20%" class="align-middle">
+                <td style="width: 20%" class="align-middle text-center">
                   <% if artist.status == "wait" %>
                     <p class="text-danger my-auto">処理待ち</p>
                   <% elsif artist.status == "release" %>
