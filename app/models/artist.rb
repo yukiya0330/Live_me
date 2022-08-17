@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Artist < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorite_artists, dependent: :destroy
