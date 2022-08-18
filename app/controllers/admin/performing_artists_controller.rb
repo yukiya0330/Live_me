@@ -3,10 +3,6 @@
 class Admin::PerformingArtistsController < ApplicationController
   before_action :authenticate_admin!
 
-  def new
-    @live = Live.find(params[:live_id])
-  end
-
   def create
     @performing_artist = PerformingArtist.new(performing_artist_params)
     if @performing_artist.save
