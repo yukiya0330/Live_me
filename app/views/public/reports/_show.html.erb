@@ -1,6 +1,6 @@
 <div class="row mt-5 justify-content-between">
   <h1 class="main-title"><%= report.live.name %></h1>
-  <%= link_to customers_my_report_path(report.customer, customer_id: report.customer.id), class: "btn customer_btn watch-btn p-1" do %>
+  <%= link_to reports_path(customer_id: report.customer.id), class: "btn customer_btn watch-btn p-1" do %>
     <%= image_tag report.customer.get_profile_image(50,50) %>
     <h4 class="ml-1 my-auto"><%= report.customer.nickname %>'s REPORT</h4>
   <% end %>

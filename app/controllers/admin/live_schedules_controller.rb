@@ -3,10 +3,6 @@
 class Admin::LiveSchedulesController < ApplicationController
   before_action :authenticate_admin!
 
-  def new
-    @live = Live.find(params[:live_id])
-  end
-
   def create
     @live_schedule = LiveSchedule.new(live_schedule_params)
     if @live_schedule.save
