@@ -20,7 +20,7 @@
   </div>
 </div>      
 
-<%= form_for(@contact) do |f| %>
+<%= form_with model: @contact do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :phone_number %>
@@ -28,7 +28,7 @@
   <%= f.hidden_field :message %>
   <div class="text-center"><%= f.submit '送信', class: "btn default-btn bg-success p-2 my-2" %></div>
 <% end %>
-<%= form_for @contact, url: back_path do |f| %>
+<%= form_with model: @contact, url: back_path do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :phone_number %>
