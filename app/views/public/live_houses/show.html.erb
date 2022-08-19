@@ -1,24 +1,37 @@
 <div class="container">
   <%= render "admin/live_houses/show", live_house: @live_house %>
-  <duv class="row my-5 live-list">
-    <div class="col-lg-12">
-      <h2 class="sub-title">ライブ予定</h2>
+  <duv class="row my-5">
+    <div class="col-lg-10 mx-auto">
+      <h4 class="sub-title">ライブ予定</h4>
+    </div>
+    <div class="col-lg-10 mx-auto">
       <% if @live_house.lives.where("live_date >= ?", Date.today).present? %>
-        <table class="w-100">
-        <tbody>
-          <% @live_house.lives.where("live_date >= ?", Date.today).each do |live| %>
-            <tr class="d-flex align-items-center">
-              <td style="width: 15%" class="text-center"><%= image_tag live.get_live_image(50,50) %></td>
-              <td style="width: 50%"><%= link_to live.name, live_path(live) %></td>
-              <td style="width: 15%"><%= live.live_date %></td>
-              <td style="width: 15%">START: <%= live.open_time.strftime( "%H:%M" ) %></td>
-              <td style="width: 5%" id="bookmark_lives_<%= live.id %>">
-                <%= render "public/bookmark_lives/btn", live: live %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
+          <tbody>
+            <% @live_house.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
+              <tr>
+                <td style="width: 10%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 30%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 25%" class="align-middle">
+                  <% live.live_schedules.each do |live_schedule| %>
+                    <%= live_schedule.live_house.name %>
+                  <% end %>
+                </td>
+                <td style="width: 15%" class="align-middle">
+                  <%= live.live_date %>
+                </td>
+                <td style="width: 15%" class="align-middle">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 5%" class="align-middle">
+                  <% if customer_signed_in? %>
+                    <div id="bookmark_lives_<%= live.id %>">
+                      <%= render "public/bookmark_lives/btn", live: live %>
+                    </div>
+                  <% end %>  
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% else %>
         <p class="my-5 text-center">
           現在、ライブの予定はありません</br>

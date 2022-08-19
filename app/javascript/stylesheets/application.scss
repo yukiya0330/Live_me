@@ -90,10 +90,17 @@ img.logo {
     overflow-x: hidden;
   }
   tbody td{
-    width: 19%;
     float: left;
   }
 }
+@media screen and (max-width: 1185px) {
+  .comment-list{
+    table{
+      width: 1000px;
+    }
+  }
+}
+
 
 
 .error-messages {
