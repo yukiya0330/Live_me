@@ -21,7 +21,9 @@
     <div class="col-12 mt-2">
       <div>
         <% @genres.each do |genre| %>
-          <%= link_to genre.name, edit_admin_genre_path(genre), class: "default-btn bg-warning p-2 w-auto text-dark" %>
+          <%= link_to edit_admin_genre_path(genre), class: "default-btn bg-warning p-2 w-auto text-dark" do %>
+            <%= genre.name %>(<%= genre.artists.count %>)
+          <% end %>
         <% end %>
       </div>
     </div>
