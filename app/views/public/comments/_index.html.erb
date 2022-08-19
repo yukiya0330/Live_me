@@ -2,11 +2,11 @@
   <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
     <tbody>
       <% artist.comments.order(id: "DESC").each do |comment| %>
-        <tr>
-          <td style="width: 10%" class="text-left"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
-          <td style="width: 15%"><%= comment.customer.nickname %></td>
-          <td style="width: 70%" class="text-break"><%= comment.comment %></td>
-          <td style="width: 5%" class="text-right">
+        <tr class="d-flex">
+          <td style="width: 10%" class="my-auto text-left"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
+          <td style="width: 15%" class="my-auto"><%= comment.customer.nickname %></td>
+          <td style="width: 70%" class="my-auto text-break"><%= comment.comment %></td>
+          <td style="width: 5%" class=" my-auto text-right">
             <% if current_customer == comment.customer %>
               <%= link_to artist_comment_path(comment.artist,comment), method: :delete, data: {confirm: "削除しますか？"}, remote: true do %>
                 <i class="fa fa-solid fa-trash text-secondary"></i>
