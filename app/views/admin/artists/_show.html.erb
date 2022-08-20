@@ -49,7 +49,23 @@
           <td><div class="mini-title">GENRE</div></td>
           <td>
             <% artist.artist_genres.each do |artist_genre| %>
-              <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "ジャンルを削除しますか？" } %>
+              <% if admin_signed_in? %>
+                <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "ジャンルを削除しますか？" } %>
+              <% elsif customer_signed_in? %>
+                <% if artist_genre.genre.favorited_by?(current_customer) %>
+                  <%= link_to "#", class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: {confirm: "追加済みです！"} do %>
+                    <%= artist_genre.genre.name %>
+                  <% end %>
+                <% else %>
+                  <%= link_to genre_favorite_genres_path(artist_genre.genre), method: :post, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: {confirm: "お気に入りに追加しますか？"} do %>
+                    <%= artist_genre.genre.name %>
+                  <% end %>
+                <% end %>  
+              <% else %>
+                <% artist.artist_genres.each do |artist_genre| %>
+                  <%= link_to artist_genre.genre.name, "#", class: "default-btn bg-warning p-2 w-auto text-dark my-1" %>
+                <% end %>
+              <% end %>
             <% end %>
           </td>
         </tr>

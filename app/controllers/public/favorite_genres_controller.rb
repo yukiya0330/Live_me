@@ -7,6 +7,7 @@ class Public::FavoriteGenresController < ApplicationController
     genre = Genre.find(params[:genre_id])
     favorite_genre = current_customer.favorite_genres.new(genre_id: genre.id)
     favorite_genre.save
+    flash[:success] = "お気に入りに登録しました"
     redirect_to request.referer
   end
 

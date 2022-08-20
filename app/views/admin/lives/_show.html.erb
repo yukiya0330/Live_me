@@ -3,7 +3,7 @@
     <h2 class="main-title"><%= live.name %></h2>
     <!--ログインしている場合のみ表示-->
     <% if customer_signed_in? %>
-      <div class="my-auto" style="font-size: 15px;">
+      <div class="my-auto report-text">
         <%= link_to "レポート作成", new_report_path(live_id: live.id), class: "default-btn bg-primary p-1 w-auto" %>
       </div>
       <div id="bookmark_lives_<%= live.id %>">
@@ -32,8 +32,14 @@
         <tr>
           <td><div class="mini-title">PLASE</div></td>
           <td>
-            <% live.live_schedules.each do |live_schedule| %>
-              <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto my-1", data: { confirm: "削除してもよろしいですか？" }  %>
+            <% if admin_signed_in? %>
+              <% live.live_schedules.each do |live_schedule| %>
+                <%= link_to live_schedule.live_house.name, admin_live_house_live_schedule_path(live_schedule.live_house, live_schedule), method: :delete, class: "default-btn bg-secondary p-2 w-auto my-1", data: { confirm: "削除してもよろしいですか？" }  %>
+              <% end %>
+            <% else %>
+              <% live.live_schedules.each do |live_schedule| %>
+                <%= link_to live_schedule.live_house.name, live_house_path(live_schedule.live_house), class: "default-btn bg-secondary p-2 w-auto my-1"  %>
+              <% end %>
             <% end %>
           </td>
         </tr>
@@ -100,8 +106,14 @@
         <tr>
           <td class="d-flex align-items-start"><div class="mini-title">ARTIST</div></td>
           <td>
-            <% live.performing_artists.each do |performing_artist| %>
-              <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "削除してもよろしいですか？" } %>
+            <% if admin_signed_in? %>
+              <% live.performing_artists.each do |performing_artist| %>
+                <%= link_to performing_artist.artist.name, admin_artist_performing_artist_path(performing_artist.artist, performing_artist), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "削除してもよろしいですか？" } %>
+              <% end %>
+            <% else %>
+              <% live.performing_artists.each do |performing_artist| %>
+                <%= link_to performing_artist.artist.name, artist_path(performing_artist.artist), class: "default-btn bg-warning p-2 w-auto text-dark my-1" %>
+              <% end %>
             <% end %>
           </td>
         </tr>
