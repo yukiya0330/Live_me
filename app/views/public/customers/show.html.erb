@@ -28,22 +28,31 @@
       <div class="row mt-3">
         <div class="col-12">
           <h4 class="sub-title">ブックマークしたライブ</h4>
-          <% if current_customer.bookmark_lives.present? %>
-            <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
-              <tbody>
-                <% current_customer.bookmark_lives.each do |bookmark_live| %>
-                  <tr>
-                    <td style="width: 10%" class="text-center"><%= image_tag bookmark_live.live.get_live_image(50,50) %></td>
-                    <td style="width: 55%" class="align-middle"><%= link_to bookmark_live.live.name, live_path(bookmark_live.live) %></td>
-                    <td style="width: 15%" class="align-middle"><%= bookmark_live.live.live_date %></td>
-                    <td style="width: 25%" class="align-middle">START: <%= bookmark_live.live.open_time.strftime( "%H:%M" ) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          <% else %>
-            <p class="my-5 text-center">ブックマークしたライブがありません</br>気になるライブをブックマークしてみましょう！</p>
-          <% end %>
+          <div class="col-12 table-responsive">
+            <% if current_customer.bookmark_lives.present? %>
+              <table class="table shadow p-3 bg-body rounded">
+                <tbody>
+                  <% current_customer.bookmark_lives.each do |bookmark_live| %>
+                    <tr>
+                      <td style="width: 10%" class="text-center"><%= image_tag bookmark_live.live.get_live_image(50,50) %></td>
+                      <td style="width: 55%" class="align-middle"><%= link_to bookmark_live.live.name, live_path(bookmark_live.live) %></td>
+                      <td style="width: 15%" class="align-middle"><%= bookmark_live.live.live_date %></td>
+                      <td style="width: 25%" class="align-middle">
+                        START: 
+                        <% if bookmark_live.live.start_time.present? %>
+                          <%= bookmark_live.live.start_time.strftime( "%H:%M" ) %>
+                        <% else %>
+                          -
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p class="my-5 text-center">ブックマークしたライブがありません</br>気になるライブをブックマークしてみましょう！</p>
+            <% end %>
+          </div>  
         </div>
       </div>
       <div class="row my-5 favorite-list">
