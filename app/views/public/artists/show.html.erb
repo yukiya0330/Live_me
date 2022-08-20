@@ -28,7 +28,7 @@
     </div>
     <div class="col-lg-10 mx-auto table-responsive">
       <% if @artist.lives.where("live_date >= ?", Date.today).present? %>
-        <table class="table table-borderless shadow p-3 bg-body rounded">
+        <table class="table shadow p-3 bg-body rounded">
           <tbody>
             <% @artist.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
               <tr>

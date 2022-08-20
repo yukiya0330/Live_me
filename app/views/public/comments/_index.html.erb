@@ -1,7 +1,7 @@
 <% if artist.comments.present? %>
   <div class="table-responsive comment-list">
     <table class="table table-borderless shadow p-3 bg-body rounded">
-      <tbody>
+      <tbody class="border">
         <% artist.comments.order(id: "DESC").each do |comment| %>
           <tr class="d-flex">
             <td style="width: 10%" class="my-auto text-left"><%= image_tag comment.customer.get_profile_image(50,50) %></td>
