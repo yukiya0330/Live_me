@@ -20,7 +20,14 @@
                 <td style="width: 15%" class="align-middle">
                   <%= live.live_date %>
                 </td>
-                <td style="width: 15%" class="align-middle">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
+                <td style="width: 15%" class="align-middle">
+                  START: 
+                  <% if live.start_time.present? %>
+                    <%= live.start_time.strftime( "%H:%M" ) %>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
                 <td style="width: 5%" class="align-middle">
                   <% if customer_signed_in? %>
                     <div id="bookmark_lives_<%= live.id %>">
