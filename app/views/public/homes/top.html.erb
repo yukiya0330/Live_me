@@ -81,26 +81,17 @@
           <tbody>
             <% @new_lives.first(3).each do |live| %>
               <tr>
-                <td style="width: 10%" class="align-middle"><%= image_tag live.get_live_image(50,50) %></td>
-                <td style="width: 20%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
-                <td style="width: 30%" class="align-middle">
-                  <% live.performing_artists.first(3).each do |performing_artist| %>
-                    <%= performing_artist.artist.name %>
-                  <% end %>
-                </td>
-                <td style="width: 20%" class="align-middle">
+                <td style="width: 10%" class="align-middle text-center"><%= image_tag live.get_live_image(50,50) %></td>
+                <td style="width: 30%" class="align-middle"><%= link_to live.name, live_path(live) %></td>
+                <td style="width: 25%" class="align-middle">
                   <% live.live_schedules.each do |live_schedule| %>
                     <%= live_schedule.live_house.name %>
                   <% end %>
                 </td>
-                <td style="width: 20%" class="align-middle text-center">
-                    START: 
-                    <% if live.start_time.present? %>
-                      <%= live.start_time.strftime( "%H:%M" ) %>
-                    <% else %>
-                      -
-                    <% end %>
+                <td style="width: 15%" class="align-middle">
+                  <%= live.live_date %>
                 </td>
+                <td style="width: 15%" class="align-middle">START: <%= live.start_time.strftime( "%H:%M" ) %></td>
                 <td style="width: 5%" class="align-middle">
                   <% if customer_signed_in? %>
                     <div id="bookmark_lives_<%= live.id %>">
