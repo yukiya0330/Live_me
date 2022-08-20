@@ -49,7 +49,7 @@
           <td><div class="mini-title">GENRE</div></td>
           <td>
             <% artist.artist_genres.each do |artist_genre| %>
-              <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark", data: { confirm: "ジャンルを削除しますか？" } %>
+              <%= link_to artist_genre.genre.name, admin_genre_artist_genre_path(artist_genre.genre, artist_genre), method: :delete, class: "default-btn bg-warning p-2 w-auto text-dark my-1", data: { confirm: "ジャンルを削除しますか？" } %>
             <% end %>
           </td>
         </tr>
