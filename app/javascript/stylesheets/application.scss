@@ -5,9 +5,7 @@
 @import 'text-design';
 @import 'kaminari';
 @import 'content';
-// @import "./slick-theme";
-// @import "./slick"; 
-  
+
 html {
   height: 100%;
 }
@@ -16,12 +14,12 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  position:  relative;        /* 位置指定 */
-  z-index: 10;                /* 重なり順指定 */
+  position:  relative;
+  z-index: 10;
 }
 .alert{
-  position:  absolute;        /* 位置指定 */
-  z-index: 100;               /* 重なり順指定 */
+  position:  absolute;
+  z-index: 100;
   width: 100%;
 }
 header {
@@ -31,87 +29,4 @@ footer {
   position: sticky;
   top: 100vh;
   width: 100%;
-}
-
-.nav-item{
-  margin: 0 5px;
-}
-
-img.logo {
-  width: 120%;
-  height: auto;
-}
-
-#map {
-  height: 200px;
-  width: 100%;
-}
-
-.artist-page{
-  .fa-heart{
-    font-size: 50px;
-  }
-  .fa-trash{
-    font-size: 20px;
-  }
-}
-
-.live-page{
-  .fa-bookmark{
-    font-size: 50px;
-  }
-}
-.fa-bookmark{
-  font-size: 30px;
-}
-.fa-heart{
-  font-size: 30px;
-}
-
-// テーブルスクロール
-.comment-list, .live-list, .favorite-list, .bookmark-list, .artist-list{
-  table {
-    width: 100%;
-    border-spacing: 0;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
-  }
-  tbody, tr, th, td {
-    display: block;
-  }
-  tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-  }
-  tbody {
-    height: 300px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  tbody td{
-    float: left;
-  }
-}
-@media screen and (max-width: 1185px) {
-  .comment-list{
-    table{
-      width: 1000px;
-    }
-  }
-  .report-text{
-    font-size: 13px;
-  }
-}
-
-
-
-.error-messages {
-  background-color: #ffccccd1;
-  >ul {
-    padding: 20px 0 20px 5px;
-    >li {
-      list-style: none;
-    }
-  }
 }
