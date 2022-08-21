@@ -28,16 +28,16 @@
 
 ### 主な利用シーン
 ・`今日なんとなくライブ行きたいけど、いいライブが見つからない時`<br>
-・`週末、暇だからライブハウスに遊びにいきたい時`<br>
+・`今からライブハウスに遊びにいきたい時`<br>
 ・`まだ知らないアーティストを発掘したい時`<br>
 ・`みんなに好きなアーティストの良さを知ってもらいたい時`<br>
 ・`自分に合うアーティストを知りたい時`<br>
 
 ## 設計書
 **ER図**<br>
-<img src="https://user-images.githubusercontent.com/97089962/180912733-6f50b8c8-fffb-4d88-b680-b1d546ad3c4f.jpg" width="500x500"><br>
+<img src="https://user-images.githubusercontent.com/97089962/185774105-ecace0d6-a33a-4946-8563-1f41865f8950.jpg" width="500x500"><br>
 **テーブル定義書**<br>
-[Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/mission1/files/9186198/Live-me_.1.pdf)
+[Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/Live_me/files/9388368/Live-me_.2.pdf)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -46,6 +46,14 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
+## gems
+`gem 'devise'`      => ログイン機能<br>
+`gem 'geocoder'`    => GoogleAPI導入時の緯度・経度取得<br>
+`gem 'kaminari'`    => ページネーション<br>
+`gem 'ransack'`     => 検索機能実装<br>
+`gem 'rubocop'`     => コーディングチェック<br>
+`gem 'rspec-rails'` => テスト<br>
+
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+既存のアーティスト画像は著作権にあたる為、サンプル画像として以下のサイトを使用しました。<br>
+https://www.photo-ac.com/
