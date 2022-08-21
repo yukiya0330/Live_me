@@ -18,16 +18,15 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
+// フラッシュメッセージ
 $(function(){
   $('.alert').fadeOut(4000);  //４秒かけて消えていく
 });
 
+// スライドイメージ
 $(document).on('turbolinks:load', function(){
   $('.slick').slick({
-    // 自動再生
     autoplay:true,
-    // ドットの表示
     dots:true
   });
 });

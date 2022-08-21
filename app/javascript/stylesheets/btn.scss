@@ -60,3 +60,24 @@
   display: flex;
   width: auto;
 }
+
+.artist-page{
+  .fa-heart{
+    font-size: 50px;
+  }
+  .fa-trash{
+    font-size: 20px;
+  }
+}
+
+.live-page{
+  .fa-bookmark{
+    font-size: 50px;
+  }
+}
+.fa-bookmark{
+  font-size: 30px;
+}
+.fa-heart{
+  font-size: 30px;
+}
