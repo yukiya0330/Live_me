@@ -30,7 +30,7 @@ class Public::ReportsController < ApplicationController
       flash[:success] = "投稿されました"
       redirect_to report_path(@report)
     else
-      flash.now[:danger] = "投稿に失敗しました"
+      flash[:danger] = "投稿に失敗しました"
       @live = Live.find_by(id: params[:live_id])
       render :new
     end
@@ -51,7 +51,7 @@ class Public::ReportsController < ApplicationController
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
-    flash[:success] = "一件のレポートが削除されました"
+    flash[:warning] = "一件のレポートが削除されました"
     redirect_to reports_path
   end
 

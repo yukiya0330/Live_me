@@ -17,7 +17,7 @@ class Admin::PerformingArtistsController < ApplicationController
   def destroy
     @performing_artist = PerformingArtist.find(params[:id])
     @performing_artist.destroy
-    flash[:success] = "一件のアーティストが削除されました"
+    flash[:warning] = "一件のアーティストが削除されました"
     redirect_to request.referer
   end
 

@@ -15,6 +15,7 @@ class Public::FavoriteGenresController < ApplicationController
     genre = Genre.find(params[:genre_id])
     favorite_genre = current_customer.favorite_genres.find_by(genre_id: genre.id)
     favorite_genre.destroy
+    flash[:warning] = "お気に入りを削除しました"
     redirect_to request.referer
   end
 end
