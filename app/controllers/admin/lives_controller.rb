@@ -46,7 +46,7 @@ class Admin::LivesController < ApplicationController
   def destroy
     @live = Live.find(params[:id])
     @live.destroy
-    flash.now[:danger] = "1件の登録が削除されました"
+    flash[:warning] = "1件の登録が削除されました"
     redirect_to admin_lives_path
   end
 

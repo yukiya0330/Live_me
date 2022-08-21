@@ -10,6 +10,7 @@ class Admin::ArtistGenresController < ApplicationController
       @artist = @artist_genre.artist
       redirect_to request.referer
     else
+      flash[:danger] = "正常に保存できませんでした"
       redirect_to request.referer
     end
   end
