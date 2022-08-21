@@ -3,7 +3,7 @@
     <h3 class="sub-title"><%= @customer.name %>さんの会員情報編集</h3>
   </div>
   <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
-    <% render "form", customer: @customer, f:  %>
-  <% end %>  
+    <% render "form", customer: @customer, f: f %>
+  <% end %>
 </div>
 <%= render "public/artists/loadimage" %>

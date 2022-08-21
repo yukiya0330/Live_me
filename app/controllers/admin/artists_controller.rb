@@ -46,7 +46,7 @@ class Admin::ArtistsController < ApplicationController
   def destroy
     @artist = Artist.find(params[:id])
     @artist.destroy
-    flash[:danger] = "1件の登録が削除されました"
+    flash[:warning] = "1件の登録が削除されました"
     redirect_to admin_artists_path
   end
 
