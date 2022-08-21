@@ -1,7 +1,9 @@
 # Live Me
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/97089962/185775785-f0b77cf0-c1e6-41e5-9005-a5891647de12.png" width="500x500">
+</div>
 
 ## サイト概要
--後ほど画像追加-
 
 ### サイトテーマ
 `今からライブ行きたい！`　`週末暇だからいいライブないかな？`　`バンドを発掘したい！`<br>
@@ -27,15 +29,17 @@
 ・`自分に合うアーティストを知りたい方`
 
 ### 主な利用シーン
-・`今日なんとなくライブ行きたいけど、いいライブが見つからない時`<br>
 ・`今からライブハウスに遊びにいきたい時`<br>
 ・`まだ知らないアーティストを発掘したい時`<br>
 ・`みんなに好きなアーティストの良さを知ってもらいたい時`<br>
 ・`自分に合うアーティストを知りたい時`<br>
 
 ## 設計書
-**ER図**<br>
-<img src="https://user-images.githubusercontent.com/97089962/185774105-ecace0d6-a33a-4946-8563-1f41865f8950.jpg" width="500x500"><br>
+**ER図**
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/97089962/185774105-ecace0d6-a33a-4946-8563-1f41865f8950.jpg" width="500x500">
+</div> 
+
 **テーブル定義書**<br>
 [Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/Live_me/files/9388368/Live-me_.2.pdf)
 
