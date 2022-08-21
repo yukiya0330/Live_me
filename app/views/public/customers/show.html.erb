@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row mt-3">
     <div class="col-lg-3 text-center">
-      <div class="py-3 bg-light rounded-lg">
+      <div class="py-3 bg-light">
         <%= image_tag current_customer.get_profile_image(200,200) %><br>
         <h5 class="my-2"><%= current_customer.nickname %></h5>
         <%= link_to "ライブレポート", reports_path(customer_id: current_customer.id) %>(<%= current_customer.reports.count %>件)<br>
