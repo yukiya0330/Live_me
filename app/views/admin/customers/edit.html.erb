@@ -3,46 +3,7 @@
     <h3 class="sub-title"><%= @customer.name %>さんの会員情報編集</h3>
   </div>
   <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
-    <div class="row mt-1">
-      <div class="col-lg-6 mt-2">
-        <%= f.file_field :profile_image, class: "push", onchange: "loadImage(this);" %>
-        <div id="post_images" style="display: none;">
-          <p id="preview"></p>
-        </div>
-        <!--画像選択で非表示-->
-        <div id="delete_image">
-          <%= image_tag @customer.get_profile_image(500,500), class: "img-fluid" %>
-        </div>
-      </div>
-      <div class="col-lg-6 my-auto">
-        <table cellpadding="10" class="mx-auto">
-          <tbody>
-            <tr>
-              <td>名前</td>
-              <td><%= f.text_field :name %></td>
-            </tr>
-            <tr>
-              <td>ニックネーム</td>
-              <td><%= f.text_field :nickname %></td>
-            </tr>
-            <tr>
-              <td>メールアドレス</td>
-              <td><%= f.email_field :email %></td>
-            </tr>
-            <tr>
-              <td>会員ステータス</td>
-              <td>
-                <%= f.radio_button(:is_deleted, false) %>有効
-                <%= f.radio_button(:is_deleted, true) %>退会
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="text-center my-1">
-          <%= f.submit "更新", class: "btn default-btn bg-success p-2" %>
-        </div>
-      </div>
-    </div>
-  <% end %>  
+    <% render "form", customer: @customer, f: f %>
+  <% end %>
 </div>
 <%= render "public/artists/loadimage" %>
