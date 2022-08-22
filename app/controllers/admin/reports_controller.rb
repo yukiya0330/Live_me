@@ -19,7 +19,7 @@ class Admin::ReportsController < ApplicationController
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
-    flash[:notice] = "一件のコメントが削除されました"
+    flash[:warning] = "一件のコメントが削除されました"
     redirect_to admin_reports_path(customer_id: @report.customer.id)
   end
 end

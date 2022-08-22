@@ -45,8 +45,8 @@ class Admin::LiveHousesController < ApplicationController
   def destroy
     @live_house = LiveHouse.find(params[:id])
     @live_house.destroy
-    flash.now[:danger] = "1件の登録が削除されました"
-    redirect_to admin_lives_house_path
+    flash[:warning] = "1件の登録が削除されました"
+    redirect_to admin_live_houses_path
   end
 
   private

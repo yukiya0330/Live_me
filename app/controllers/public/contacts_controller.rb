@@ -22,7 +22,7 @@ class Public::ContactsController < ApplicationController
     if @contact.save
       redirect_to done_path
     else
-      flash.now[:danger] = "編集内容を確認してください"
+      flash[:danger] = "編集内容を確認してください"
       render :new
     end
   end

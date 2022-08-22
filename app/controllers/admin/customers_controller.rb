@@ -30,7 +30,7 @@ class Admin::CustomersController < ApplicationController
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
-    flash[:success] = "一件のユーザーが削除されました"
+    flash[:warning] = "一件のユーザーが削除されました"
     redirect_to admin_customers_path
   end
 

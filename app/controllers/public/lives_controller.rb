@@ -20,7 +20,7 @@ class Public::LivesController < ApplicationController
       flash[:success] = "投稿依頼完了しました"
       redirect_to customers_completion_path
     else
-      flash[:danger] = "入力内容を確認してください"
+      flash.now[:danger] = "入力内容を確認してください"
       render :new
     end
   end

@@ -17,7 +17,7 @@ class Admin::LiveSchedulesController < ApplicationController
   def destroy
     @live_schedule = LiveSchedule.find(params[:id])
     @live_schedule.destroy
-    flash[:success] = "一件のライブハウスが削除されました"
+    flash[:warning] = "一件のライブハウスが削除されました"
     redirect_to request.referer
   end
 
