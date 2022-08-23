@@ -58,8 +58,8 @@
     <div class="col-12">
       <h4 class="sub-title">とりあえずライブに行きたい人へ</h4>
       <div class="text-center mt-4">
-        <% if @after_lives.present? %>
-          <% @after_lives.shuffle.first(1).each do |live| %>
+        <% if @today_lives.present? %>
+          <% @today_lives.shuffle.first(1).each do |live| %>
             <%= link_to "今日行きたい!", live_path(live), class: "watch-btn mb-2" %>
             <p>※今日開催されるライブがランダムで表示されます</p>
           <% end %>
