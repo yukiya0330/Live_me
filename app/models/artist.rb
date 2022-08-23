@@ -30,4 +30,21 @@ class Artist < ApplicationRecord
   def favorited_by?(customer)
     favorite_artists.where(customer_id: customer.id).exists?
   end
+  
+  ransacker :favorite_count do
+    query = '(SELECT COUNT(favorite_artists.artist_id) 
+              FROM favorite_artists 
+              where favorite_artists.artist_id = artists.id 
+              GROUP BY favorite_artists.artist_id)'
+    Arel.sql(query)
+  end
+  
+  ransacker :comment_count do
+    query = '(SELECT COUNT(comments.artist_id) 
+              FROM comments 
+              where comments.artist_id = artists.id 
+              GROUP BY comments.artist_id)'
+    Arel.sql(query)
+  end
+  
 end
