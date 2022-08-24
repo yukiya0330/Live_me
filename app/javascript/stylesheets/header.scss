@@ -29,7 +29,7 @@ img.logo {
 }
 
 /* スマホサイズで見た場合のスタイル */
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1240px) {
   // 通常のメニュー表示しない
   #navmenu{
     display: none!important;
@@ -113,7 +113,7 @@ img.logo {
   }
 }
 
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1240px) {
   #default-navmenu{
     display: none!important;
   }
