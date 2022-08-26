@@ -1,6 +1,6 @@
 # Live Me
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/97089962/186897264-e613b22c-5042-42eb-be0b-5ef6d58f2111.png" width="500x500">
+  <img src="https://user-images.githubusercontent.com/97089962/186897665-e9b2d8b4-a107-4e14-9bfd-a516d5426487.png" width="500x500">
 </div>
 
 ## サイト概要
