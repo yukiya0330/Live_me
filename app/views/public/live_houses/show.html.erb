@@ -4,9 +4,9 @@
     <div class="col-lg-10 mx-auto">
       <h4 class="sub-title">ライブ予定</h4>
     </div>
-    <div class="col-lg-10 mx-auto">
+    <div class="col-lg-10 mx-auto table-responsive">
       <% if @live_house.lives.where("live_date >= ?", Date.today).present? %>
-        <table class="table table-borderless shadow p-3 bg-body rounded table-responsive">
+        <table class="table table-borderless shadow p-3 bg-body rounded">
           <tbody>
             <% @live_house.lives.where("live_date >= ?", Date.today).where(status: 1).each do |live| %>
               <tr>
