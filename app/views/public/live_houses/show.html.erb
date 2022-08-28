@@ -42,7 +42,9 @@
       <% else %>
         <p class="my-5 text-center">
           現在、ライブの予定はありません</br>
-          ライブ日程の追加がある場合は、<%= link_to "ここ", new_live_path %>をクリックしてください
+          <% if customer_signed_in? %>
+            ライブ日程の追加がある場合は、<%= link_to "ここ", new_live_path %>をクリックしてください
+          <% end %>
         </p>
       <% end %>
     </div>
