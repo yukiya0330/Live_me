@@ -3,7 +3,7 @@
 class Public::ReportsController < ApplicationController
   def index
     @q = Report.ransack(params[:q])
-    @reports = @q.result.page params[:page]
+    @reports = @q.result.order(created_at: "DESC").page params[:page]
     if params[:customer_id].present?
       @customer = Customer.find(params[:customer_id])
       @reports = @customer.reports.page params[:page]
