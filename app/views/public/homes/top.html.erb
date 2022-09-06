@@ -76,7 +76,7 @@
     <div class="col-12">
       <h4 class="sub-title">新着ライブ</h4>
       <div class="col-12 table-responsive">
-        <table class="table shadow p-3 mb-5 bg-body rounded">
+        <table class="table shadow p-3 mb-4 bg-body rounded">
           <tbody>
             <% @new_lives.first(3).each do |live| %>
               <tr>
@@ -120,7 +120,7 @@
       <h4 class="sub-title">新着ライブレポート</h4>
       <div class="col-12 table-responsive">
         <% if @new_reports.present? %>
-          <table class="table shadow p-3 mb-5 bg-body rounded">
+          <table class="table shadow p-3 mb-4 bg-body rounded">
             <tbody>
               <% @new_reports.first(3).each do |report| %>
                 <tr>
