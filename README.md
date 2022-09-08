@@ -35,12 +35,12 @@
 ・`自分に合うアーティストを知りたい時`<br>
 
 ## 設計書
-**ER図**
+### **ER図**
 <div align="center">
   <img src="https://user-images.githubusercontent.com/97089962/185774105-ecace0d6-a33a-4946-8563-1f41865f8950.jpg" width="500x500">
 </div> 
 
-**テーブル定義書**<br>
+### **テーブル定義書**
 [Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/Live_me/files/9388368/Live-me_.2.pdf)
 
 ## 開発環境
