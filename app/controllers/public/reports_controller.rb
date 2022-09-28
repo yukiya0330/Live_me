@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Public::ReportsController < ApplicationController
+  before_action :ensure_current_customer, only: [:edit, :update, :destroy]
+
   def index
     @q = Report.ransack(params[:q])
     @reports = @q.result.order(created_at: "DESC").page params[:page]
@@ -53,6 +55,14 @@ class Public::ReportsController < ApplicationController
     @report.destroy
     flash[:warning] = "一件のレポートが削除されました"
     redirect_to reports_path
+  end
+  
+  def ensure_current_customer
+  	@report = Report.find(params[:id])
+  	if @report.customer_id != current_customer.id
+  		flash[:notice] = "権限がありません"
+  		redirect_to reports_path
+  	end
   end
 
   private
