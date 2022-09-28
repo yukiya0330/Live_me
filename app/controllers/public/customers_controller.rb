@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :ensure_current_customer
 
   def show
     @customer = Customer.find(params[:id])
@@ -39,6 +39,14 @@ class Public::CustomersController < ApplicationController
     flash[:success] = "正常に退会しました"
     redirect_to root_path
   end
+  
+  def ensure_current_customer
+    @customer = Customer.find(params[:id])
+    if @customer.id != current_customer.id
+  		flash[:notice] = "権限がありません"
+  		redirect_to root_path
+    end  
+  end  
 
   private
     def customer_params
