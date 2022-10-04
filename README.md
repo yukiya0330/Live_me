@@ -37,8 +37,15 @@
 ## 設計書
 ### **ER図**
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/97089962/185774105-ecace0d6-a33a-4946-8563-1f41865f8950.jpg" width="500x500">
-</div> 
+  <img src="https://user-images.githubusercontent.com/97089962/185774105-ecace0d6-a33a-4946-8563-1f41865f8950.jpg" width="600x600">
+</div>
+
+### **インフラ構成図**
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/97089962/193170690-766869d5-9c5c-473d-8a73-58ccb7cb5996.jpeg" width="600x600">
+</div>
+
+
 
 ### **テーブル定義書**
 [Live-me_テーブル提議書.pdf](https://github.com/yukiya0330/Live_me/files/9388368/Live-me_.2.pdf)
